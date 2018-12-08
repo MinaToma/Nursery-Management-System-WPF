@@ -1,0 +1,24 @@
+﻿<Window x:Class="Nursery_Management_System_WPF.signUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nursery_Management_System_WPF"
+        mc:Ignorable="d"
+        Title="Nursery Management System - Sign Up" Height="600" Width="400
+        ">
+    <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="#FFC797B7" Offset="1"/>
+                <GradientStop Color="#FFE1D4E2"/>
+                <GradientStop Color="#FFCBA0BD" Offset="0.75"/>
+                <GradientStop Color="#FFCEA8C3" Offset="0.5"/>
+                <GradientStop Color="#FFD4B7CE" Offset="0.25"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Button x:Name="staffSignUp" Content="Staff" HorizontalAlignment="Left" Margin="214,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand"/>
+        <Button x:Name="parentSignUp" Content="Parent" HorizontalAlignment="Left" Margin="32,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" />
+
+    </Grid>
+</Window>
