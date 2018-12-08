@@ -67,8 +67,20 @@
     <Compile Include="Classes\SQLQuery.cs" />
     <Compile Include="Classes\Staff.cs" />
     <Compile Include="Classes\ValidateData.cs" />
+    <Compile Include="parentSignUp.xaml.cs">
+      <DependentUpon>parentSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="parentSignUp2.xaml.cs">
+      <DependentUpon>parentSignUp2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="signIn.xaml.cs">
       <DependentUpon>signIn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="signUp.xaml.cs">
+      <DependentUpon>signUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="staffSignUp.xaml.cs">
+      <DependentUpon>staffSignUp.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -82,7 +94,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="parentSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="parentSignUp2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="signIn.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="signUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="staffSignUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -193,6 +221,10 @@
     <Resource Include="images\login.png" />
     <Resource Include="images\password.png" />
     <Resource Include="images\userame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Asset 1+.png" />
+    <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

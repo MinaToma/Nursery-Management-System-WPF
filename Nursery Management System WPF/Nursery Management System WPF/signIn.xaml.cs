@@ -28,7 +28,7 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlQuery = new SQLQuery();
 
-            if (mSqlQuery.serachForUser(username.Text, password.Text) == false)
+            if (mSqlQuery.serachForUser(username.Text, password.Password) == false)
             {
                 MessageBox.Show("Username doesn't exist", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Error);
             }

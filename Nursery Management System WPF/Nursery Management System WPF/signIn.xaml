@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Sign In" Height="569.334" Width="397.903">
+        Title="Nursery Management System - Sign In" Height="600" Width="400">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF03223C" Offset="1"/>
@@ -13,18 +13,21 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="68,276,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="32" Click="loginButton_Click" >
+        <Button x:Name="loginButton" Content="LOGIN" HorizontalAlignment="Left" Margin="64,370,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13.333" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="42" Click="loginButton_Click" TabIndex="2" >
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="10"/>
             </Button.Effect>
         </Button>
 
-        <Image x:Name="usernameImage" HorizontalAlignment="Left" Height="42" Margin="68,158,0,0" VerticalAlignment="Top" Width="270" Source="/images/userame.png"/>
-        <Image x:Name="passwordImage" HorizontalAlignment="Left" Height="42" Margin="68,205,0,0" VerticalAlignment="Top" Width="270" Source="/images/password.png"/>
+        <Image x:Name="usernameImage" HorizontalAlignment="Left" Height="42" Margin="64,252,0,0" VerticalAlignment="Top" Width="270" Source="/images/userame.png"/>
+        <Image x:Name="passwordImage" HorizontalAlignment="Left" Height="42" Margin="64,299,0,0" VerticalAlignment="Top" Width="270" Source="/images/password.png"/>
 
-        <TextBox x:Name="username" HorizontalAlignment="Left" Height="42" Margin="116,158,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="10.667" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0"/>
-        <TextBox x:Name="password" HorizontalAlignment="Left" Height="42" Margin="116,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="10.667" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0"/>
-
+        <TextBox x:Name="username" HorizontalAlignment="Left" Height="42" Margin="112,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="13.333" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0" TabIndex="0"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="42" Margin="112,299,0,0" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="13.333" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0" TabIndex="1"/>
+        <Image x:Name="headerImage" HorizontalAlignment="Center" Height="117" Margin="65,100,59.6,0" VerticalAlignment="Top" Width="269" Source="images/Asset 6.png" Stretch="UniformToFill"/>
+        <Image x:Name="footerImage" HorizontalAlignment="Center" Height="17" Margin="65,475,59.6,0" VerticalAlignment="Top" Width="269" Source="images/Asset 7.png"/>
+        <Label x:Name="newAccountMessage" Content="Don't have an account? create one" HorizontalAlignment="Left" Margin="76,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFABADB3"/>
+        <Label x:Name="createAccount" Content="here." HorizontalAlignment="Left" Margin="283,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFB4974B" Cursor="Hand"/>
 
     </Grid>
 
