@@ -13,7 +13,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="68,276,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="32" >
+        <Button x:Name="loginButton" Content="Login" HorizontalAlignment="Left" Margin="68,276,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="32" Click="loginButton_Click" >
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="10"/>
             </Button.Effect>

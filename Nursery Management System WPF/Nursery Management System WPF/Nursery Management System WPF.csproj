@@ -55,6 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Classes\Admin.cs" />
+    <Compile Include="Classes\Child.cs" />
+    <Compile Include="Classes\connectionString.cs" />
+    <Compile Include="Classes\GlobalVariables.cs" />
+    <Compile Include="Classes\Human.cs" />
+    <Compile Include="Classes\ImageOperation.cs" />
+    <Compile Include="Classes\Parent.cs" />
+    <Compile Include="Classes\Room.cs" />
+    <Compile Include="Classes\SQL.cs" />
+    <Compile Include="Classes\SQLQuery.cs" />
+    <Compile Include="Classes\Staff.cs" />
+    <Compile Include="Classes\ValidateData.cs" />
     <Compile Include="signIn.xaml.cs">
       <DependentUpon>signIn.xaml</DependentUpon>
     </Compile>
@@ -102,7 +114,77 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\128.png" />
+    <Resource Include="images\200.png" />
+    <Resource Include="images\256.png" />
+    <Resource Include="images\add child icon 90px.png" />
+    <Resource Include="images\add child icon png.png" />
+    <Resource Include="images\add child icon.png" />
+    <Resource Include="images\add icon png.png" />
+    <Resource Include="images\application form icon 128px+.png" />
+    <Resource Include="images\application form icon 128px.png" />
+    <Resource Include="images\application form icon 512px.png" />
+    <Resource Include="images\back 100px.png" />
+    <Resource Include="images\back 50px dim gray.png" />
+    <Resource Include="images\back 50px.png" />
+    <Resource Include="images\back icon png 1600px.png" />
+    <Resource Include="images\back icon png 30px.png" />
+    <Resource Include="images\back icon png 70px.png" />
+    <Resource Include="images\back.png" />
+    <Resource Include="images\background.jpg" />
+    <Resource Include="images\child icon png.png" />
+    <Resource Include="images\children 95px.png" />
+    <Resource Include="images\children.png" />
+    <Resource Include="images\Clouds - palette.jpg" />
+    <Resource Include="images\Clouds.jpg" />
+    <Resource Include="images\colour palette hexa and rgb.txt" />
+    <Resource Include="images\cubes icon 128px w-o white.png" />
+    <Resource Include="images\cubes icon 128px.png" />
+    <Resource Include="images\cubes icon 180px w-o white.png" />
+    <Resource Include="images\cubes icon 200px w-o white.png" />
+    <Resource Include="images\cubes icon 256px w-o white.png" />
+    <Resource Include="images\cubes icon 256px.png" />
+    <Resource Include="images\feedback - Copy.png" />
+    <Resource Include="images\feedback.png" />
+    <Resource Include="images\female icon 30px.png" />
+    <Resource Include="images\female icon 50px.png" />
+    <Resource Include="images\female icon.jpg" />
+    <Resource Include="images\female icon.png" />
+    <Resource Include="images\male female.png" />
+    <Resource Include="images\male icon 30px.png" />
+    <Resource Include="images\male icon 50px.png" />
+    <Resource Include="images\male icon.jpg" />
+    <Resource Include="images\male icon.png" />
+    <Resource Include="images\next icon png 1600px.png" />
+    <Resource Include="images\next icon png 30px.png" />
+    <Resource Include="images\next icon png 70px.png" />
+    <Resource Include="images\parent icon 200px w-text.png" />
+    <Resource Include="images\parent icon 200px.jpg" />
+    <Resource Include="images\parent icon 200px.png" />
+    <Resource Include="images\parent icon 500px.jpg" />
+    <Resource Include="images\parent icon.jpg" />
+    <Resource Include="images\personal_center__965789.png" />
+    <Resource Include="images\plus 40px.png" />
+    <Resource Include="images\plus-sign-icon-31.png" />
+    <Resource Include="images\puzzle 128px.png" />
+    <Resource Include="images\puzzle 180px.png" />
+    <Resource Include="images\puzzle 512px.png" />
+    <Resource Include="images\settings.png" />
+    <Resource Include="images\settings128.png" />
+    <Resource Include="images\settings2-128+.png" />
+    <Resource Include="images\settings2-128.png" />
+    <Resource Include="images\settings2.png" />
+    <Resource Include="images\sign in w-text.png" />
+    <Resource Include="images\sign in.png" />
+    <Resource Include="images\sign out icon 128px.png" />
+    <Resource Include="images\sign out icon.png" />
+    <Resource Include="images\sign up w-text.png" />
+    <Resource Include="images\sign up.png" />
+    <Resource Include="images\staff icon 200px w-text.png" />
+    <Resource Include="images\staff icon 200px.png" />
+    <Resource Include="images\staff icon.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Asset 6.png" />
     <Resource Include="images\Asset 7.png" />
