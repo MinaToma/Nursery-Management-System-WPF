@@ -34,19 +34,19 @@ namespace Nursery_Management_System_WPF
             }
             else
             {
-                MessageBox.Show("Hello, " + username.Text  + " " + GlobalVariables.globalAdmin.firstName + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
-                /*if (Program.globalType.Equals("Staff"))
+                MessageBox.Show("Hello, " + username.Text  + " " + GlobalVariables.globalAdmin.firstName + " " + GlobalVariables.globalAdmin.firstName + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
+                if (GlobalVariables.globalType.Equals("Staff"))
                 {
                     //open staff form
                 }
-                else if (Program.globalType.Equals("Admin"))
+                else if (GlobalVariables.globalType.Equals("Admin"))
                 {
                     //open admin form
                 }
-                else if (Program.globalType.Equals("Parent"))
+                else if (GlobalVariables.globalType.Equals("Parent"))
                 {
                     //open parent form
-                }*/
+                }
             }
         }
     }

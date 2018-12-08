@@ -46,8 +46,8 @@ namespace Nursery_Management_System_WPF
             {
                 GlobalVariables.globalType = "Admin";
                 Int64 id = Convert.ToInt64(dt.Rows[0]["staffID"].ToString());
-                GlobalVariables.globalAdmin.ToAdmin(staffToLinkedList(getStaffByID(id)).ElementAt(0));
-                if (GlobalVariables.globalStaff.pending == 1)
+                GlobalVariables.globalAdmin = GlobalVariables.globalAdmin.ToAdmin(staffToLinkedList(getStaffByID(id)).ElementAt(0));
+                if (GlobalVariables.globalAdmin.pending == 1)
                     return false;
             }
 
