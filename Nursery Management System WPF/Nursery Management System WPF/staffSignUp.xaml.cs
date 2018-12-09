@@ -112,7 +112,15 @@ namespace Nursery_Management_System_WPF
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
+            if (checkEnteredData())
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                Staff staff = new Staff(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text, -1, 1, "Staff");
+                mSQLQuery.insertStaffData(staff, "Staff");
 
+                mSQLQuery.insertUser(username.Text, password.Password, "Staff", staff.id);
+                MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
+            }
         }
 
         public bool checkEnteredData()
@@ -121,7 +129,7 @@ namespace Nursery_Management_System_WPF
             ValidateData validator = new ValidateData();
             SQLQuery mSql = new SQLQuery();
 
-            if(!validator.verifyField(firstName.Text))
+            if(!validator.verifyField(firstName.Text) || firstName.Text.Equals("Enter First Name Here"))
             {
                 ans = false;
                 firstNameError.Visibility = Visibility;
@@ -131,7 +139,7 @@ namespace Nursery_Management_System_WPF
                 firstNameError.Visibility = Visibility.Hidden;
             }
 
-            if (!validator.verifyField(lastName.Text))
+            if (!validator.verifyField(lastName.Text) || lastName.Text.Equals("Enter Last Name Here"))
             {
                 ans = false;
                 lastNameError.Visibility = Visibility;
@@ -171,7 +179,7 @@ namespace Nursery_Management_System_WPF
                 phoneError.Visibility = Visibility.Hidden;
             }
             
-            if(mSql.checkForUsername(username.Text))
+            if(mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
             {
                 ans = false;
                 usernameError.Visibility = Visibility.Visible;
@@ -192,6 +200,13 @@ namespace Nursery_Management_System_WPF
             }
 
             return ans;
+        }
+
+        private void back_Click(object sender, RoutedEventArgs e)
+        {
+            signUp signUpForm = new signUp();
+            signUpForm.Show();
+            this.Close();
         }
     }
 }

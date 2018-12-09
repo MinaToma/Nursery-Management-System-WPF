@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Sign In" Height="600" Width="400">
+        Title="Nursery Management System - Sign In" Height="600" Width="400" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600">
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF03223C" Offset="1"/>
@@ -13,7 +13,7 @@
         </LinearGradientBrush>
     </Window.Background>
     <Grid>
-        <Button x:Name="loginButton" Content="LOGIN" HorizontalAlignment="Left" Margin="64,370,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13.333" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="42" Click="loginButton_Click" TabIndex="2">
+        <Button x:Name="loginButton" Content="LOGIN" HorizontalAlignment="Left" Margin="64,370,0,0" VerticalAlignment="Top" Width="270" FontFamily="Consolas" FontSize="13.333" Cursor="Hand" FontWeight="Bold" Foreground="#FFDDDDDD" Background="#FF082635" BorderThickness="0" Height="42" Click="loginButton_Click" TabIndex="3" IsHitTestVisible="True">
             <Button.Effect>
                 <DropShadowEffect Opacity="0.5" BlurRadius="10"/>
             </Button.Effect>

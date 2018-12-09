@@ -82,13 +82,13 @@ namespace Nursery_Management_System_WPF
 
         private void Address_GotFocus(object sender, RoutedEventArgs e)
         {
-            address.Text = "";
+            address.Text = "";  
         }
 
         private void Address_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(address.Text))
-                address.Text = "Enter Phone Number Here";
+                address.Text = "Enter address Here";
         }
 
         private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
@@ -110,10 +110,10 @@ namespace Nursery_Management_System_WPF
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if(checkEnteredData() || true )
+            if(checkEnteredData())
             {
-              //  GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, "", email.Text
-                 //   , address.Text , "", 1);
+                GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, "", email.Text
+                    , address.Text , "", 1);
                 parentSignUp2 signUp2 = new parentSignUp2();
                 signUp2.Show();
                 this.Close();

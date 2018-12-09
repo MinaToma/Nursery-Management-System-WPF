@@ -7,19 +7,19 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="400"
-      Title="parentSignUp">
+      Title="parentSignUp" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600">
 
-    <Grid Margin="0,-4,0,4">
-        <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="28,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
-        <TextBox x:Name="username" Text="Enter username Here"  HorizontalAlignment="Left" Height="30" Margin="28,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1"/>
-        <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="28,269,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa">
+    <Grid Margin="0,-4,3.6,4.4">
+        <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="18,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
+        <TextBox x:Name="username" Text="Enter username Here"  HorizontalAlignment="Left" Height="30" Margin="18,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1" TextChanged="username_TextChanged"/>
+        <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="18,269,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Ellipse HorizontalAlignment="Left" Height="63" Margin="311,509,0,0" Stroke="Black" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.5,0.5">
+        <Ellipse HorizontalAlignment="Left" Height="63" Margin="276,469,0,0" Stroke="Black" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.5,0.5">
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -32,7 +32,7 @@
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="addChildButton" HorizontalAlignment="Left" Margin="312,509,0,0" VerticalAlignment="Top" Width="66" Height="63" TabIndex="3" BorderThickness="0" Click="addChildButton_Click">
+        <Button x:Name="addChildButton" HorizontalAlignment="Left" Margin="277,469,0,0" VerticalAlignment="Top" Width="66" Height="63" TabIndex="3" BorderThickness="0" Click="addChildButton_Click">
             <Button.Template>
                 <ControlTemplate>
                     <Image Source="images/add child icon 90px.png" Height="50" Width="40" RenderTransformOrigin="0.328,0.431"/>
@@ -40,20 +40,21 @@
             </Button.Template>
             <Ellipse Fill="#FFF4F4F5" Height="100" Stroke="Black" Width="100"/>
         </Button>
-        <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="28,509,0,0">
+        <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="37,469,0,0">
             <Ellipse.Fill>
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Margin="28,509,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="4" BorderThickness="0" Click="signUpButton_Click">
+        <Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Margin="37,469,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="4" BorderThickness="0" Click="signUpButton_Click">
             <Button.Background>
                 <ImageBrush />
             </Button.Background>
         </Button>
         <Image x:Name="usernameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,104,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
         <Image x:Name="creditError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,49,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="28,157,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
         <Image x:Name="passwordError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,166,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
 
     </Grid>
+
 </Window>
