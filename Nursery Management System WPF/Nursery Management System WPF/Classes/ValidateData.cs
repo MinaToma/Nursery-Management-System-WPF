@@ -8,7 +8,8 @@ namespace Nursery_Management_System_WPF
 {
     class ValidateData
     {
-        private bool checkMails(string mail)
+        
+        public bool checkMails(string mail)
         {
             if (mail.Length < 6)
                 return false;
@@ -26,7 +27,7 @@ namespace Nursery_Management_System_WPF
                 return true;
             return false;
         }
-        private bool checkPhoneNum(string phoneNum)
+        public bool checkPhoneNum(string phoneNum)
         {
 
             if(phoneNum.Length!=11 || phoneNum[0]!='0' || phoneNum[1]!='1' || !(phoneNum[2]=='0' || phoneNum[2] == '1' || phoneNum[2] == '2' || phoneNum[2] == '5'))
@@ -39,7 +40,13 @@ namespace Nursery_Management_System_WPF
             }
             return true;
         }
-        private bool checkNationalID(string ID)
+
+        public Boolean verifyField(String name)
+        {
+            return name.Count() != 0;
+        }
+    
+        public bool checkNationalID(string ID)
         {
             for (int i = 0; i < ID.Length; i++)
             {
@@ -52,7 +59,8 @@ namespace Nursery_Management_System_WPF
             return true;
 
         }
-        private bool checkCreditCardt(string ID)
+
+        public bool checkCreditCardt(string ID)
         {
             for (int i = 0; i < ID.Length; i++)
             {
@@ -63,8 +71,8 @@ namespace Nursery_Management_System_WPF
             if (ID.Length != 16)
                 return false;
             return true;
-
         }
+
         public bool vaildDataForParent(string username, string email, string ID,string phoneNumber, string creditCard , int numberOfChildren , ref string headProblem , ref string problem)
         {
             SQLQuery mSQLQuery = new SQLQuery();

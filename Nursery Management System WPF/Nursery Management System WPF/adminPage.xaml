@@ -28,6 +28,17 @@
                 </TransformGroup>
             </Button.RenderTransform>
         </Button>
+        <ScrollViewer Margin="456,73,-455,-73">
+            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled">
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+                <Button Content="Hello World"></Button>
+            </StackPanel>
+        </ScrollViewer>
         <Grid HorizontalAlignment="Left" Height="497" Margin="209,73,-818,0" VerticalAlignment="Top" Width="810">
             <TextBlock HorizontalAlignment="Left" Margin="28,47,0,0" TextWrapping="Wrap" Text="Name : " VerticalAlignment="Top" Height="64" Width="169" FontSize="48" FontWeight="Bold"/>
             <TextBlock HorizontalAlignment="Left" Margin="197,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="573" FontWeight="Bold" FontSize="48" Foreground="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"><Run Text="First Second"/><LineBreak/><Run/></TextBlock>

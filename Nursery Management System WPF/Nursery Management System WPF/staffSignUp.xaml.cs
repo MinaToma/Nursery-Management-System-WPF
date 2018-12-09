@@ -18,7 +18,7 @@ namespace Nursery_Management_System_WPF
     /// <summary>
     /// Interaction logic for staffSignUp.xaml
     /// </summary>
-    public partial class staffSignUp : Page
+    public partial class staffSignUp : Window
     {
         public staffSignUp()
         {
@@ -113,6 +113,85 @@ namespace Nursery_Management_System_WPF
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        public bool checkEnteredData()
+        {
+            bool ans = true;
+            ValidateData validator = new ValidateData();
+            SQLQuery mSql = new SQLQuery();
+
+            if(!validator.verifyField(firstName.Text))
+            {
+                ans = false;
+                firstNameError.Visibility = Visibility;
+            }
+            else
+            {
+                firstNameError.Visibility = Visibility.Hidden;
+            }
+
+            if (!validator.verifyField(lastName.Text))
+            {
+                ans = false;
+                lastNameError.Visibility = Visibility;
+            }
+            else
+            {
+                lastNameError.Visibility = Visibility.Hidden;
+            }
+
+            if (!validator.checkNationalID(ID.Text))
+            {
+                ans = false;
+                IDError.Visibility = Visibility;
+            }
+            else
+            {
+                IDError.Visibility = Visibility.Hidden;
+            }
+
+            if (!validator.checkMails(email.Text))
+            {
+                ans = false;
+                emailError.Visibility = Visibility;
+            }
+            else
+            {
+                emailError.Visibility = Visibility.Hidden;
+            }
+
+            if (!validator.checkPhoneNum(phoneNumber.Text))
+            {
+                ans = false;
+                phoneError.Visibility = Visibility;
+            }
+            else
+            {
+                phoneError.Visibility = Visibility.Hidden;
+            }
+            
+            if(mSql.checkForUsername(username.Text))
+            {
+                ans = false;
+                usernameError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                usernameError.Visibility = Visibility.Hidden;
+            }
+
+            if (validator.verifyField(password.Password))
+            {
+                ans = false;
+                passwordError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                passwordError.Visibility = Visibility.Hidden;
+            }
+
+            return ans;
         }
     }
 }

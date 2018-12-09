@@ -1,4 +1,4 @@
-﻿<Page x:Class="Nursery_Management_System_WPF.parentSignUp"
+﻿<Window x:Class="Nursery_Management_System_WPF.parentSignUp"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -20,14 +20,14 @@
         <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="218,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1"/>
         <TextBox x:Name="ID" Text="Enter National Number Here"   HorizontalAlignment="Left" Height="30" Margin="28,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
         <TextBox x:Name="email" Text="Enter Email Here"  HorizontalAlignment="Left" Height="30" Margin="28,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3"/>
-        <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="30" Margin="28,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="28,472,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
-        <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="228,540,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="6"/>
+        <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="228,540,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="6" Click="nextButton_Click"/>
         <Image x:Name="lastNameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,286,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
         <Image x:Name="firstNameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="169,286,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
         <Image x:Name="IDError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,336,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
         <Image x:Name="emailError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,384,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <Image x:Name="usernameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,433,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <Image x:Name="passwordError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,481,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <TextBox x:Name="phoneNumber" Text="Enter phone number Here"  HorizontalAlignment="Left" Height="30" Margin="28,419,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1" RenderTransformOrigin="0.542,4.5"/>
+        <TextBox x:Name="address" Text="Enter address Here"  HorizontalAlignment="Left" Height="30" Margin="28,467,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1"/>
+        <Image x:Name="addressError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,477,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="phoneError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,427,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
     </Grid>
-</Page>
+</Window>

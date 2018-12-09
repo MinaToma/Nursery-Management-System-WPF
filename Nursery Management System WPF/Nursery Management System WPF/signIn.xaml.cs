@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Nursery_Management_System_WPF
@@ -18,7 +19,7 @@ namespace Nursery_Management_System_WPF
     /// Interaction logic for signIn.xaml
     /// </summary>
     public partial class signIn : Window
-    {
+    { 
         public signIn()
         {
             InitializeComponent();
@@ -62,7 +63,6 @@ namespace Nursery_Management_System_WPF
                 }
             }
         }
-
         
         public void removeUserNameText(object sender, EventArgs e)
         {

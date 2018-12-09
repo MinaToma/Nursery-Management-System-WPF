@@ -18,33 +18,30 @@ namespace Nursery_Management_System_WPF
     /// <summary>
     /// Interaction logic for parentSignUp2.xaml
     /// </summary>
-    public partial class parentSignUp2 : Page
+    public partial class parentSignUp2 : Window
     {
         public parentSignUp2()
         {
             InitializeComponent();
-
-            phoneNumber.LostFocus += PhoneNumber_LostFocus;
-            phoneNumber.GotFocus += PhoneNumber_GotFocus;
+            
+            username.LostFocus += Username_LostFocus;
+            username.GotFocus += Username_GotFocus;
 
             creditCard.LostFocus += CreditCard_LostFocus; ;
             creditCard.GotFocus += CreditCard_GotFocus;
-
-            address.LostFocus += Address_LostFocus;
-            address.GotFocus += Address_GotFocus;
         }
 
-        private void Address_GotFocus(object sender, RoutedEventArgs e)
+        private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            address.Text = "";
+            username.Text = "";
         }
 
-        private void Address_LostFocus(object sender, RoutedEventArgs e)
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(address.Text))
-                address.Text = "Enter Phone Number Here";
+            if (string.IsNullOrWhiteSpace(username.Text))
+                username.Text = "Enter Username Here";
         }
-
+        
         private void CreditCard_GotFocus(object sender, RoutedEventArgs e)
         {
 
@@ -55,17 +52,6 @@ namespace Nursery_Management_System_WPF
         {
             if (string.IsNullOrWhiteSpace(creditCard.Text))
                 creditCard.Text = "Enter Credit Number Here";
-        }
-
-        private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
-        {
-            phoneNumber.Text = "";
-        }
-
-        private void PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(phoneNumber.Text))
-                phoneNumber.Text = "Enter Phone Number Here";
         }
 
         private void addChildButton_Click(object sender, RoutedEventArgs e)
@@ -81,6 +67,45 @@ namespace Nursery_Management_System_WPF
         private void address_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        public bool checkEnteredData()
+        {
+            bool ans = true;
+            ValidateData validator = new ValidateData();
+            SQLQuery mSql = new SQLQuery();
+            
+            if(!validator.checkCreditCardt(creditCard.Text))
+            {
+                ans = false;
+                creditError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                creditError.Visibility = Visibility.Visible;
+            }
+
+            if (mSql.checkForUsername(username.Text))
+            {
+                ans = false;
+                usernameError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                usernameError.Visibility = Visibility.Hidden;
+            }
+
+            if (validator.verifyField(password.Password))
+            {
+                ans = false;
+                passwordError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                passwordError.Visibility = Visibility.Hidden;
+            }
+
+            return ans;
         }
     }
 }
