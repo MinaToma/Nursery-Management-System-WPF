@@ -52,7 +52,6 @@ namespace Nursery_Management_System_WPF
             {
                 if (!(ID[i] >= '0' && ID[i] <= '9'))
                     return false;
-
             }
             if (ID.Length != 11     || !(ID[0] == '2' || ID[0] == '3'))
                 return false;

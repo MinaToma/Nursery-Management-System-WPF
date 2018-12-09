@@ -56,6 +56,9 @@ namespace Nursery_Management_System_WPF
                 else if (GlobalVariables.globalType.Equals("Admin"))
                 {
                     //open admin form
+                    adminWindow adminForm = new adminWindow();
+                    adminForm.Show();
+                    this.Close();
                 }
                 else if (GlobalVariables.globalType.Equals("Parent"))
                 {
