@@ -22,7 +22,6 @@
         <TextBox x:Name="phoneNumber" Text="Enter Phone Number Here"  HorizontalAlignment="Left" Height="30" Margin="20,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4"/>
         <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="30" Margin="20,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="20,459,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="6"/>
-        <DockPanel HorizontalAlignment="Left" Height="100" LastChildFill="False" Margin="99,152,0,0" VerticalAlignment="Top" Width="100"/>
         <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="271,497,0,0">
             <Ellipse.Fill>
                 <ImageBrush Stretch="None"/>
