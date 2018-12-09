@@ -16,12 +16,18 @@
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="firstName" HorizontalAlignment="Left" Height="30" Margin="28,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
-        <TextBox x:Name="lastName" HorizontalAlignment="Left" Height="30" Margin="218,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1"/>
-        <TextBox x:Name="ID" HorizontalAlignment="Left" Height="30" Margin="28,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
-        <TextBox x:Name="email" HorizontalAlignment="Left" Height="30" Margin="28,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3"/>
-        <TextBox x:Name="username" HorizontalAlignment="Left" Height="30" Margin="28,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4"/>
+        <TextBox x:Name="firstName" Text="Enter First Name Here" HorizontalAlignment="Left" Height="30" Margin="28,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
+        <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="218,277,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1"/>
+        <TextBox x:Name="ID" Text="Enter National Number Here"   HorizontalAlignment="Left" Height="30" Margin="28,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
+        <TextBox x:Name="email" Text="Enter Email Here"  HorizontalAlignment="Left" Height="30" Margin="28,375,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3"/>
+        <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="30" Margin="28,423,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="28,472,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
         <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="228,540,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="6"/>
+        <Image x:Name="lastNameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,286,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="firstNameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="169,286,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="IDError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,336,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="emailError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,384,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="usernameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,433,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="passwordError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="358,481,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
     </Grid>
 </Page>

@@ -22,19 +22,32 @@ namespace Nursery_Management_System_WPF
         public signIn()
         {
             InitializeComponent();
+
+            username.LostFocus += addUserNameText;
+            username.GotFocus += removeUserNameText;
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSqlQuery = new SQLQuery();
 
-            if (mSqlQuery.serachForUser(username.Text, password.Password) == false)
+            if (mSqlQuery.checkForUsername(username.Text) == false)
             {
-                MessageBox.Show("Username doesn't exist", "Wrong Username or Password", MessageBoxButton.OK, MessageBoxImage.Error);
+                usernameError.Visibility = Visibility.Visible;
+                passwordError.Visibility = Visibility.Visible;
+            }
+            else if(mSqlQuery.serachForUser(username.Text , password.Password ) == false)
+            {
+                usernameError.Visibility = Visibility.Hidden;
+                passwordError.Visibility = Visibility.Visible;
             }
             else
             {
-                MessageBox.Show("Hello, " + username.Text  + " " + GlobalVariables.globalAdmin.firstName + " " + GlobalVariables.globalAdmin.firstName + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
+                usernameError.Visibility = Visibility.Hidden;
+                passwordError.Visibility = Visibility.Hidden;
+
+                MessageBox.Show("Hello, " + username.Text + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
+
                 if (GlobalVariables.globalType.Equals("Staff"))
                 {
                     //open staff form
@@ -48,6 +61,29 @@ namespace Nursery_Management_System_WPF
                     //open parent form
                 }
             }
+        }
+
+        
+        public void removeUserNameText(object sender, EventArgs e)
+        {
+            username.Text = "";
+        }
+
+        public void addUserNameText(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(username.Text))
+                username.Text = "Enter Username Here";
+        }
+        private void username_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            signUp signUpForm = new signUp();
+            signUpForm.Show();
+            this.Close();
         }
     }
 }

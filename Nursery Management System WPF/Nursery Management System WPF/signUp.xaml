@@ -17,8 +17,8 @@
                 <GradientStop Color="#FFD4B7CE" Offset="0.25"/>
             </RadialGradientBrush>
         </Grid.Background>
-        <Button x:Name="staffSignUp" Content="Staff" HorizontalAlignment="Left" Margin="214,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand"/>
-        <Button x:Name="parentSignUp" Content="Parent" HorizontalAlignment="Left" Margin="32,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" />
+        <Button x:Name="staffSignUp" Content="Staff" HorizontalAlignment="Left" Margin="214,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="staffSignUp_Click"/>
+        <Button x:Name="parentSignUp" Content="Parent" HorizontalAlignment="Left" Margin="36,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="parentSignUp_Click" />
 
     </Grid>
 </Window>

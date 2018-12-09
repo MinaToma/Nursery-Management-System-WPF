@@ -23,6 +23,64 @@ namespace Nursery_Management_System_WPF
         public parentSignUp2()
         {
             InitializeComponent();
+
+            phoneNumber.LostFocus += PhoneNumber_LostFocus;
+            phoneNumber.GotFocus += PhoneNumber_GotFocus;
+
+            creditCard.LostFocus += CreditCard_LostFocus; ;
+            creditCard.GotFocus += CreditCard_GotFocus;
+
+            address.LostFocus += Address_LostFocus;
+            address.GotFocus += Address_GotFocus;
+        }
+
+        private void Address_GotFocus(object sender, RoutedEventArgs e)
+        {
+            address.Text = "";
+        }
+
+        private void Address_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(address.Text))
+                address.Text = "Enter Phone Number Here";
+        }
+
+        private void CreditCard_GotFocus(object sender, RoutedEventArgs e)
+        {
+
+            creditCard.Text = "";
+        }
+
+        private void CreditCard_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(creditCard.Text))
+                creditCard.Text = "Enter Credit Number Here";
+        }
+
+        private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
+        {
+            phoneNumber.Text = "";
+        }
+
+        private void PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber.Text))
+                phoneNumber.Text = "Enter Phone Number Here";
+        }
+
+        private void addChildButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("hO");
+        }
+
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void address_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }

@@ -153,8 +153,6 @@ namespace Nursery_Management_System_WPF
                 headProblem = "Invaild Credit Card";
                 return true;
             }
-
-
             return false;
         }
         public bool vaildDataForStaff(string firstName, string email, string ID, string phoneNumber, ref string headProblem, ref string problem)
@@ -191,8 +189,6 @@ namespace Nursery_Management_System_WPF
                 return true;
             }
             
-
-
             return false;
         }
 

@@ -23,6 +23,96 @@ namespace Nursery_Management_System_WPF
         public staffSignUp()
         {
             InitializeComponent();
+
+            firstName.LostFocus += FirstName_LostFocus;
+            firstName.GotFocus += FirstName_GotFocus;
+
+            lastName.LostFocus += LastName_LostFocus;
+            lastName.GotFocus += LastName_GotFocus;
+
+            ID.LostFocus += ID_LostFocus;
+            ID.GotFocus += ID_GotFocus;
+
+            email.LostFocus += Email_LostFocus;
+            email.GotFocus += Email_GotFocus;
+
+            phoneNumber.LostFocus += PhoneNumber_LostFocus;
+            phoneNumber.GotFocus += PhoneNumber_GotFocus;
+
+            username.LostFocus += Username_LostFocus;
+            username.GotFocus += Username_GotFocus;
+
+        }
+        
+        private void Username_GotFocus(object sender, RoutedEventArgs e)
+        {
+            username.Text = "";
+        }
+
+        private void Username_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(username.Text))
+                username.Text = "Enter Username Here";
+        }
+
+        private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
+        {
+            phoneNumber.Text = "";
+        }
+
+        private void PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(phoneNumber.Text))
+                phoneNumber.Text = "Enter Phone Number Here";
+        }
+
+        private void Email_GotFocus(object sender, RoutedEventArgs e)
+        {
+            email.Text = "";
+        }
+
+        private void Email_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(email.Text))
+                email.Text = "Enter Email Here";
+        }
+
+        private void ID_GotFocus(object sender, RoutedEventArgs e)
+        {
+            ID.Text = "";
+        }
+
+        private void ID_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ID.Text))
+                ID.Text = "Enter National Number Here";
+        }
+
+        private void LastName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            lastName.Text = "";
+        }
+
+        private void LastName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(lastName.Text))
+                lastName.Text = "Enter lastName Here";
+        }
+
+        private void FirstName_GotFocus(object sender, RoutedEventArgs e)
+        {
+            firstName.Text = "";
+        }
+
+        private void FirstName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(firstName.Text))
+                firstName.Text = "Enter firstName Here";
+        }
+
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

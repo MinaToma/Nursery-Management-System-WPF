@@ -9,23 +9,10 @@
       d:DesignHeight="600" d:DesignWidth="400"
       Title="parentSignUp">
 
-    <Grid Margin="0,-1,0,1">
-        <TextBox x:Name="phoneNumber" HorizontalAlignment="Left" Height="30" Margin="28,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
-        <TextBox x:Name="creditCard" HorizontalAlignment="Left" Height="30" Margin="28,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1"/>
-        <TextBox x:Name="address" HorizontalAlignment="Left" Height="30" Margin="28,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
-        <Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Margin="107,542,0,0" VerticalAlignment="Top" Width="200" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="4"/>
-        <Button x:Name="addChildButton" HorizontalAlignment="Left" Margin="300,385,0,0" VerticalAlignment="Top" Width="80" Height="60" TabIndex="3">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                    <GradientStop Color="#FF9ED1EB"/>
-                    <GradientStop Color="#FFAFC3E4" Offset="0.25"/>
-                    <GradientStop Color="#FFB4B8E2" Offset="0.5"/>
-                    <GradientStop Color="#FFD9B1DB" Offset="0.75"/>
-                    <GradientStop Color="#FFDCA2D4" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-            <Image Source="images/add child icon 90px.png" Height="50" Width="40" RenderTransformOrigin="0.328,0.431"/>
-        </Button>
+    <Grid Margin="0,-4,0,4">
+        <TextBox x:Name="phoneNumber" Text="Enter Phone Number Here"  HorizontalAlignment="Left" Height="30" Margin="28,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
+        <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="28,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1"/>
+        <TextBox x:Name="address" Text="Enter Address Here"   HorizontalAlignment="Left" Height="30" Margin="28,148,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2" TextChanged="address_TextChanged"/>
         <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="28,225,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa">
             <ListView.View>
                 <GridView>
@@ -33,6 +20,41 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Ellipse HorizontalAlignment="Left" Height="63" Margin="311,509,0,0" Stroke="Black" VerticalAlignment="Top" Width="66" RenderTransformOrigin="0.5,0.5">
+            <Ellipse.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.43"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Ellipse.RenderTransform>
+            <Ellipse.Fill>
+                <ImageBrush Stretch="None"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button x:Name="addChildButton" HorizontalAlignment="Left" Margin="312,509,0,0" VerticalAlignment="Top" Width="66" Height="63" TabIndex="3" BorderThickness="0" Click="addChildButton_Click">
+            <Button.Template>
+                <ControlTemplate>
+                    <Image Source="images/add child icon 90px.png" Height="50" Width="40" RenderTransformOrigin="0.328,0.431"/>
+                </ControlTemplate>
+            </Button.Template>
+            <Ellipse Fill="#FFF4F4F5" Height="100" Stroke="Black" Width="100"/>
+        </Button>
+        <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="28,509,0,0">
+            <Ellipse.Fill>
+                <ImageBrush Stretch="None"/>
+            </Ellipse.Fill>
+        </Ellipse>
+        <Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Margin="28,509,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="4" BorderThickness="0" Click="signUpButton_Click">
+            <Button.Background>
+                <ImageBrush />
+            </Button.Background>
+        </Button>
+        <Image x:Name="phoneError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,48,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="creditError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,103,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="addressError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,156,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+
 
     </Grid>
 </Page>
