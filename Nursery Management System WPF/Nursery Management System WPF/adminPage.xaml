@@ -1,0 +1,39 @@
+﻿<Window x:Class="Nursery_Management_System_WPF.adminPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nursery_Management_System_WPF"
+        mc:Ignorable="d"
+        Title="adminPage" Height="600" Width="1024
+        
+        " WindowStartupLocation="CenterScreen">
+    <Grid HorizontalAlignment="Left" Height="571" VerticalAlignment="Top" Width="201" RenderTransformOrigin="-1.878,-0.594" Margin="0,0,0,-0.6" Background="#FFCD0000">
+        <Grid HorizontalAlignment="Left" Height="68" Margin="185,0,-818,0" VerticalAlignment="Top" Width="834" Background="#FFCD0000" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <Ellipse HorizontalAlignment="Left" Height="100" Margin="41,30,0,0" VerticalAlignment="Top" Width="100" Stroke="{DynamicResource {x:Static SystemColors.ActiveBorderBrushKey}}" Fill="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}">
+            <Ellipse.OpacityMask>
+                <ImageBrush ImageSource="images/personal_center__965789.png"/>
+            </Ellipse.OpacityMask>
+        </Ellipse>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="46,39,0,0" VerticalAlignment="Top" Width="89" Height="87" RenderTransformOrigin="0.5,0.5">
+            <Button.OpacityMask>
+                <ImageBrush/>
+            </Button.OpacityMask>
+            <Button.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.291"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Button.RenderTransform>
+        </Button>
+        <Grid HorizontalAlignment="Left" Height="497" Margin="209,73,-818,0" VerticalAlignment="Top" Width="810">
+            <TextBlock HorizontalAlignment="Left" Margin="28,47,0,0" TextWrapping="Wrap" Text="Name : " VerticalAlignment="Top" Height="64" Width="169" FontSize="48" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="197,47,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="573" FontWeight="Bold" FontSize="48" Foreground="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"><Run Text="First Second"/><LineBreak/><Run/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="28,127,0,0" TextWrapping="Wrap" Text="Email : " VerticalAlignment="Top" Height="64" Width="169" FontSize="48" FontWeight="Bold"/>
+            <TextBlock HorizontalAlignment="Left" Margin="197,127,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="80" Width="573" FontWeight="Bold" FontSize="48" Foreground="{DynamicResource {x:Static SystemColors.MenuHighlightBrushKey}}"><Run Text="Mail.com"/><LineBreak/><Run/></TextBlock>
+        </Grid>
+    </Grid>
+
+</Window>
