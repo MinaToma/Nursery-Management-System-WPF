@@ -1,0 +1,53 @@
+﻿<Window x:Class="Nursery_Management_System_WPF.adminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Nursery_Management_System_WPF"
+        mc:Ignorable="d"
+        Title="adminPage" Height="600" Width="1024
+        
+        " WindowStartupLocation="CenterScreen">
+    <Grid HorizontalAlignment="Left" Height="571" VerticalAlignment="Top" Width="115" RenderTransformOrigin="-1.878,-0.594" Margin="0,0,0,-0.6" Background="#FFCD0000">
+        <Grid HorizontalAlignment="Left" Height="98" Margin="115,0,-899,0" VerticalAlignment="Top" Width="899" Background="#FFCD0000" >
+            <Label x:Name="label" Content="Nursery Managment System" HorizontalAlignment="Right" VerticalAlignment="Top" Width="636" FontSize="50" Margin="0,0,188,0"/>
+            <Image x:Name="image" HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" RenderTransformOrigin="6.625,0.535" Margin="745,-6,0,0" Source="images/children 95px.png"/>
+        </Grid>
+        <Button x:Name="button" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="115" Margin="0,96,0,0" Height="74" Click="button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="images/128.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Copy" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,334,0,0" Height="74">
+            <Button.Background>
+                <ImageBrush ImageSource="images/application form icon 128px.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Copy1" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="0,255,0,0" Height="74">
+            <Button.Background>
+                <ImageBrush ImageSource="images/feedback.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Copy2" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="105" Margin="0,177,0,0" Height="73">
+            <Button.Background>
+                <ImageBrush ImageSource="images/settings2.png"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="button_Copy3" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="46,461,0,0" Height="74" Click="button_Copy3_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="images/sign out icon 128px.png"/>
+            </Button.Background>
+        </Button>
+        <Grid Name="profileGrid" HorizontalAlignment="Left" Height="461" VerticalAlignment="Top" Width="893" Margin="120,103,-898,0" RenderTransformOrigin="0.467,0.521">
+            <TextBox x:Name="firstName" Text="Enter First Name Here"  HorizontalAlignment="Left" Height="52" Margin="65,0,0,373" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="266" TabIndex="0"/>
+            <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="52" Margin="410,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="266" TabIndex="1"/>
+            <TextBox x:Name="ID" Text="Enter National Number Here"  HorizontalAlignment="Left" Height="53" Margin="80,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" TabIndex="2"/>
+            <TextBox x:Name="email" Text="Enter Email Here" HorizontalAlignment="Left" Height="53" Margin="80,176,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" TabIndex="3"/>
+            <TextBox x:Name="phoneNumber" Text="Enter Phone Number Here"  HorizontalAlignment="Left" Height="52" Margin="65,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" TabIndex="4"/>
+            <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="53" Margin="65,307,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="582" TabIndex="5"/>
+            <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="65,387,0,0" VerticalAlignment="Top" Width="582" Height="53" TabIndex="6"/>
+            <Button x:Name="button1" Content="Update" HorizontalAlignment="Left" VerticalAlignment="Top" Width="128" RenderTransformOrigin="6.761,10.625" Margin="696,287,0,0" Height="136" Click="button1_Click"/>
+        </Grid>
+    </Grid>
+
+</Window>
