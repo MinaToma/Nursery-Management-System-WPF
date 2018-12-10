@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
         Title="Nursery Management System - Sign Up" Height="600" Width="400
-        ">
+        " MaxWidth="400" MaxHeight="600" ResizeMode="NoResize">
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>

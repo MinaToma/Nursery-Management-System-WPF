@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Nursery_Management_System_WPF"
             
-             StartupUri="signIn.xaml">
+             StartupUri="adminWindow.xaml">
     <Application.Resources>
         
     </Application.Resources>

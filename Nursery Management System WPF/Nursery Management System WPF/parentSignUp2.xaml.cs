@@ -85,7 +85,7 @@ namespace Nursery_Management_System_WPF
                 creditError.Visibility = Visibility.Visible;
             }
 
-            if (mSql.checkForUsername(username.Text))
+            if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter username Here"))
             {
                 ans = false;
                 usernameError.Visibility = Visibility.Visible;
@@ -106,6 +106,11 @@ namespace Nursery_Management_System_WPF
             }
 
             return ans;
+        }
+
+        private void username_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
         }
     }
 }
