@@ -61,9 +61,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="adminPage.xaml.cs" />
     <Compile Include="adminWindow.xaml.cs">
       <DependentUpon>adminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="childSignUp.xaml.cs">
+      <DependentUpon>childSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="childWindow.xaml.cs">
+      <DependentUpon>childWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Admin.cs" />
     <Compile Include="Classes\Child.cs" />
@@ -83,6 +88,9 @@
     <Compile Include="parentSignUp2.xaml.cs">
       <DependentUpon>parentSignUp2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="parentWindow.xaml.cs">
+      <DependentUpon>parentWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="signIn.xaml.cs">
       <DependentUpon>signIn.xaml</DependentUpon>
     </Compile>
@@ -96,11 +104,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="adminPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="staffWindow.xaml.cs">
+      <DependentUpon>staffWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="adminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="childSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="childWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -109,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="parentSignUp2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="parentWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="staffSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="staffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -238,7 +261,13 @@
     <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\daily details_2%404x.png" />
+    <Resource Include="images\daily details_1%404x.png" />
+    <Resource Include="images\edit icon.png" />
     <Resource Include="images\correct.png" />
+    <Resource Include="images\feedback bubble%404x.png" />
+    <Resource Include="images\back %281%29.png" />
+    <Resource Include="daily details_2%404x.png" />
     <Content Include="images\correct.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

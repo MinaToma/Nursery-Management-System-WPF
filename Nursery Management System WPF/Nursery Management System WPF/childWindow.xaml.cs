@@ -15,18 +15,23 @@ using System.Windows.Shapes;
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
-    /// Interaction logic for adminPage.xaml
+    /// Interaction logic for childWindow.xaml
     /// </summary>
-    public partial class adminPage : Window
+    public partial class childWindow : Window
     {
-        public adminPage()
+        public childWindow()
         {
             InitializeComponent();
         }
 
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void windowPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.DragMove();
+
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

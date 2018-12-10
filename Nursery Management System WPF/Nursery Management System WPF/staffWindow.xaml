@@ -1,11 +1,11 @@
-﻿<Window x:Class="Nursery_Management_System_WPF.adminWindow"
+﻿<Window x:Class="Nursery_Management_System_WPF.staffWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Admin" 
+        Title="Nursery Management System - Staff" 
         Width="1024" 
         Height="600" 
         WindowStartupLocation="CenterScreen" 
@@ -22,22 +22,20 @@
     <Grid x:Name="windowPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1024" Margin="0,0,0,0">
         <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC">
             <Button x:Name="exitButton" Content="x" Margin="994,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
-            <Button x:Name="minimizeButton" Content="-" Margin="969,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
+            <Button x:Name="minimizeButton" Content="-" Margin="969,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
 
         </Grid>
 
-        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
-            <Button x:Name="adminProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,157,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="adminProfileButton_Click"/>
-            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,167,145,388"/>
-            <Button x:Name="editDatabase" Content="       Edit Database" HorizontalAlignment="Left" Margin="0,237,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="editDatabase_Click"/>
-            <Image x:Name="roomIcon" Height="45" Width="45" Source="images/settings2-128.png" Margin="34,247,145,308"/>
-            <Button x:Name="adminFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,401,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="adminFeedbackButton_Click"/>
-            <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,411,145,144"/>
-            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,471,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click"/>
-            <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,487,150,78"/>
+        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC" d:IsLocked="True">
+            <Button x:Name="staffProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="staffProfileButton_Click"/>
+            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,255,145,300"/>
+            <Button x:Name="roomButton" Content="Room" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="roomButton_Click"/>
+            <Image x:Name="roomIcon" Height="45" Width="45" Source="images/puzzle 128px.png" Margin="34,330,145,225"/>
+            <Button x:Name="staffFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="staffFeedbackButton_Click"/>
+            <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,385,145,170"/>
+            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click"/>
+            <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,461,150,104"/>
             <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nursery Management System" VerticalAlignment="Top" Width="224" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="26.667" Height="110" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136"/>
-            <Button x:Name="pendingRequests" Content="        Pending Requests" HorizontalAlignment="Left" Margin="0,319,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="pendingRequests_Click"/>
-            <Image x:Name="pendingRequestsIcon" Height="45" Width="45" Source="images/application form icon 128px.png" Margin="34,329,145,226"/>
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
@@ -57,7 +55,27 @@
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
             </Grid>
+            <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
+                <ListView x:Name="StaffAssignedRoom" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="790" Margin="0,4,0,0" Background="{x:Null}" IsManipulationEnabled="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid x:Name="feedback" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
+                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedback bubble@4x.png" Stretch="Fill"/>
+                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="200" Margin="72,131,0,0" VerticalAlignment="Top" Width="650" Background="{x:Null}" FontFamily="Consolas" FontSize="20" BorderBrush="{x:Null}" Cursor="IBeam">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="Describe your issue or share you ideas..."/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+            </Grid>
         </Grid>
 
     </Grid>
+
 </Window>

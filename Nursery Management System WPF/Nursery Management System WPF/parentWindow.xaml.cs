@@ -15,31 +15,39 @@ using System.Windows.Shapes;
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
-    /// Interaction logic for adminWindow.xaml
+    /// Interaction logic for parentWindow.xaml
     /// </summary>
-    public partial class adminWindow : Window
+    public partial class parentWindow : Window
     {
-        public adminWindow()
+        public parentWindow()
         {
             InitializeComponent();
         }
+
+        private void windowPanel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //enables dragging cause there's no border for this window
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
-        private void adminProfileButton_Click(object sender, RoutedEventArgs e)
+        private void parentFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void editDatabase_Click(object sender, RoutedEventArgs e)
+        private void childrenButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
+        private void parentProfileButton_Click(object sender, RoutedEventArgs e)
         {
 
         }
@@ -49,7 +57,7 @@ namespace Nursery_Management_System_WPF
 
         }
 
-        private void pendingRequests_Click(object sender, RoutedEventArgs e)
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
 
         }

@@ -10,7 +10,7 @@
       Title="parentSignUp" MaxHeight="600" MaxWidth="400" ResizeMode="NoResize">
 
     <Grid Margin="0,-1,0,1">
-        <Image x:Name="image" HorizontalAlignment="Left" Height="220" Margin="62,28,0,0" VerticalAlignment="Top" Width="289" Source="/images/Asset 1+.png"/>
+        <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="220" Margin="62,28,0,0" VerticalAlignment="Top" Width="289" Source="/images/Asset 1+.png"/>
         <Ellipse HorizontalAlignment="Left" Height="120" Margin="136,73,0,0" VerticalAlignment="Top" Width="120" Stroke="Black" StrokeThickness="2">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/images/128.png"/>
