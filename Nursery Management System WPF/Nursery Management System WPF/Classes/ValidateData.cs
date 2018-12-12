@@ -13,17 +13,17 @@ namespace Nursery_Management_System_WPF
         {
             if (mail.Length < 6)
                 return false;
-            int posOFdind = -1;
+            int posOfAt = -1;
             for(int i=0; i<mail.Length; i++)
             {
                 if(mail[i]=='@')
                 {
-                    posOFdind = i + 1;
+                    posOfAt = i + 1;
                     break;
                 }
             }
             int size = mail.Length;
-            if (mail[size - 1] == 'm' && mail[size - 2] == 'o' && mail[size - 3] == 'c' && mail[size - 4] == '.' && size - 5 > posOFdind && posOFdind != -1 && posOFdind > 0)
+            if (mail[size - 1] == 'm' && mail[size - 2] == 'o' && mail[size - 3] == 'c' && mail[size - 4] == '.' && size - 5 > posOfAt && posOfAt != -1 && posOfAt > 0)
                 return true;
             return false;
         }
