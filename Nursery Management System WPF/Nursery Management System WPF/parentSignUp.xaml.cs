@@ -112,8 +112,8 @@ namespace Nursery_Management_System_WPF
         {
             if(checkEnteredData())
             {
-                GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, "", email.Text
-                    , address.Text , "", 1);
+                GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text
+                    , address.Text, "", 1);
                 parentSignUp2 signUp2 = new parentSignUp2();
                 signUp2.Show();
                 this.Close();
