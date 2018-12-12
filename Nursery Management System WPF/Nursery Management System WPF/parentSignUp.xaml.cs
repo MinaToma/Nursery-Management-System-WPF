@@ -42,7 +42,7 @@ namespace Nursery_Management_System_WPF
             address.LostFocus += Address_LostFocus;
             address.GotFocus += Address_GotFocus;
         }
-                private void Email_GotFocus(object sender, RoutedEventArgs e)
+        private void Email_GotFocus(object sender, RoutedEventArgs e)
         {
             email.Text = "";
         }
