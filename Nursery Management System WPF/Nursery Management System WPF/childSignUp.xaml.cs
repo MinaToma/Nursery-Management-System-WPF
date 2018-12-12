@@ -34,7 +34,8 @@ namespace Nursery_Management_System_WPF
                     gender = "Female";
                 else
                     gender = "Male";
-                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, (DateTime)DOBpicker.SelectedDate, new byte[1], 1);
+
+                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value , null, 1);
                 mSQLQuery.insertChildData(child);
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
                 this.Close(); 

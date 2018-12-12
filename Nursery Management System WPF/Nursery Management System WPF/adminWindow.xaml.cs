@@ -53,5 +53,10 @@ namespace Nursery_Management_System_WPF
         {
 
         }
+
+        private void MinimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
     }
 }

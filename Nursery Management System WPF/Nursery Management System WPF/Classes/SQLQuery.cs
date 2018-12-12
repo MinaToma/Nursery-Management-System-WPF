@@ -96,8 +96,17 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@parentID", child.parentID);
             mCommand.Parameters.AddWithValue("@DOB", child.DOB);
             mCommand.Parameters.AddWithValue("@gender", child.gender);
-            mCommand.Parameters.AddWithValue("@picture", child.image);
-            mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            if(child.image == null)
+            {
+                mCommand.Parameters.Add("@picture", SqlDbType.VarBinary).Value = DBNull.Value;
+            }
+            else
+            {   
+                mCommand.Parameters.AddWithValue("@picture", child.image);
+            }
+
+            mCommand.Parameters.AddWithValue("@roomID", DBNull.Value);
+           
             mCommand.Parameters.AddWithValue("@childPending", child.pending);
 
             mSQL.insertQuery(mCommand);
@@ -224,7 +233,7 @@ namespace Nursery_Management_System_WPF
 
             if(type == "Parent")
             {
-                mCommand.Parameters.AddWithValue("@staffID",DBNull.Value);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@parentID", id);
             }
             else
@@ -378,7 +387,7 @@ public DataTable Child_Data(Int64 id)
             {
                 Parent currentParent = new Parent();
 
-                currentParent.id = Convert.ToInt32(dr["parentID"].ToString());
+                currentParent.id = Convert.ToInt64(dr["parentID"].ToString());
                 currentParent.firstName = dr["parentFirstName"].ToString();
                 currentParent.lastName = dr["parentLastName"].ToString();
                 currentParent.address = dr["parentAddress"].ToString();

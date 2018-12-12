@@ -124,6 +124,7 @@ namespace Nursery_Management_System_WPF
         {
             bool ans = true;
             ValidateData validator = new ValidateData();
+            SQLQuery mSQLQuery = new SQLQuery();
             
             if (!validator.verifyField(firstName.Text) || firstName.Text.Equals("Enter First Name Here"))
             {
@@ -145,7 +146,7 @@ namespace Nursery_Management_System_WPF
                 lastNameError.Visibility = Visibility.Hidden;
             }
 
-            if (!validator.checkNationalID(ID.Text))
+            if (!validator.checkNationalID(ID.Text) || mSQLQuery.getParentByID(Convert.ToInt64(ID.Text)).Rows.Count != 0)
             {
                 ans = false;
                 IDError.Visibility = Visibility.Visible;

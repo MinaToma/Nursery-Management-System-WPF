@@ -37,7 +37,7 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Visible;
                 passwordError.Visibility = Visibility.Visible;
             }
-            else if(mSqlQuery.serachForUser(username.Text , password.Password ) == false)
+            else if(!mSqlQuery.serachForUser(username.Text , password.Password ) == false)
             {
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Visible;
@@ -52,18 +52,22 @@ namespace Nursery_Management_System_WPF
                 if (GlobalVariables.globalType.Equals("Staff"))
                 {
                     //open staff form
+                    staffWindow mStaffWindow = new staffWindow();
+                    mStaffWindow.Show();
                 }
                 else if (GlobalVariables.globalType.Equals("Admin"))
                 {
                     //open admin form
                     adminWindow adminForm = new adminWindow();
                     adminForm.Show();
-                    this.Close();
                 }
                 else if (GlobalVariables.globalType.Equals("Parent"))
                 {
                     //open parent form
+                    parentWindow mParentWindow = new parentWindow();
+                    mParentWindow.Show();
                 }
+                this.Close();
             }
         }
         

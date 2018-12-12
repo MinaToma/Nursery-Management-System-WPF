@@ -68,9 +68,14 @@ namespace Nursery_Management_System_WPF
                 GlobalVariables.globalParent.creditCard = creditCard.Text;
 
                 SQLQuery mSQLQuery = new SQLQuery();
+                mSQLQuery.insertParentData(GlobalVariables.globalParent);
                 mSQLQuery.insertUser(username.Text, password.Password, "Parent", GlobalVariables.globalParent.id);
 
                 MessageBox.Show("Thank you! Your data for  request is being processed ", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            else
+            {
+                MessageBox.Show("check your data", "faild to register", MessageBoxButton.OK, MessageBoxImage.None);
             }
         }
 
@@ -92,7 +97,7 @@ namespace Nursery_Management_System_WPF
             }
             else
             {
-                creditError.Visibility = Visibility.Visible;
+                creditError.Visibility = Visibility.Hidden;
             }
 
             if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter username Here"))
@@ -105,7 +110,7 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Hidden;
             }
 
-            if (validator.verifyField(password.Password))
+            if (!validator.verifyField(password.Password))
             {
                 ans = false;
                 passwordError.Visibility = Visibility.Visible;

@@ -32,22 +32,22 @@ namespace Nursery_Management_System_WPF
         public DataTable retrieveQuery(string query)
         {
             DataTable mDataTable = new DataTable();
-            try
-            {
+            /*try
+            {*/
                 mCommand = new SqlCommand(query, mConnection);
                 mConnection.Open();
                 mAdapter = new SqlDataAdapter(mCommand);
                 mAdapter.Fill(mDataTable);
-            }
+            /*}
             catch
             {
                 MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
-            {
+            {*/
                 mConnection.Close();
                 mAdapter.Dispose();
-            }
+            //}
             
             return mDataTable;
         }
@@ -56,11 +56,11 @@ namespace Nursery_Management_System_WPF
         {
             mCommand = command;
             mCommand.Connection = mConnection;
-            try
-            {
+           /* try
+            {*/
                 mConnection.Open();
                 mCommand.ExecuteNonQuery();
-            }
+            /*}
             catch
             {
                MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -68,9 +68,9 @@ namespace Nursery_Management_System_WPF
                 return false;
             }
             finally
-            {
+            {*/
                 mConnection.Close();
-            }
+            //}
             return true;
         }
 
@@ -78,39 +78,39 @@ namespace Nursery_Management_System_WPF
         {
             mCommand = command;
             mCommand.Connection = mConnection;
-            try
-            {
+            /*try
+            {*/
                 mConnection.Open();
                 mCommand.ExecuteNonQuery();
-            }
+            /*}
             catch
             {
 
                 MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
-            {
+            {*/
                 mConnection.Close();
-            }
+            //}
             return;
         }
 
         public void deleteQuery(string query)
         {
-            try
-            {
+            /*try
+            {*/
                 mCommand = new SqlCommand(query, mConnection);
                 mConnection.Open();
                 mCommand.ExecuteNonQuery();
-            }
+            /*}
             catch
             {
                 MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             finally
-            {
+            {*/
                 mConnection.Close();
-            }
+            //}
 
             return;
         }
