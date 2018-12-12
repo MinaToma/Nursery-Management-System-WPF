@@ -14,7 +14,7 @@ namespace Nursery_Management_System_WPF
 
         /****************  USER AUTHENTICATION  ****************/
 
-        public bool serachForUser(string name , string password)
+        public bool serachForUser(string name, string password)
         {
             SQL mSql = new SQL();
             string query = "select * from User_Password where userName like '" + name + "' and userPassword like '" + password + "'";
@@ -42,7 +42,7 @@ namespace Nursery_Management_System_WPF
                 if (GlobalVariables.globalStaff.pending == 1)
                     return false;
             }
-            else if(type.Equals("Admin"))
+            else if (type.Equals("Admin"))
             {
                 GlobalVariables.globalType = "Admin";
                 Int64 id = Convert.ToInt64(dt.Rows[0]["staffID"].ToString());
@@ -53,7 +53,7 @@ namespace Nursery_Management_System_WPF
 
             return true;
         }
-        
+
         public bool checkForUsername(string username)
         {
             SQL mSql = new SQL();
@@ -66,6 +66,22 @@ namespace Nursery_Management_System_WPF
 
             return true;
         }
+
+        public DataTable selectUsernameByIDAndType(Int64 id, String type)
+        {
+            SQL mSQL = new SQL();
+            string query;
+            if (type == "staff")
+            {
+                query = "select * from User_Password where staffID  =  " + Convert.ToString(id) + " and type like " + type;
+            }
+            else
+            {
+                query = "select * from User_Password where parentID  =  " + Convert.ToString(id) + " and type like " + type;
+            }
+            return mSQL.retrieveQuery(query);
+        }
+          
 
         /****************  INSERTING DATA INTO DATABASE  ****************/
 
@@ -606,16 +622,21 @@ public DataTable Child_Data(Int64 id)
             return;
         }
 
-        public void updateUsername(Int64 id , string type)
+        public void updateUsername(Int64 id , string type , string newUsername , string newPassword)
         {
-            /*SQL mSQL= new SQL();
-            string query = "select * from User_Password where " + Convert.ToString(id) + " and userType like '" + type + "'";
+            SQL mSQL = new SQL();
 
-            SqlCommand mCommand = new SqlCommand();
-
-
-
-            mSQL.updateQuery(mCommand);*/
+            DataTable table = new DataTable ();
+            table = selectUsernameByIDAndType(id, type);
+            
+            SqlCommand mCommand = new SqlCommand("updateUsername");
+            mCommand.Parameters.AddWithValue("@parentID", Convert.ToInt64(table.Rows[0]["parentID"] ) );
+            mCommand.Parameters.AddWithValue("@type", table.Rows[0]["userType"]);
+            mCommand.Parameters.AddWithValue("@newUsername", newUsername);
+            mCommand.Parameters.AddWithValue("@newPassword", newPassword);
+            mCommand.Parameters.AddWithValue("@staffID", Convert.ToInt64(table.Rows[0]["staffID"]));
+            
+            mSQL.updateQuery(mCommand);
         }
 
         /****************  DELETING DATA FROM DATABASE  ****************/

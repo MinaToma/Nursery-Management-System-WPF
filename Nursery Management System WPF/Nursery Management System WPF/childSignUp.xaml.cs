@@ -26,7 +26,28 @@ namespace Nursery_Management_System_WPF
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SQLQuery mSQLQuery = new SQLQuery();
+            if (childName.Text.Length >= 2 && DOBpicker.SelectedDate != null)
+            {
+                string gender;
+                if (female.IsChecked == true)
+                    gender = "Female";
+                else
+                    gender = "Male";
+                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, (DateTime)DOBpicker.SelectedDate, new byte[1], 1);
+                mSQLQuery.insertChildData(child);
+                MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
+                this.Close(); 
+            }
+            else if (childName.Text.Length < 2)
+            {
+                MessageBox.Show("Please Enter at least 2 letter", "Invaild Child Name", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Please enter the Date of Birth", "Missing DOB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+          
         }
     }
 }

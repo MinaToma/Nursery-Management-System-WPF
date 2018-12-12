@@ -56,12 +56,22 @@ namespace Nursery_Management_System_WPF
 
         private void addChildButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("hO");
+            childSignUp signUp = new childSignUp();
+            signUp.roomID.Visibility = Visibility.Hidden;
+            signUp.Show();
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
+            if (checkEnteredData())
+            {
+                GlobalVariables.globalParent.creditCard = creditCard.Text;
 
+                SQLQuery mSQLQuery = new SQLQuery();
+                mSQLQuery.insertUser(username.Text, password.Password, "Parent", GlobalVariables.globalParent.id);
+
+                MessageBox.Show("Thank you! Your data for  request is being processed ", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
+            }
         }
 
         private void address_TextChanged(object sender, TextChangedEventArgs e)
