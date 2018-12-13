@@ -39,6 +39,7 @@ namespace Nursery_Management_System_WPF
             }
             else if(!mSqlQuery.serachForUser(username.Text , password.Password))
             {
+                MessageBox.Show(password.Password);
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Visible;
             }

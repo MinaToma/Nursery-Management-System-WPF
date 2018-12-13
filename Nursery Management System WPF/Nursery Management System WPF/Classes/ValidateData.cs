@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace Nursery_Management_System_WPF
 {
     class ValidateData
-    {
-        
+    {       
         public bool checkMails(string mail)
         {
             if (mail.Length < 6)

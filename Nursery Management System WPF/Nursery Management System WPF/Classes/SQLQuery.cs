@@ -71,14 +71,15 @@ namespace Nursery_Management_System_WPF
         {
             SQL mSQL = new SQL();
             string query;
-            if (type == "staff")
+            if (type == "staff" || type == "Admin")
             {
-                query = "select * from User_Password where staffID  =  " + Convert.ToString(id) + " and type like " + type;
+                query = "select * from User_Password where staffID  =  " + Convert.ToString(id);
             }
             else
             {
-                query = "select * from User_Password where parentID  =  " + Convert.ToString(id) + " and type like " + type;
+                query = "select * from User_Password where parentID  =  " + Convert.ToString(id);
             }
+
             return mSQL.retrieveQuery(query);
         }
           
@@ -655,11 +656,27 @@ public DataTable Child_Data(Int64 id)
             table = selectUsernameByIDAndType(id, type);
             
             SqlCommand mCommand = new SqlCommand("updateUsername");
-            mCommand.Parameters.AddWithValue("@parentID", Convert.ToInt64(table.Rows[0]["parentID"] ) );
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            if(table.Rows[0]["parentID"] == DBNull.Value)
+            {
+                mCommand.Parameters.AddWithValue("@parentID", table.Rows[0]["parentID"]);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@parentID" , Convert.ToInt64(table.Rows[0]["parentID"]));
+            }
             mCommand.Parameters.AddWithValue("@type", table.Rows[0]["userType"]);
             mCommand.Parameters.AddWithValue("@newUsername", newUsername);
             mCommand.Parameters.AddWithValue("@newPassword", newPassword);
-            mCommand.Parameters.AddWithValue("@staffID", Convert.ToInt64(table.Rows[0]["staffID"]));
+            if(table.Rows[0]["staffID"] == DBNull.Value)
+            {
+                mCommand.Parameters.AddWithValue("@staffID", table.Rows[0]["staffID"]);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@staffID", Convert.ToInt64(table.Rows[0]["staffID"]));
+            }
             
             mSQL.updateQuery(mCommand);
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -58,22 +59,26 @@ namespace Nursery_Management_System_WPF
 
         private void parentProfileButton_Click(object sender, RoutedEventArgs e)
         {
+            SQLQuery mSqlquery = new SQLQuery();
 
-            SQLQuery mSqlquery = new SQLQuery();   
             firstName.Text = GlobalVariables.globalParent.firstName;
             lastName.Text = GlobalVariables.globalParent.lastName;
-            username.Text= mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(ID.Text), "Parent").ToString();
+
+            DataTable userAndPass = mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalParent.id) , "Parent");
+
+            username.Text = userAndPass.Rows[0]["userName"].ToString();
+            password.Password = userAndPass.Rows[0]["userPassword"].ToString();
+
             email.Text = GlobalVariables.globalParent.email;
             creditCard.Text = GlobalVariables.globalParent.creditCard;
             ID.Text = GlobalVariables.globalParent.id.ToString();
             phoneNumber.Text = GlobalVariables.globalParent.phoneNumber;
             address.Text = GlobalVariables.globalParent.address;
-            //Password.text = GlobalVariables.globalParent.password;
+
             this.childrenPanel.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
             //show feedback grid
             this.profilePanel.Visibility = Visibility.Visible;
-
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -95,15 +100,14 @@ namespace Nursery_Management_System_WPF
 
             if (checkEnteredData())
             {
-                GlobalVariables.globalParent.ToString();
                 GlobalVariables.globalParent.firstName = firstName.Text;
                 GlobalVariables.globalParent.lastName = lastName.Text;
                 GlobalVariables.globalParent.email = email.Text;
                 GlobalVariables.globalParent.address = address.Text;
-                GlobalVariables.globalParent.creditCard =creditCard.Text;
+                GlobalVariables.globalParent.creditCard = creditCard.Text;
                 GlobalVariables.globalParent.phoneNumber = phoneNumber.Text;
                 GlobalVariables.globalParent.id = Convert.ToInt64(ID.Text);
-                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Parent", username.Text, password.Password);
+                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Parent" , username.Text , password.Password);
 
                 mSQLQuery.updateParentData(GlobalVariables.globalParent);
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -183,7 +187,7 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Hidden;
             }
             
-            if (validator.verifyField(password.Password))
+            if (!validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
