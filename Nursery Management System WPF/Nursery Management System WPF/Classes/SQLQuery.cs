@@ -71,17 +71,19 @@ namespace Nursery_Management_System_WPF
         {
             SQL mSQL = new SQL();
             string query;
-            if (type == "staff")
+            if (type == "staff" || type=="admin")
             {
-                query = "select * from User_Password where staffID  =  " + Convert.ToString(id) + " and type like " + type;
+                query = "select userName from User_Password where staffID  =  " + Convert.ToString(id) ;
             }
             else
             {
-                query = "select * from User_Password where parentID  =  " + Convert.ToString(id) + " and type like " + type;
+                query = "select userName from User_Password where parentID  =  " + Convert.ToString(id) ;
             }
             return mSQL.retrieveQuery(query);
         }
-          
+        
+
+
 
         /****************  INSERTING DATA INTO DATABASE  ****************/
 

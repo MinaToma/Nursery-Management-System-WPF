@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data;
+using System.Data.SqlClient;
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
@@ -32,7 +33,10 @@ namespace Nursery_Management_System_WPF
         private void adminProfileButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSqlquery = new SQLQuery();
-            username.Text = mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(ID.Text), "Admin").ToString();
+            DataTable dt = new DataTable();
+            
+            dt = mSqlquery.selectUsernameByIDAndType(GlobalVariables.globalAdmin.id, "admin");
+            username.Text = dt.Rows[0].Field<string>(0) ;
             firstName.Text = GlobalVariables.globalAdmin.firstName;
             lastName.Text = GlobalVariables.globalAdmin.lastName;
             email.Text = GlobalVariables.globalAdmin.email;
