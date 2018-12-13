@@ -554,6 +554,22 @@ public DataTable Child_Data(Int64 id)
             return getRoom(query);
         }
 
+        /**************** Get Child Daily Details  ****************/
+        public string  getChildDailyDetails(DateTime detailsDate, Int64 childID)
+        {
+            DataTable dt = new DataTable();
+            SQL mSQL = new SQL();
+            string childDetails;
+
+            string query = "select childDetails from childDailyDetails where detailsDate = " + detailsDate + " and childID = " + Convert.ToString(childID);
+            dt = mSQL.retrieveQuery(query);
+            childDetails = dt.Rows[0]["childDetails"].ToString();
+
+            return childDetails;
+        }
+            
+
+
         /****************  UPDATING DATA FROM DATABASE  ****************/
 
         public void updateChildData(Child child)
