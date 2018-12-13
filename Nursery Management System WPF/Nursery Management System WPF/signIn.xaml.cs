@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Nursery_Management_System_WPF
 {
@@ -53,12 +55,15 @@ namespace Nursery_Management_System_WPF
                 if (GlobalVariables.globalType.Equals("Staff"))
                 {
                     //open staff form
+                    
                     staffWindow mStaffWindow = new staffWindow();
+
                     mStaffWindow.Show();
                 }
                 else if (GlobalVariables.globalType.Equals("Admin"))
                 {
                     //open admin form
+                    
                     adminWindow adminForm = new adminWindow();
                     adminForm.Show();
                    
