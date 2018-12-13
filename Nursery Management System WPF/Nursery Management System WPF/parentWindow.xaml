@@ -41,7 +41,7 @@
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
             <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
-                <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
+                <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
                 <Ellipse x:Name="profileImage" HorizontalAlignment="Left" Height="238" Margin="88,182,0,0" VerticalAlignment="Top" Width="238" Stroke="Black" StrokeThickness="2">

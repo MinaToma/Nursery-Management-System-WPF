@@ -31,7 +31,7 @@ namespace Nursery_Management_System_WPF
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
     }
 }

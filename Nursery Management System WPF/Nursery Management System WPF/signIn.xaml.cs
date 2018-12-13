@@ -32,12 +32,12 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlQuery = new SQLQuery();
 
-            if (mSqlQuery.checkForUsername(username.Text) == false)
+            if (!mSqlQuery.checkForUsername(username.Text))
             {
                 usernameError.Visibility = Visibility.Visible;
                 passwordError.Visibility = Visibility.Visible;
             }
-            else if(!mSqlQuery.serachForUser(username.Text , password.Password ) == false)
+            else if(!mSqlQuery.serachForUser(username.Text , password.Password))
             {
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Visible;
@@ -60,6 +60,7 @@ namespace Nursery_Management_System_WPF
                     //open admin form
                     adminWindow adminForm = new adminWindow();
                     adminForm.Show();
+                   
                 }
                 else if (GlobalVariables.globalType.Equals("Parent"))
                 {

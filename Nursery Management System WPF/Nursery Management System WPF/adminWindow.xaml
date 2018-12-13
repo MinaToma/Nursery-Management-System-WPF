@@ -53,7 +53,7 @@
                         <ImageBrush ImageSource="images/256.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
+                <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click_2">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
             </Grid>
