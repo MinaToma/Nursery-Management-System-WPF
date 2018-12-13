@@ -28,17 +28,17 @@
 
         </Grid>
         <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
-            <Button x:Name="childProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,270,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold"/>
+            <Button x:Name="childProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,270,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="childProfileButton_Click"/>
             <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,280,145,275"/>
-            <Button x:Name="dailyDetailsButton" Content="       Daily Details" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold"/>
+            <Button x:Name="dailyDetailsButton" Content="       Daily Details" HorizontalAlignment="Left" Margin="0,340,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="dailyDetailsButton_Click"/>
             <Image x:Name="dailyDetailsIcon" Height="45" Width="45" Source="images/children 95px.png" Margin="34,355,145,200"/>
             <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nursery Management System" VerticalAlignment="Top" Width="224" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="26.667" Height="110" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136"/>
-            <Button x:Name="backButton" Content="              back" HorizontalAlignment="Left" Margin="0,516,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" HorizontalContentAlignment="Left"/>
+            <Button x:Name="backButton" Content="              back" HorizontalAlignment="Left" Margin="0,516,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" HorizontalContentAlignment="Left" Click="backButton_Click"/>
             <Image x:Name="backIcon" Height="45" Width="45" Source="images/back (1).png" Margin="16,527,163,28" RenderTransformOrigin="0.488,0.45"/>
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True" d:IsLocked="True">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsLocked="True" d:IsHidden="True">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -67,7 +67,7 @@
                 <RichTextBox x:Name="dailyDetails" HorizontalAlignment="Left" Height="225" Margin="63,242,0,0" VerticalAlignment="Top" Width="663" FontFamily="Consolas" FontSize="20" Background="{x:Null}" BorderBrush="{x:Null}">
                     <FlowDocument>
                         <Paragraph>
-                            <Run Text="Describe daily details of the child..."/>
+                            <Run x:Name ="dailyDetailsContent" Text="Describe daily details of the child..."/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>

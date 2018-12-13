@@ -48,6 +48,7 @@ namespace Nursery_Management_System_WPF
 
         private void childrenButton_Click(object sender, RoutedEventArgs e)
         {
+            
             this.profilePanel.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
             //show children grid
@@ -102,7 +103,7 @@ namespace Nursery_Management_System_WPF
                 GlobalVariables.globalParent.creditCard =creditCard.Text;
                 GlobalVariables.globalParent.phoneNumber = phoneNumber.Text;
                 GlobalVariables.globalParent.id = Convert.ToInt64(ID.Text);
-                //  mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Parent", username.Text, password.Text);
+                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Parent", username.Text, password.Password);
 
                 mSQLQuery.updateParentData(GlobalVariables.globalParent);
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -118,56 +119,56 @@ namespace Nursery_Management_System_WPF
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your First Name !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //   firstNameError.Visibility = Visibility;
+                firstNameError.Visibility = Visibility.Visible;
             }
             else
             {
-                //firstNameError.Visibility = Visibility.Hidden;
+                firstNameError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.verifyField(lastName.Text) || lastName.Text.Equals("Enter Last Name Here"))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Last Name !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //lastNameError.Visibility = Visibility;
+                lastNameError.Visibility = Visibility.Visible;
             }
             else
             {
-                // lastNameError.Visibility = Visibility.Hidden;
+                lastNameError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkNationalID(ID.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your ID !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //IDError.Visibility = Visibility;
+                IDError.Visibility = Visibility.Visible;
             }
             else
             {
-                //IDError.Visibility = Visibility.Hidden;
+                IDError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkMails(email.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Email !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                // emailError.Visibility = Visibility;
+                emailError.Visibility = Visibility.Visible;
             }
             else
             {
-                // emailError.Visibility =Hidden;
+                 emailError.Visibility =Visibility.Hidden;
             }
 
             if (!validator.checkPhoneNum(phoneNumber.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Phone Number !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                // phoneError.Visibility = Visibility.Visible;
+                phoneError.Visibility = Visibility.Visible;
 
             }
             else
             {
-                //   phoneError.Visibility = Visibility.Hidden;
+                  phoneError.Visibility = Visibility.Hidden;
             }
 
             if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
@@ -175,25 +176,35 @@ namespace Nursery_Management_System_WPF
                 ans = false;
                 MessageBox.Show("Please Correct Your UserName !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
 
-                //usernameError.Visibility = Visibility.Visible;
+                usernameError.Visibility = Visibility.Visible;
             }
             else
             {
-                //usernameError.Visibility = Visibility.Hidden;
+                usernameError.Visibility = Visibility.Hidden;
             }
-            /*
+            
             if (validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
 
-                //passwordError.Visibility = Visibility.Visible;
+                passwordError.Visibility = Visibility.Visible;
             }
             else
             {
-                //passwordError.Visibility = Visibility.Hidden;
+                passwordError.Visibility = Visibility.Hidden;
             }
-            */
+            
+            if (!validator.verifyField(address.Text) || address.Text.Equals("Enter address Here"))
+            {
+                ans = false;
+                addressError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                addressError.Visibility = Visibility.Hidden;
+            }
+
             return ans;
         }
 

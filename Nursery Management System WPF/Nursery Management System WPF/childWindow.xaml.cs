@@ -19,9 +19,15 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class childWindow : Window
     {
+        Window prevWindow = null;
         public childWindow()
         {
             InitializeComponent();
+        }
+        public childWindow(Window prevWindow)
+        {
+            InitializeComponent();
+            this.prevWindow = prevWindow;
         }
 
         private void windowPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -33,5 +39,41 @@ namespace Nursery_Management_System_WPF
         {
             this.Close();
         }
+
+        private void childProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            childName.Text = GlobalVariables.globalChild.firstName;
+            DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
+            if (GlobalVariables.globalChild.gender == "Male")
+            {
+                male.IsChecked = true;
+            }
+            else
+            {
+
+            }
+                female.IsChecked = true;
+            roomID.Text = Convert.ToString(GlobalVariables.globalChild.roomID);
+
+            this.dailyDetailsPanel.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Visible;
+        }
+
+        private void dailyDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SQLQuery mSQLQuery = new SQLQuery();
+            string details = mSQLQuery.getChildDailyDetails(selectedDay.SelectedDate.Value, GlobalVariables.globalChild.id);
+            dailyDetailsContent.Text = details;
+
+            this.dailyDetailsPanel.Visibility = Visibility.Visible;
+            this.profilePanel.Visibility = Visibility.Hidden;
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            prevWindow.Show();  
+        }
+
     }
 }

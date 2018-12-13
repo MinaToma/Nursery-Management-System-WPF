@@ -132,7 +132,7 @@ namespace Nursery_Management_System_WPF
             if(!validator.verifyField(firstName.Text) || firstName.Text.Equals("Enter First Name Here"))
             {
                 ans = false;
-                firstNameError.Visibility = Visibility;
+                firstNameError.Visibility = Visibility.Visible;
             }
             else
             {
@@ -142,7 +142,7 @@ namespace Nursery_Management_System_WPF
             if (!validator.verifyField(lastName.Text) || lastName.Text.Equals("Enter Last Name Here"))
             {
                 ans = false;
-                lastNameError.Visibility = Visibility;
+                lastNameError.Visibility = Visibility.Visible;
             }
             else
             {
@@ -152,7 +152,7 @@ namespace Nursery_Management_System_WPF
             if (!validator.checkNationalID(ID.Text))
             {
                 ans = false;
-                IDError.Visibility = Visibility;
+                IDError.Visibility = Visibility.Visible;
             }
             else
             {
@@ -162,7 +162,7 @@ namespace Nursery_Management_System_WPF
             if (!validator.checkMails(email.Text))
             {
                 ans = false;
-                emailError.Visibility = Visibility;
+                emailError.Visibility = Visibility.Visible;
             }
             else
             {
@@ -172,7 +172,7 @@ namespace Nursery_Management_System_WPF
             if (!validator.checkPhoneNum(phoneNumber.Text))
             {
                 ans = false;
-                phoneError.Visibility = Visibility;
+                phoneError.Visibility = Visibility.Visible;
             }
             else
             {

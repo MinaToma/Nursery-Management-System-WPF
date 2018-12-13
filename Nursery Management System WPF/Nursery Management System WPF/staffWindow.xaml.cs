@@ -87,7 +87,7 @@ namespace Nursery_Management_System_WPF
                 (GlobalVariables.globalStaff.id) = Convert.ToInt64(ID.Text);
                 GlobalVariables.globalStaff.firstName = firstName.Text;
                 GlobalVariables.globalStaff.lastName = lastName.Text;
-                //mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, Password.Text);
+                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
                 GlobalVariables.globalStaff.email = email.Text;
                 GlobalVariables.globalStaff.phoneNumber = phoneNumber.Text;
                 mSQLQuery.updateStaffData(GlobalVariables.globalStaff);
@@ -106,56 +106,56 @@ namespace Nursery_Management_System_WPF
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your First Name !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //   firstNameError.Visibility = Visibility;
+                firstNameError.Visibility = Visibility.Visible;
             }
             else
             {
-                //firstNameError.Visibility = Visibility.Hidden;
+                firstNameError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.verifyField(lastName.Text) || lastName.Text.Equals("Enter Last Name Here"))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Last Name !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //lastNameError.Visibility = Visibility;
+                lastNameError.Visibility = Visibility.Visible;
             }
             else
             {
-                // lastNameError.Visibility = Visibility.Hidden;
+                lastNameError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkNationalID(ID.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your ID !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                //IDError.Visibility = Visibility;
+                IDError.Visibility = Visibility.Visible;
             }
             else
             {
-                //IDError.Visibility = Visibility.Hidden;
+                IDError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkMails(email.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Email !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                // emailError.Visibility = Visibility;
+                emailError.Visibility = Visibility.Visible;
             }
             else
             {
-                // emailError.Visibility =Hidden;
+                emailError.Visibility =Visibility.Hidden;
             }
 
             if (!validator.checkPhoneNum(phoneNumber.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Phone Number !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                // phoneError.Visibility = Visibility.Visible;
+                phoneError.Visibility = Visibility.Visible;
 
             }
             else
             {
-                //   phoneError.Visibility = Visibility.Hidden;
+                phoneError.Visibility = Visibility.Hidden;
             }
 
             if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
@@ -163,25 +163,25 @@ namespace Nursery_Management_System_WPF
                 ans = false;
                 MessageBox.Show("Please Correct Your UserName !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
 
-                //usernameError.Visibility = Visibility.Visible;
+                usernameError.Visibility = Visibility.Visible;
             }
             else
             {
-                //usernameError.Visibility = Visibility.Hidden;
+               usernameError.Visibility = Visibility.Hidden;
             }
-            /*
+            
             if (validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
 
-                //passwordError.Visibility = Visibility.Visible;
+               passwordError.Visibility = Visibility.Visible;
             }
             else
             {
-                //passwordError.Visibility = Visibility.Hidden;
+               passwordError.Visibility = Visibility.Hidden;
             }
-            */
+            
             return ans;
         }
 
