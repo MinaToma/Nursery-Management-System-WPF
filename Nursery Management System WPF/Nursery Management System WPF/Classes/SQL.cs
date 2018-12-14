@@ -51,7 +51,30 @@ namespace Nursery_Management_System_WPF
             
             return mDataTable;
         }
-        
+
+
+        public DataTable retrieveQuery(SqlCommand command)
+        {
+            DataTable mDataTable = new DataTable();
+            /*try
+            {*/
+            mCommand = command;
+            mConnection.Open();
+            mAdapter = new SqlDataAdapter(mCommand);
+            mAdapter.Fill(mDataTable);
+            /*}
+            catch
+            {
+                MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {*/
+            mConnection.Close();
+            mAdapter.Dispose();
+            //}
+
+            return mDataTable;
+        }
         public bool insertQuery(SqlCommand command)
         {
             mCommand = command;
@@ -110,6 +133,26 @@ namespace Nursery_Management_System_WPF
             finally
             {*/
                 mConnection.Close();
+            //}
+
+            return;
+        }
+
+        public void deleteQuery(SqlCommand command)
+        {
+            /*try
+            {*/
+            mCommand = command;
+            mConnection.Open();
+            mCommand.ExecuteNonQuery();
+            /*}
+            catch
+            {
+                MessageBox.Show("There was an error while connecting to data base , please check your connection and try again", "Sql Connection Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            finally
+            {*/
+            mConnection.Close();
             //}
 
             return;
