@@ -9,26 +9,47 @@
         Title="childSignUp" 
         MaxHeight="600" 
         MaxWidth="400" 
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None">
 
-    <Grid Margin="0,-1,0,1">
-        <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="76,21,0,0" VerticalAlignment="Top" Width="252" Source="/images/Asset 1+.png"/>
-        <Ellipse HorizontalAlignment="Left" Height="105" Margin="141,60,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
+    <Grid Margin="0,-1,0,1" Background="#FFEAC599">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
+        </Grid.ColumnDefinitions>
+        <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="79,57,0,0" VerticalAlignment="Top" Width="252" Source="/images/Asset 1.png" OpacityMask="{x:Null}"/>
+        <Ellipse HorizontalAlignment="Left" Height="105" Margin="144,96,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="childName" Text="Child's Name" HorizontalAlignment="Left" Height="30" Margin="30,229,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
-        <RadioButton x:Name="female" Content="Female" HorizontalAlignment="Left" Margin="30,275,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="1"/>
-        <Image x:Name="femaleIcon" HorizontalAlignment="Left" Height="38" Margin="103,268,0,0" VerticalAlignment="Top" Width="47" Source="images/female icon.png"/>
-        <RadioButton x:Name="male" Content="Male" HorizontalAlignment="Left" Margin="201,278,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="2"/>
-        <Image x:Name="maleIcon" HorizontalAlignment="Left" Height="38" Margin="252,268,0,0" VerticalAlignment="Top" Width="48" Source="images/male icon.png"/>
-        <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="165,311,0,0" VerticalAlignment="Top" Width="135" TabIndex="3"/>
-        <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="29,311,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
-        <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="30,355,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5"/>
-        <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="219,516,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="6" Click="signUpButton_Click"/>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="30,410,0,0" VerticalAlignment="Top" Width="339">
-            <CheckBox x:Name="fearture1" Content="Feature" HorizontalAlignment="Left" Margin="35,20,0,0" VerticalAlignment="Top" TabIndex="6"/>
+        <TextBox x:Name="childName" Text="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+        <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="206,384,0,0" VerticalAlignment="Top" Width="136" TabIndex="3" FontFamily="Comfortaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="24"/>
+        <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="60,384,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Height="25" Width="88"/>
+        <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+        <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="240,560,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Code Bold" FontSize="14" TabIndex="6" Click="signUpButton_Click"/>
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="400" Background="#FFFFB300">
+            <Button x:Name="exitButton" Content="x" Margin="370,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
+            <Button x:Name="minimizeButton" Content="-" Margin="346,10,34,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
+
         </Grid>
+        <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="61,293,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
+            <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="31*"/>
+                    <RowDefinition Height="69*"/>
+                </Grid.RowDefinitions>
+                <RadioButton x:Name="female" Margin="10,24,75,0" VerticalAlignment="Top" IsChecked="True" TabIndex="1" Grid.RowSpan="2" Content="Female" FontFamily="Comfortaa"/>
+                <RadioButton x:Name="male" Content="Male" HorizontalAlignment="Left" Margin="164,26,-109,0" VerticalAlignment="Top" IsChecked="True" TabIndex="2" Grid.RowSpan="2" FontFamily="Comfortaa"/>
+                <Image x:Name="femaleIcon" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="47" Source="images/female icon.png" Margin="68,10,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.324,0.454"/>
+                <Image x:Name="maleIcon" HorizontalAlignment="Left" Height="38" Margin="209,10,-157,0" VerticalAlignment="Top" Width="48" Source="images/male icon.png" RenderTransformOrigin="0.062,0.526" Grid.RowSpan="2"/>
+            </Grid>
+
+        </GroupBox>
+        <ComboBox x:Name="featuresComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="282" Margin="60,457,0,0" Height="22" SelectionChanged="featuresComboBox_SelectionChanged">
+            <CheckBox x:Name="checkBox" Content="CheckBox"/>
+
+        </ComboBox>
     </Grid>
 </Window>

@@ -7,7 +7,9 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="400"
-      Title="parentSignUp" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600">
+      Title="parentSignUp" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" >
 
     <Grid Margin="0,-4,3.6,4.4">
         <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="18,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
@@ -50,10 +52,10 @@
                 <ImageBrush />
             </Button.Background>
         </Button>
-        <Image x:Name="usernameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,104,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <Image x:Name="creditError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,49,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,103,0,0" Source="Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="creditError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,48,0,0" Source="Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
-        <Image x:Name="passwordError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="357,166,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
+        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,165,0,0" Source="Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
 
     </Grid>
 

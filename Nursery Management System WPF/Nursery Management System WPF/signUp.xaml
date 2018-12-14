@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Sign Up" Height="600" Width="400
-        " MaxWidth="400" MaxHeight="600" ResizeMode="NoResize">
+        Title="Nursery Management System - Sign Up" Height="600" Width="400 " 
+        MaxWidth="400" MaxHeight="600" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" >
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>

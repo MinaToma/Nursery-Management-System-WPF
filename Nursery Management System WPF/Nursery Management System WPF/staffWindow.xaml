@@ -26,21 +26,23 @@
 
         </Grid>
 
-        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
-            <Button x:Name="staffProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,266,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="staffProfileButton_Click"/>
-            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,276,145,279"/>
-            <Button x:Name="roomButton" Content="Room" HorizontalAlignment="Left" Margin="0,336,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="roomButton_Click"/>
-            <Image x:Name="roomIcon" Height="45" Width="45" Source="images/puzzle 128px.png" Margin="34,351,145,204"/>
-            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,481,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click"/>
-            <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,497,150,68"/>
+        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC" d:IsLocked="True">
+            <Button x:Name="staffProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="staffProfileButton_Click"/>
+            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,255,145,300"/>
+            <Button x:Name="roomButton" Content="Room" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="roomButton_Click"/>
+            <Image x:Name="roomIcon" Height="45" Width="45" Source="images/puzzle 128px.png" Margin="34,330,145,225"/>
+            <Button x:Name="staffFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="staffFeedbackButton_Click"/>
+            <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,385,145,170"/>
+            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click"/>
+            <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,461,150,104"/>
             <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nursery Management System" VerticalAlignment="Top" Width="224" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="26.667" Height="110" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136"/>
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profile" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
+            <Grid x:Name="profile" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
                 <TextBox x:Name="firstName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" TabIndex="0"/>
                 <TextBox x:Name="lastName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="566,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TabIndex="1"/>
-                <TextBox x:Name="ID" Text=" "  HorizontalAlignment="Left" Height="34" Margin="356,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="2"/>
+                <TextBox x:Name="ID" Text=" "  HorizontalAlignment="Left" Height="34" Margin="356,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="2" IsReadOnly="True"/>
                 <TextBox x:Name="email" Text=" " HorizontalAlignment="Left" Height="34" Margin="356,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="3"/>
                 <TextBox x:Name="phoneNumber" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="4"/>
                 <TextBox x:Name="username" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="5"/>
@@ -61,16 +63,24 @@
                 <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,389,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,438,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
-            <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
-                <Grid x:Name="child" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
-                    <Ellipse x:Name="childProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
-                        <Ellipse.Fill>
-                            <ImageBrush ImageSource="images/256.png"/>
-                        </Ellipse.Fill>
-                    </Ellipse>
-                    <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
-                    <Button x:Name="addDetails" Content="Add Details" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCDC367" Foreground="#FF433D07" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
-                </Grid>
+            <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
+                <ListView x:Name="StaffAssignedRoom" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="790" Margin="0,4,0,0" Background="{x:Null}" IsManipulationEnabled="True">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <Grid x:Name="feedback" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
+                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedback bubble@4x.png" Stretch="Fill"/>
+                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="200" Margin="72,131,0,0" VerticalAlignment="Top" Width="650" Background="{x:Null}" FontFamily="Consolas" FontSize="20" BorderBrush="{x:Null}" Cursor="IBeam">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run Text="Describe your issue or share you ideas..."/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
             </Grid>
         </Grid>
 

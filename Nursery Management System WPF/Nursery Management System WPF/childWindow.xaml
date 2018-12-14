@@ -38,7 +38,7 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsLocked="True" d:IsHidden="True">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -47,16 +47,25 @@
                         <ImageBrush ImageSource="images/256.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="365,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
-                <RadioButton x:Name="female" Content="Female" HorizontalAlignment="Left" Margin="365,255,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="1"/>
-                <Image x:Name="femaleIcon" HorizontalAlignment="Left" Height="38" Margin="438,248,0,0" VerticalAlignment="Top" Width="47" Source="images/female icon.png"/>
-                <RadioButton x:Name="male" Content="Male" HorizontalAlignment="Left" Margin="536,258,0,0" VerticalAlignment="Top" IsChecked="True" TabIndex="2"/>
-                <Image x:Name="maleIcon" HorizontalAlignment="Left" Height="38" Margin="587,248,0,0" VerticalAlignment="Top" Width="48" Source="images/male icon.png"/>
-                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="500,291,0,0" VerticalAlignment="Top" Width="135" TabIndex="3"/>
-                <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="364,291,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
-                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="365,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5"/>
+                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="364,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa"/>
+                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="501,354,0,0" VerticalAlignment="Top" Width="135" TabIndex="3"/>
+                <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="365,354,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
+                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="365,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5"/>
+                <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="364,261,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
+                    <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="31*"/>
+                            <RowDefinition Height="69*"/>
+                        </Grid.RowDefinitions>
+                        <RadioButton x:Name="female" Margin="10,24,75,0" VerticalAlignment="Top" IsChecked="True" TabIndex="1" Grid.RowSpan="2" Content="Female" FontFamily="Comfortaa"/>
+                        <RadioButton x:Name="male" Content="Male" HorizontalAlignment="Left" Margin="164,26,-109,0" VerticalAlignment="Top" IsChecked="True" TabIndex="2" Grid.RowSpan="2" FontFamily="Comfortaa"/>
+                        <Image x:Name="femaleIcon" HorizontalAlignment="Left" Height="38" VerticalAlignment="Top" Width="47" Source="images/female icon.png" Margin="68,10,0,0" Grid.RowSpan="2" RenderTransformOrigin="0.324,0.454"/>
+                        <Image x:Name="maleIcon" HorizontalAlignment="Left" Height="38" Margin="209,10,-157,0" VerticalAlignment="Top" Width="48" Source="images/male icon.png" RenderTransformOrigin="0.062,0.526" Grid.RowSpan="2"/>
+                    </Grid>
+
+                </GroupBox>
             </Grid>
-            <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>
                 <Image x:Name="dailyDetailsCard" Margin="25,95,40,39" Source="daily details_2@4x.png" Stretch="Fill"/>
                 <Ellipse x:Name="profileImage_Copy" HorizontalAlignment="Left" Height="86" Margin="59,125,0,0" VerticalAlignment="Top" Width="86" StrokeThickness="2">
