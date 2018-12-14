@@ -43,7 +43,7 @@ namespace Nursery_Management_System_WPF
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
           //  password.Text = GlobalVariables.globalAdmin.password;
-            this.profile.Visibility = Visibility.Visible;
+            this.profilePanel.Visibility = Visibility.Visible;
         }
 
         private void editDatabase_Click(object sender, RoutedEventArgs e)
@@ -53,7 +53,7 @@ namespace Nursery_Management_System_WPF
 
         private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            this.profile.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)

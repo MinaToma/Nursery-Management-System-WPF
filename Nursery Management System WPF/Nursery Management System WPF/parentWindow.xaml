@@ -40,7 +40,7 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -68,17 +68,21 @@
                 <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="376,451,0,0" VerticalAlignment="Top" Width="350" Height="30"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="701,459,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
-            <Grid x:Name="childrenPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
-                <ListView x:Name="children" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="790" Margin="0,4,0,0" Background="{x:Null}" IsManipulationEnabled="True">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+            <Grid x:Name="childrenPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+                <Grid x:Name="parents" ScrollViewer.CanContentScroll="True" Margin="0,0,5.6,37.6">
+                    <Grid x:Name="child" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+                        <Ellipse x:Name="childProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                            <Ellipse.Fill>
+                                <ImageBrush ImageSource="images/256.png"/>
+                            </Ellipse.Fill>
+                        </Ellipse>
+                        <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+                        <Button x:Name="showDetails" Content="Show Details" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCDC367" Foreground="#FF433D07" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" ScrollViewer.CanContentScroll="True"/>
+                    </Grid>
+                </Grid>
             </Grid>
             <Grid x:Name="feedbackPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
-                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedback bubble@4x.png" Stretch="Fill"/>
+                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedbackbubble.png" Stretch="Fill"/>
                 <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="200" Margin="72,131,0,0" VerticalAlignment="Top" Width="650" Background="{x:Null}" FontFamily="Consolas" FontSize="20" BorderBrush="{x:Null}" Cursor="IBeam">
                     <FlowDocument>
                         <Paragraph>

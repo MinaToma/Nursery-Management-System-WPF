@@ -33,18 +33,8 @@ namespace Nursery_Management_System_WPF
         {
             //hide all other windows
             this.profile.Visibility = Visibility.Hidden;
-            this.feedback.Visibility = Visibility.Hidden;
             //show room grid
             this.room.Visibility = Visibility.Visible;
-        }
-
-        private void staffFeedbackButton_Click(object sender, RoutedEventArgs e)
-        {
-            //hide all other windows
-            this.profile.Visibility = Visibility.Hidden;
-            this.room.Visibility = Visibility.Hidden;
-            //show feedback grid
-            this.feedback.Visibility = Visibility.Visible;
         }
 
         private void staffProfileButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +51,6 @@ namespace Nursery_Management_System_WPF
 
             //hide all other windows
             this.room.Visibility = Visibility.Hidden;
-            this.feedback.Visibility = Visibility.Hidden;
             //show profile grid
             this.profile.Visibility = Visibility.Visible;
         }
