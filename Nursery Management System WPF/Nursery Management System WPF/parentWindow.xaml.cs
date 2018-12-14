@@ -40,7 +40,6 @@ namespace Nursery_Management_System_WPF
 
         private void parentFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-
             this.profilePanel.Visibility = Visibility.Hidden;
             this.childrenPanel.Visibility = Visibility.Hidden;
             //show feedback grid
@@ -91,7 +90,6 @@ namespace Nursery_Management_System_WPF
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
-
         }
 
         private void editProfileButton_Click(object sender, RoutedEventArgs e)
@@ -212,5 +210,11 @@ namespace Nursery_Management_System_WPF
             return ans;
         }
 
+        private void sendFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id , feedbackText.Text);
+        }
     }
 }

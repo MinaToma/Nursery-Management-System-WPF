@@ -71,7 +71,7 @@ namespace Nursery_Management_System_WPF
         {
             SQL mSQL = new SQL();
             string query;
-            if (type == "staff" || type == "Admin")
+            if (type == "Staff" || type == "Admin")
             {
                 query = "select * from User_Password where staffID  =  " + Convert.ToString(id);
             }
@@ -305,23 +305,9 @@ namespace Nursery_Management_System_WPF
             string query = "select * from Child where parentID = " + Convert.ToString(id);
             return getChild(query);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// retreiv child profile
-public DataTable Child_Data(Int64 id)
+        
+        // retreiv child profile
+        public DataTable Child_Data(Int64 id)
         {
             SQL mSQL = new SQL();
             SqlCommand mCommand = new SqlCommand("Child_Data");
@@ -362,7 +348,6 @@ public DataTable Child_Data(Int64 id)
 
             return dt;
         }
-
 
         public LinkedList<Parent> parentToLinkedList(DataTable dt)
         {
@@ -517,6 +502,52 @@ public DataTable Child_Data(Int64 id)
             return room;
         }
 
+        public void insertParentFeedback(Int64 parentID , string feedback)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("insertParentFeedback");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@parentID", parentID);
+            mCommand.Parameters.AddWithValue("@description", feedback);
+
+            mSQL.insertQuery(mCommand);
+
+            return;
+        }
+
+        public LinkedList<Tuple<Tuple<int , string > , string>> getAllParentFeedback()
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("getAllParentFeedback");
+            LinkedList<Tuple<Tuple<int , string> , string>> feedback = new LinkedList<Tuple<Tuple<int , string> , string>>();
+            
+            DataTable dt = mSQL.retrieveQuery(mCommand);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                feedback.AddLast(new Tuple<Tuple<int , string> , string>( new Tuple<int, string>( Convert.ToInt32(dr["feedbackID"]) , dr["feedbackDescription"].ToString() ) , dr["parentFirstName"].ToString()
+                    + dr["parentLastName"].ToString() ) ) ;    
+            }
+
+            return feedback;
+        }
+
+        public void deleteParentFeedback(int feedbackID)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("deleteParentFeedback");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@feedbackID", feedbackID);
+
+            mSQL.deleteQuery(mCommand);
+
+            return;
+        }
+
         //uses specific query to select all rooms from database
         public DataTable getAllRooms()
         {
@@ -641,26 +672,20 @@ public DataTable Child_Data(Int64 id)
             SqlCommand mCommand = new SqlCommand("updateUsername");
             mCommand.CommandType = CommandType.StoredProcedure;
 
-            if(table.Rows[0]["parentID"] == DBNull.Value)
+            if(type == "Staff" || type == "Admin")
             {
-                mCommand.Parameters.AddWithValue("@parentID", table.Rows[0]["parentID"]);
+                mCommand.Parameters.AddWithValue("@staffID" , id);
+                mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
             }
             else
             {
-                mCommand.Parameters.AddWithValue("@parentID" , Convert.ToInt64(table.Rows[0]["parentID"]));
+                mCommand.Parameters.AddWithValue("@parentID" , id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
             }
             mCommand.Parameters.AddWithValue("@type", table.Rows[0]["userType"]);
             mCommand.Parameters.AddWithValue("@newUsername", newUsername);
             mCommand.Parameters.AddWithValue("@newPassword", newPassword);
-            if(table.Rows[0]["staffID"] == DBNull.Value)
-            {
-                mCommand.Parameters.AddWithValue("@staffID", table.Rows[0]["staffID"]);
-            }
-            else
-            {
-                mCommand.Parameters.AddWithValue("@staffID", Convert.ToInt64(table.Rows[0]["staffID"]));
-            }
-
+            
             mSQL.updateQuery(mCommand);
         }
 

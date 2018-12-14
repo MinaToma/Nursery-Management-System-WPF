@@ -86,10 +86,13 @@
                 <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="200" Margin="72,131,0,0" VerticalAlignment="Top" Width="650" Background="{x:Null}" FontFamily="Consolas" FontSize="20" BorderBrush="{x:Null}" Cursor="IBeam">
                     <FlowDocument>
                         <Paragraph>
-                            <Run Text="Describe your issue or share you ideas..."/>
+                            <Run x:Name ="feedbackText" Text="Describe your issue or share you ideas..."/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
+                <Button x:Name="button" HorizontalAlignment="Left" Margin="610,383,0,0" VerticalAlignment="Top" Width="75">
+                    <Button x:Name="sendFeedback" Content="Button" Width="75" Click="sendFeedback_Click"/>
+                </Button>
             </Grid>
         </Grid>
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,7 +45,11 @@ namespace Nursery_Management_System_WPF
 
             firstName.Text = GlobalVariables.globalStaff.firstName;
             lastName.Text = GlobalVariables.globalStaff.lastName;
-            mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalParent.id), "Staff");
+            DataTable dt = mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalStaff.id), "Staff");
+
+            username.Text = dt.Rows[0]["userName"].ToString();
+            password.Password = dt.Rows[0]["userPassword"].ToString();
+
             email.Text = GlobalVariables.globalStaff.email;
             phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
             ID.Text = (GlobalVariables.globalStaff.id).ToString();
@@ -69,18 +74,19 @@ namespace Nursery_Management_System_WPF
 
         private void editProfileButton_Click(object sender, RoutedEventArgs e)
         {
-                SQLQuery mSQLQuery = new SQLQuery();
+            SQLQuery mSQLQuery = new SQLQuery();
             
             if (checkEnteredData())
             {
-                (GlobalVariables.globalStaff.id) = Convert.ToInt64(ID.Text);
+                GlobalVariables.globalStaff.id = Convert.ToInt64(ID.Text);
                 GlobalVariables.globalStaff.firstName = firstName.Text;
                 GlobalVariables.globalStaff.lastName = lastName.Text;
-                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
+
+                mSQLQuery.updateUsername(Convert.ToInt64(ID.Text), "Staff", username.Text, password.Password);
+
                 GlobalVariables.globalStaff.email = email.Text;
                 GlobalVariables.globalStaff.phoneNumber = phoneNumber.Text;
-                mSQLQuery.updateStaffData(GlobalVariables.globalStaff);
-
+                
                 mSQLQuery.updateStaffData(GlobalVariables.globalStaff);
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -159,7 +165,7 @@ namespace Nursery_Management_System_WPF
                usernameError.Visibility = Visibility.Hidden;
             }
             
-            if (validator.verifyField(password.Password))
+            if (!validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);

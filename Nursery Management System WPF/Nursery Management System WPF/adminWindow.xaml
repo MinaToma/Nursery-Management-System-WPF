@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Admin" 
-        Width="1024" 
-        Height="600" 
-        WindowStartupLocation="CenterScreen" 
-        WindowStyle="None" 
+        Title="Nursery Management System - Admin"
+        Width="1024"
+        Height="600"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
         ResizeMode="NoResize">
 
     <Window.Background>

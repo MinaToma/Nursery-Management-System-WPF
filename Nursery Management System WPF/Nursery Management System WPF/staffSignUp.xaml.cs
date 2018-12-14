@@ -118,7 +118,7 @@ namespace Nursery_Management_System_WPF
                 Staff staff = new Staff(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text, -1, 1, "Staff");
                 mSQLQuery.insertStaffData(staff, "Staff");
 
-                mSQLQuery.insertUser(username.Text, password.Password, "Staff", staff.id);
+                mSQLQuery.insertUser(username.Text, password.Password, "Staff" , staff.id);
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
             }
         }
@@ -189,7 +189,7 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Hidden;
             }
 
-            if (validator.verifyField(password.Password))
+            if (!validator.verifyField(password.Password))
             {
                 ans = false;
                 passwordError.Visibility = Visibility.Visible;
