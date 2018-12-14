@@ -47,28 +47,36 @@ namespace Nursery_Management_System_WPF
             email.Text = GlobalVariables.globalAdmin.email;
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
-          //  password.Text = GlobalVariables.globalAdmin.password;
-            this.profilePanel.Visibility = Visibility.Visible;
+
+             this.profilePanel.Visibility = Visibility.Visible;
+            AdminFeedback.Visibility = Visibility.Hidden;
+            pendingRequestsPanel.Visibility = Visibility.Hidden;
         }
 
         private void editDatabase_Click(object sender, RoutedEventArgs e)
         {
-
+            AdminFeedback.Visibility = Visibility.Hidden;
+            pendingRequestsPanel.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Hidden;
         }
 
         private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSQLQuery = new SQLQuery();
 
-            feedbackIdx = 0;
             feedback = new LinkedList<Tuple<Tuple<int, string>, string>>();
 
             feedback = mSQLQuery.getAllParentFeedback();
 
+            if(feedback.Count != 0)
+            {
+                feedbackIdx = 0;
+                showFeedBack();
+            }
+
             this.AdminFeedback.Visibility = Visibility.Visible;
             this.profilePanel.Visibility = Visibility.Hidden;
-            this.pendingRequests.Visibility = Visibility.Hidden;
-            this.editDatabase.Visibility = Visibility.Hidden;
+            this.pendingRequestsPanel.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -80,7 +88,9 @@ namespace Nursery_Management_System_WPF
 
         private void pendingRequests_Click(object sender, RoutedEventArgs e)
         {
-
+            pendingRequestsPanel.Visibility = Visibility.Visible;
+            profilePanel.Visibility = Visibility.Hidden;
+            AdminFeedback.Visibility = Visibility.Hidden;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -200,7 +210,7 @@ namespace Nursery_Management_System_WPF
 
         private void deleteFeedback_Click(object sender, RoutedEventArgs e)
         {
-            if(feedback.Count != 0 && feedbackIdx != -1)
+            if (feedback.Count != 0 && feedbackIdx != -1)
             {
                 SQLQuery mSQLQuery = new SQLQuery();
                 int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
@@ -216,7 +226,7 @@ namespace Nursery_Management_System_WPF
 
         public void showFeedBack()
         {
-            if(feedbackIdx >= 0 && feedbackIdx < feedback.Count)
+            if (feedbackIdx >= 0 && feedbackIdx < feedback.Count)
             {
                 parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
                 feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;
@@ -239,7 +249,7 @@ namespace Nursery_Management_System_WPF
 
         private void nextButton_Click(object sender, RoutedEventArgs e)
         {
-            if(feedback.Count != 0)
+            if (feedback.Count != 0)
             {
                 feedbackIdx = (feedbackIdx + 1) % feedback.Count;
                 showFeedBack();

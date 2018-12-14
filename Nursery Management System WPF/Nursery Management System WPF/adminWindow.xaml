@@ -138,7 +138,46 @@
                     </TabItem>
                 </TabControl>
             </Grid>
-        </Grid>
+            <Grid x:Name="AdminFeedback" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
+                <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
+                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="436" Margin="262,132,0,0" Background="{x:Null}" FontFamily="Comfortaa" FontSize="16" BorderBrush="{x:Null}" Padding="2">
+                    <FlowDocument>
+                        <Paragraph>
+                            <Run x:Name="feedbackText" Text="Describe your issue or share your ideas :"/>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+                <Ellipse x:Name="parentProfileImage2" HorizontalAlignment="Left" Height="166" Stroke="Black" VerticalAlignment="Top" Width="166" Margin="91,132,0,0" StrokeThickness="3">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="/images/128.png"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+                <Label x:Name="parentNameLabel" Content="Parent Name" HorizontalAlignment="Left" Margin="99,303,0,0" VerticalAlignment="Top" Height="38" Width="148" FontFamily="Comfortaa" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center"/>
+                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Click="nextButton_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="images/next icon 50px.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471" Click="previousButton_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="images/back icon 50px.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="deleteFeedback_Click">
+                    <Button.Template>
+                        <ControlTemplate>
+                            <Image Source="images/delete 70px.png"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
 
+        </Grid>
+        
     </Grid>
+    
 </Window>
