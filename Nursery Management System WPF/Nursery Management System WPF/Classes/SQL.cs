@@ -59,6 +59,7 @@ namespace Nursery_Management_System_WPF
             /*try
             {*/
             mCommand = command;
+            mCommand.Connection = mConnection;
             mConnection.Open();
             mAdapter = new SqlDataAdapter(mCommand);
             mAdapter.Fill(mDataTable);
@@ -123,7 +124,9 @@ namespace Nursery_Management_System_WPF
             /*try
             {*/
                 mCommand = new SqlCommand(query, mConnection);
-                mConnection.Open();
+            mCommand.Connection = mConnection;
+
+            mConnection.Open();
                 mCommand.ExecuteNonQuery();
             /*}
             catch
@@ -143,6 +146,7 @@ namespace Nursery_Management_System_WPF
             /*try
             {*/
             mCommand = command;
+            mCommand.Connection = mConnection;
             mConnection.Open();
             mCommand.ExecuteNonQuery();
             /*}

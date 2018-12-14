@@ -20,6 +20,9 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class adminWindow : Window
     {
+        int feedbackIdx = -1;
+        LinkedList<Tuple<Tuple<int, string>, string>> feedback;
+
         public adminWindow()
         {
             InitializeComponent();
@@ -34,15 +37,17 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlquery = new SQLQuery();
             DataTable dt = new DataTable();
-            
-            dt = mSqlquery.selectUsernameByIDAndType(GlobalVariables.globalAdmin.id, "admin");
-            username.Text = dt.Rows[0].Field<string>(0) ;
+
+            dt = mSqlquery.selectUsernameByIDAndType(GlobalVariables.globalAdmin.id, "Admin");
+            username.Text = dt.Rows[0]["userName"].ToString();
+            password.Password = dt.Rows[0]["userPassword"].ToString();
+
             firstName.Text = GlobalVariables.globalAdmin.firstName;
             lastName.Text = GlobalVariables.globalAdmin.lastName;
             email.Text = GlobalVariables.globalAdmin.email;
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
-          //  password.Text = GlobalVariables.globalAdmin.password;
+
             this.profile.Visibility = Visibility.Visible;
         }
 
@@ -53,7 +58,17 @@ namespace Nursery_Management_System_WPF
 
         private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            feedbackIdx = 0;
+            feedback = new LinkedList<Tuple<Tuple<int, string>, string>>();
+
+            feedback = mSQLQuery.getAllParentFeedback();
+
+            this.AdminFeedback.Visibility = Visibility.Visible;
             this.profile.Visibility = Visibility.Hidden;
+            this.pendingRequests.Visibility = Visibility.Hidden;
+            this.editDatabase.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -73,8 +88,7 @@ namespace Nursery_Management_System_WPF
             WindowState = WindowState.Minimized;
         }
 
-       
-public bool checkEnteredData()
+        public bool checkEnteredData()
         {
             bool ans = true;
             ValidateData validator = new ValidateData();
@@ -99,7 +113,7 @@ public bool checkEnteredData()
             }
             else
             {
-                 lastNameError.Visibility = Visibility.Hidden;
+                lastNameError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkNationalID(ID.Text))
@@ -121,19 +135,19 @@ public bool checkEnteredData()
             }
             else
             {
-                emailError.Visibility =Visibility.Hidden;
+                emailError.Visibility = Visibility.Hidden;
             }
 
             if (!validator.checkPhoneNum(phoneNumber.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Phone Number !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
-                 phoneError.Visibility = Visibility.Visible;
+                phoneError.Visibility = Visibility.Visible;
 
             }
             else
             {
-                   phoneError.Visibility = Visibility.Hidden;
+                phoneError.Visibility = Visibility.Hidden;
             }
 
             if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
@@ -147,8 +161,8 @@ public bool checkEnteredData()
             {
                 usernameError.Visibility = Visibility.Hidden;
             }
-            
-            if (validator.verifyField(password.Password))
+
+            if (!validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
@@ -159,7 +173,7 @@ public bool checkEnteredData()
             {
                 passwordError.Visibility = Visibility.Hidden;
             }
-            
+
             return ans;
         }
 
@@ -167,20 +181,69 @@ public bool checkEnteredData()
         {
             SQLQuery mSql = new SQLQuery();
 
-                GlobalVariables.globalAdmin.ToString();
             if (checkEnteredData())
             {
+                GlobalVariables.globalAdmin.id = Convert.ToInt64(ID.Text);
+                GlobalVariables.globalAdmin.firstName = firstName.Text;
+                GlobalVariables.globalAdmin.lastName = lastName.Text;
 
-                (GlobalVariables.globalAdmin.id) =Convert.ToInt64(ID.Text);
-                 GlobalVariables.globalAdmin.firstName = firstName.Text;
-                GlobalVariables.globalAdmin.lastName =lastName.Text ;
                 mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
-                GlobalVariables.globalAdmin.email = email.Text ;
-                GlobalVariables.globalAdmin.phoneNumber =phoneNumber.Text;
+
+                GlobalVariables.globalAdmin.email = email.Text;
+                GlobalVariables.globalAdmin.phoneNumber = phoneNumber.Text;
                 mSql.updateStaffData(GlobalVariables.globalAdmin);
+
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+        }
+
+        private void deleteFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            if(feedback.Count != 0 && feedbackIdx != -1)
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
+                MessageBox.Show(Convert.ToString(id));
+
+                mSQLQuery.deleteParentFeedback(id);
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+
+                feedback.Remove(feedback.ElementAt(feedbackIdx));
+            }
+        }
+
+        public void showFeedBack()
+        {
+            if(feedbackIdx >= 0 && feedbackIdx < feedback.Count)
+            {
+                parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
+                feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;
+            }
+            else
+            {
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+            }
+        }
+
+        private void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx - 1 + feedback.Count) % feedback.Count;
+                showFeedBack();
+            }
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx + 1) % feedback.Count;
+                showFeedBack();
+            }
         }
     }
 }

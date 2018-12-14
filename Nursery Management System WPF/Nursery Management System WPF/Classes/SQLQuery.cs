@@ -527,7 +527,7 @@ namespace Nursery_Management_System_WPF
 
             foreach (DataRow dr in dt.Rows)
             {
-                feedback.AddLast(new Tuple<Tuple<int , string> , string>( new Tuple<int, string>( 4 , dr["feedbackDescription"].ToString() ) , dr["parentFirstName"].ToString()
+                feedback.AddLast(new Tuple<Tuple<int , string> , string>( new Tuple<int, string>( Convert.ToInt32(dr["feedbackID"]) , dr["feedbackDescription"].ToString() ) , dr["parentFirstName"].ToString()
                     + dr["parentLastName"].ToString() ) ) ;    
             }
 

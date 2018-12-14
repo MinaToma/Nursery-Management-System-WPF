@@ -65,12 +65,12 @@
                 <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="356,430,0,0" VerticalAlignment="Top" Width="388" Height="32"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="719,439,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Visible" d:IsHidden="True"/>
             </Grid>
-            <Grid x:Name="AdminFeedback" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
-                <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
+            <Grid x:Name="AdminFeedback" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" d:IsHidden="True">
+                <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedback bubble@4x.png"/>
                 <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="436" Margin="262,132,0,0" Background="{x:Null}" FontFamily="Comfortaa" FontSize="16" BorderBrush="{x:Null}" Padding="2">
                     <FlowDocument>
                         <Paragraph>
-                            <Run Text="Describe your issue or share your ideas :"/>
+                            <Run x:Name="feedbackText" Text="Describe your issue or share your ideas :"/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
@@ -80,21 +80,21 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <Label x:Name="parentNameLabel" Content="Parent Name" HorizontalAlignment="Left" Margin="99,303,0,0" VerticalAlignment="Top" Height="38" Width="148" FontFamily="Comfortaa" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center"/>
-                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}">
+                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Click="nextButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/next icon 50px.png"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471">
+                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471" Click="previousButton_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/back icon 50px.png"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.543,0.33">
+                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="deleteFeedback_Click">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/delete 70px.png"/>

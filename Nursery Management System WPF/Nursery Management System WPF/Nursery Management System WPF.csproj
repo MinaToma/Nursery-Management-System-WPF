@@ -186,6 +186,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="images\images-20181214T112951Z-001.zip" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -281,6 +282,8 @@
     <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\delete 70px.png" />
+    <Resource Include="images\next icon 50px.png" />
     <Resource Include="images\daily details_2%404x.png" />
     <Resource Include="images\daily details_1%404x.png" />
     <Resource Include="images\edit icon.png" />
@@ -288,6 +291,9 @@
     <Resource Include="images\feedback bubble%404x.png" />
     <Resource Include="images\back %281%29.png" />
     <Resource Include="daily details_2%404x.png" />
+    <Resource Include="images\Asset 1%404x.png" />
+    <Resource Include="images\Asset 2%404x.png" />
+    <Resource Include="images\back icon 50px.png" />
     <Content Include="images\correct.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
