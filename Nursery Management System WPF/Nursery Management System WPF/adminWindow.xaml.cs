@@ -35,16 +35,14 @@ namespace Nursery_Management_System_WPF
             SQLQuery mSqlquery = new SQLQuery();
             DataTable dt = new DataTable();
             
-            dt = mSqlquery.selectUsernameByIDAndType(GlobalVariables.globalAdmin.id, "Admin");
-            username.Text = dt.Rows[0]["userName"].ToString() ;
-            password.Password = dt.Rows[0]["userPassword"].ToString();
-
+            dt = mSqlquery.selectUsernameByIDAndType(GlobalVariables.globalAdmin.id, "admin");
+            username.Text = dt.Rows[0].Field<string>(0) ;
             firstName.Text = GlobalVariables.globalAdmin.firstName;
             lastName.Text = GlobalVariables.globalAdmin.lastName;
             email.Text = GlobalVariables.globalAdmin.email;
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
-
+          //  password.Text = GlobalVariables.globalAdmin.password;
             this.profile.Visibility = Visibility.Visible;
         }
 
@@ -74,8 +72,9 @@ namespace Nursery_Management_System_WPF
         {
             WindowState = WindowState.Minimized;
         }
+
        
-        public bool checkEnteredData()
+public bool checkEnteredData()
         {
             bool ans = true;
             ValidateData validator = new ValidateData();
@@ -133,7 +132,7 @@ namespace Nursery_Management_System_WPF
 
             }
             else
-            { 
+            {
                    phoneError.Visibility = Visibility.Hidden;
             }
 
@@ -149,7 +148,7 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Hidden;
             }
             
-            if (!validator.verifyField(password.Password))
+            if (validator.verifyField(password.Password))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your Password !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
@@ -167,19 +166,18 @@ namespace Nursery_Management_System_WPF
         private void editProfileButton_Click_2(object sender, RoutedEventArgs e)
         {
             SQLQuery mSql = new SQLQuery();
-            
+
+                GlobalVariables.globalAdmin.ToString();
             if (checkEnteredData())
             {
-                GlobalVariables.globalAdmin.id = Convert.ToInt64(ID.Text);
-                GlobalVariables.globalAdmin.firstName = firstName.Text;
-                GlobalVariables.globalAdmin.lastName = lastName.Text ;
 
-                mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text , password.Password);
-
+                (GlobalVariables.globalAdmin.id) =Convert.ToInt64(ID.Text);
+                 GlobalVariables.globalAdmin.firstName = firstName.Text;
+                GlobalVariables.globalAdmin.lastName =lastName.Text ;
+                mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
                 GlobalVariables.globalAdmin.email = email.Text ;
-                GlobalVariables.globalAdmin.phoneNumber = phoneNumber.Text;
+                GlobalVariables.globalAdmin.phoneNumber =phoneNumber.Text;
                 mSql.updateStaffData(GlobalVariables.globalAdmin);
-
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
