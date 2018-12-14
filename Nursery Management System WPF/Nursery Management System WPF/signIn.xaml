@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Sign In" Height="600" Width="400" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600">
+        Title="Nursery Management System - Sign In" Height="600" Width="400" ResizeMode="NoResize" MaxWidth="400" MaxHeight="600"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" >
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
             <GradientStop Color="#FF03223C" Offset="1"/>
@@ -30,13 +32,18 @@
         <Image x:Name="footerImage" HorizontalAlignment="Center" Height="17" Margin="65,475,59.6,0" VerticalAlignment="Top" Width="269" Source="images/Asset 7.png"/>
         <Label x:Name="newAccountMessage" Content="Don't have an account? create one" HorizontalAlignment="Left" Margin="76,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFABADB3"/>
         <Label x:Name="createAccount" Content="here." HorizontalAlignment="Left" Margin="283,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFB4974B" Cursor="Hand"/>
-        <Image x:Name="usernameError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,266,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <Image x:Name="passwordError" Visibility="Hidden" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,312,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908"/>
-        <Button x:Name="signUpButton" Content="" Margin="283,444,73.6,102.4" BorderThickness="0" Click="button1_Click">
+        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,266,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,312,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Button x:Name="button1" Content="" Margin="283,444,73.6,102.4" BorderThickness="0" Click="button1_Click">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>
         </Button>
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="400" Background="#FF082635">
+            <Button x:Name="exitButton" Content="x" Margin="370,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
+            <Button x:Name="minimizeButton" Content="-" Margin="346,10,34,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
+
+        </Grid>
 
     </Grid>
 
