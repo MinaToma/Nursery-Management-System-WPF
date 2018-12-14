@@ -216,5 +216,6 @@ namespace Nursery_Management_System_WPF
 
             mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id , feedbackText.Text);
         }
+        
     }
 }

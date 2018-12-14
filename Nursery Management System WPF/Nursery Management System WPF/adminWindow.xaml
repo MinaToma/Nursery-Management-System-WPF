@@ -20,13 +20,13 @@
     </Window.Background>
 
     <Grid x:Name="windowPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1024" Margin="0,0,0,0">
-        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC">
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC" d:IsLocked="True">
             <Button x:Name="exitButton" Content="x" Margin="994,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="969,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}"  Height="20" RenderTransformOrigin="0.78,-0.93" Click="MinimizeButton_Click"/>
 
         </Grid>
 
-        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
+        <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC" d:IsLocked="True">
             <Button x:Name="adminProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,157,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="adminProfileButton_Click"/>
             <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,167,145,388"/>
             <Button x:Name="editDatabase" Content="       Edit Database" HorizontalAlignment="Left" Margin="0,237,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="editDatabase_Click"/>
@@ -41,10 +41,10 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profile" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <TextBox x:Name="firstName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" TabIndex="0"/>
                 <TextBox x:Name="lastName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="566,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TabIndex="1"/>
-                <TextBox x:Name="ID" Text=" "  HorizontalAlignment="Left" Height="34" Margin="356,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="2" IsReadOnly="True"/>
+                <TextBox x:Name="ID" Text=" "  HorizontalAlignment="Left" Height="34" Margin="356,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="2"/>
                 <TextBox x:Name="email" Text=" " HorizontalAlignment="Left" Height="34" Margin="356,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="3"/>
                 <TextBox x:Name="phoneNumber" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,329,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="4"/>
                 <TextBox x:Name="username" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,379,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="5"/>
@@ -65,42 +65,78 @@
                 <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="356,430,0,0" VerticalAlignment="Top" Width="388" Height="32"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="719,439,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Visible" d:IsHidden="True"/>
             </Grid>
-            <Grid x:Name="AdminFeedback" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" d:IsHidden="True">
-                <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
-                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="220" VerticalAlignment="Top" Width="436" Margin="262,132,0,0" Background="{x:Null}" FontFamily="Comfortaa" FontSize="16" BorderBrush="{x:Null}" Padding="2">
-                    <FlowDocument>
-                        <Paragraph>
-                            <Run Text="Describe your issue or share your ideas :"/>
-                        </Paragraph>
-                    </FlowDocument>
-                </RichTextBox>
-                <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="166" Stroke="Black" VerticalAlignment="Top" Width="166" Margin="91,132,0,0" StrokeThickness="3">
-                    <Ellipse.Fill>
-                        <ImageBrush ImageSource="/images/128.png"/>
-                    </Ellipse.Fill>
-                </Ellipse>
-                <Label x:Name="parentNameLabel" Content="Parent Name" HorizontalAlignment="Left" Margin="99,303,0,0" VerticalAlignment="Top" Height="38" Width="148" FontFamily="Comfortaa" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center"/>
-                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="images/next icon 50px.png"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="images/back icon 50px.png"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
-                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.543,0.33">
-                    <Button.Template>
-                        <ControlTemplate>
-                            <Image Source="images/delete 70px.png"/>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+            <Grid x:Name="pendingRequestsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
+                <TabControl x:Name="pendingRequestsControl" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Background="{x:Null}">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TabItem">
+                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="10,2"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter TargetName="Border" Property="Background" Value="#FFF3E7CF" />
+                                            </Trigger>
+                                            <Trigger Property="IsSelected" Value="False">
+                                                <Setter TargetName="Border" Property="Background" Value="#FFCBC9C5" />
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TabControl.Resources>
+
+                    <TabItem x:Name="parentsTab" Header="Parents" HorizontalAlignment="Left" Margin="-2,-2,-1.8,0.2" Width="70" Height="30" FontFamily="Comfortaa">
+                        <Grid x:Name="parents" ScrollViewer.CanContentScroll="True">
+                            <Grid x:Name="parent" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+
+                                <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="images/256.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Label x:Name="parentName" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+                                <Button x:Name="acceptButton" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                                <Button x:Name="declineButton" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="childrenTab" Header="Children" HorizontalAlignment="Left" Margin="-2,-1.3,0,0.9" Width="70" Height="30" FontFamily="Comfortaa">
+                        <Grid x:Name="children" ScrollViewer.CanContentScroll="True">
+                            <Grid x:Name="child" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+
+                                <Ellipse x:Name="childProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                                    <Ellipse.Fill>
+                                        <ImageBrush ImageSource="images/256.png"/>
+                                    </Ellipse.Fill>
+                                </Ellipse>
+                                <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+                                <Button x:Name="acceptButton1" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                                <Button x:Name="declineButton1" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                            </Grid>
+                        </Grid>
+                    </TabItem>
+                    <TabItem x:Name="staffTab" Header="Staff" HorizontalAlignment="Left" Margin="-2,-2,0,0.2" Width="70" Height="30" FontFamily="Comfortaa">
+                        <Grid x:Name="staffMember" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+
+                            <Ellipse x:Name="staffProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="images/256.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Label x:Name="staffName" Content="Staff Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+                            <Button x:Name="acceptButton2" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                            <Button x:Name="declineButton2" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
             </Grid>
             <Grid x:Name="AdminFeedback" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
@@ -141,7 +177,6 @@
             </Grid>
 
         </Grid>
-
     </Grid>
 
 </Window>

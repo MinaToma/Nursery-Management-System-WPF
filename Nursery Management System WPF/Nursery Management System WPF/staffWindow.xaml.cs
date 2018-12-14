@@ -20,6 +20,9 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class staffWindow : Window
     {
+        int feedbackIdx = -1;
+        LinkedList<Tuple<Tuple<int, string>, string>> feedback;
+
         public staffWindow()
         {
             InitializeComponent();
@@ -34,6 +37,7 @@ namespace Nursery_Management_System_WPF
         {
             //hide all other windows
             this.profile.Visibility = Visibility.Hidden;
+            this.feedbackPanel.Visibility = Visibility.Hidden;
             //show room grid
             this.room.Visibility = Visibility.Visible;
         }
@@ -55,9 +59,11 @@ namespace Nursery_Management_System_WPF
             ID.Text = (GlobalVariables.globalStaff.id).ToString();
 
             //hide all other windows
-            this.room.Visibility = Visibility.Hidden;
-            //show profile grid
+            //hide all other windows
             this.profile.Visibility = Visibility.Visible;
+            this.feedbackPanel.Visibility = Visibility.Hidden;
+            //show room grid
+            this.room.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -180,5 +186,75 @@ namespace Nursery_Management_System_WPF
             return ans;
         }
 
+        
+        private void deleteFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0 && feedbackIdx != -1)
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
+
+                mSQLQuery.deleteParentFeedback(id);
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+
+                feedback.Remove(feedback.ElementAt(feedbackIdx));
+                feedbackIdx--;
+            }
+        }
+
+        private void staffFeedbackButton_Click(object sender, RoutedEventArgs e)
+        {
+        
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            feedback = new LinkedList<Tuple<Tuple<int, string>, string>>();
+
+            feedback = mSQLQuery.getAllParentFeedback();
+
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = 0;
+                showFeedBack();
+            }
+           
+            //hide all other windows
+            this.profile.Visibility = Visibility.Hidden;
+            this.feedbackPanel.Visibility = Visibility.Visible;
+            //show room grid
+            this.room.Visibility = Visibility.Hidden;
+        }
+
+        public void showFeedBack()
+        {
+            if (feedbackIdx >= 0 && feedbackIdx < feedback.Count)
+            {
+                parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
+                feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;
+            }
+            else
+            {
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+            }
+        }
+
+        private void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx - 1 + feedback.Count) % feedback.Count;
+                showFeedBack();
+            }
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx + 1) % feedback.Count;
+                showFeedBack();
+            }
+        }
     }
 }

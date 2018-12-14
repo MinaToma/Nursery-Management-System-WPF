@@ -282,6 +282,7 @@
     <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\Error.png" />
     <Resource Include="images\delete 70px.png" />
     <Resource Include="images\next icon 50px.png" />
     <Resource Include="images\daily details_2%404x.png" />

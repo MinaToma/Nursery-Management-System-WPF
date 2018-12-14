@@ -77,6 +77,7 @@ namespace Nursery_Management_System_WPF
             this.AdminFeedback.Visibility = Visibility.Visible;
             this.profilePanel.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
+
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -88,7 +89,7 @@ namespace Nursery_Management_System_WPF
 
         private void pendingRequests_Click(object sender, RoutedEventArgs e)
         {
-            pendingRequestsPanel.Visibility = Visibility.Visible;
+            pendingRequests.Visibility = Visibility.Visible;
             profilePanel.Visibility = Visibility.Hidden;
             AdminFeedback.Visibility = Visibility.Hidden;
         }
@@ -208,25 +209,26 @@ namespace Nursery_Management_System_WPF
 
         }
 
+        
         private void deleteFeedback_Click(object sender, RoutedEventArgs e)
         {
             if (feedback.Count != 0 && feedbackIdx != -1)
             {
                 SQLQuery mSQLQuery = new SQLQuery();
                 int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
-                MessageBox.Show(Convert.ToString(id));
 
                 mSQLQuery.deleteParentFeedback(id);
                 parentNameLabel.Content = "";
                 feedbackText.Text = "";
 
                 feedback.Remove(feedback.ElementAt(feedbackIdx));
+                feedbackIdx--;
             }
         }
 
         public void showFeedBack()
         {
-            if (feedbackIdx >= 0 && feedbackIdx < feedback.Count)
+            if(feedbackIdx >= 0 && feedbackIdx < feedback.Count)
             {
                 parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
                 feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;

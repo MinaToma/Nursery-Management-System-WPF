@@ -28,19 +28,19 @@
 
         </Grid>
         <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
-            <Button x:Name="parentProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentProfileButton_Click"/>
             <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,255,145,300"/>
-            <Button x:Name="childrenButton" Content="Children" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="childrenButton_Click"/>
+            <Button x:Name="parentProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentProfileButton_Click"/>
             <Image x:Name="childrenIcon" Height="45" Width="45" Source="images/children 95px.png" Margin="34,330,145,225"/>
-            <Button x:Name="parentFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
+            <Button x:Name="childrenButton" Content="Children" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="childrenButton_Click"/>
             <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,385,145,170"/>
-            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click" />
+            <Button x:Name="parentFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
             <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,461,150,104"/>
+            <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click" />
             <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nursery Management System" VerticalAlignment="Top" Width="224" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="26.667" Height="110" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136"/>
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -78,11 +78,11 @@
                 </ListView>
             </Grid>
             <Grid x:Name="feedbackPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
-                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedback bubble@4x.png" Stretch="Fill"/>
+                <Image x:Name="feedbackBackground" Margin="46,107,44,106" Source="images/feedbackbubble.png" Stretch="Fill"/>
                 <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" Height="200" Margin="72,131,0,0" VerticalAlignment="Top" Width="650" Background="{x:Null}" FontFamily="Consolas" FontSize="20" BorderBrush="{x:Null}" Cursor="IBeam">
                     <FlowDocument>
                         <Paragraph>
-                            <Run Text="Describe your issue or share you ideas..."/>
+                            <Run x:Name="feedbackText" Text="Describe your issue or share you ideas..."/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
