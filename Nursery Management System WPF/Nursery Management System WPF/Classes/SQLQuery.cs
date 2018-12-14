@@ -517,20 +517,35 @@ namespace Nursery_Management_System_WPF
             return;
         }
 
-        public LinkedList<String> getAllParentFeedback()
+        public LinkedList<Tuple<Tuple<int , string > , string>> getAllParentFeedback()
         {
             SQL mSQL = new SQL();
             SqlCommand mCommand = new SqlCommand("getAllParentFeedback");
-            LinkedList<String> feedback = new LinkedList<string>();
+            LinkedList<Tuple<Tuple<int , string> , string>> feedback = new LinkedList<Tuple<Tuple<int , string> , string>>();
             
             DataTable dt = mSQL.retrieveQuery(mCommand);
 
             foreach (DataRow dr in dt.Rows)
             {
-                feedback.AddLast(dr["feedbackDescription"].ToString());    
+                feedback.AddLast(new Tuple<Tuple<int , string> , string>( new Tuple<int, string>( 4 , dr["feedbackDescription"].ToString() ) , dr["parentFirstName"].ToString()
+                    + dr["parentLastName"].ToString() ) ) ;    
             }
 
             return feedback;
+        }
+
+        public void deleteParentFeedback(int feedbackID)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("deleteParentFeedback");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@feedbackID", feedbackID);
+
+            mSQL.deleteQuery(mCommand);
+
+            return;
         }
 
         //uses specific query to select all rooms from database
