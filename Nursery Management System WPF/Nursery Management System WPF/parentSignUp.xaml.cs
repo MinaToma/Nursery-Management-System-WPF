@@ -171,5 +171,10 @@ namespace Nursery_Management_System_WPF
             create.Show();
             this.Close();
         }
+
+        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("Holaaa :D");
+        }
     }
 }

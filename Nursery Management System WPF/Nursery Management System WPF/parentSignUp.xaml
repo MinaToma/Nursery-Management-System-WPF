@@ -13,28 +13,28 @@
 
     <Grid Margin="0,0,0,0" Width="800">
         <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="220" Margin="71,95,0,0" VerticalAlignment="Top" Width="289" Source="/images/Asset 1+.png"/>
-        <Ellipse HorizontalAlignment="Left" Height="120" Margin="145,140,0,0" VerticalAlignment="Top" Width="120" Stroke="Black" StrokeThickness="2">
+        <Ellipse HorizontalAlignment="Left" Height="120" Margin="145,140,0,0" VerticalAlignment="Top" Width="120" Stroke="Black" StrokeThickness="2" MouseDown="Ellipse_MouseDown">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="firstName" Tag="First Name" HorizontalAlignment="Left" Height="30" Margin="36,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="firstName" Tag="First Name" HorizontalAlignment="Left" Height="30" Margin="36,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="172,337,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="lastName" Tag="Last Name"  HorizontalAlignment="Left" Height="30" Margin="226,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="lastName" Tag="Last Name"  HorizontalAlignment="Left" Height="30" Margin="226,332,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="360,337,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="email" Tag="e-mail"  HorizontalAlignment="Left" Height="30" Margin="36,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="email" Tag="e-mail"  HorizontalAlignment="Left" Height="30" Margin="36,374,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="emailError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="360,379,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="username" Tag="Username"  HorizontalAlignment="Left" Height="30" Margin="36,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="username" Tag="Username"  HorizontalAlignment="Left" Height="30" Margin="36,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="usernameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="360,421,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="36,457,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="4"/>
         <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="360,461,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="creditCard" Tag="Credit Card Number"  HorizontalAlignment="Left" Height="30" Margin="36,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="creditCard" Tag="Credit Card Number"  HorizontalAlignment="Left" Height="30" Margin="36,495,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="creditError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="360,500,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="address" Tag="Address"  HorizontalAlignment="Left" Height="30" Margin="413,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="6" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="address" Tag="Address"  HorizontalAlignment="Left" Height="30" Margin="413,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="6" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="addressError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="734,124,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="phoneNumber" Tag="Phone Number"  HorizontalAlignment="Left" Height="30" Margin="413,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="7" RenderTransformOrigin="0.542,4.5" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="phoneNumber" Tag="Phone Number"  HorizontalAlignment="Left" Height="30" Margin="413,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="7" RenderTransformOrigin="0.542,4.5" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="phoneError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="734,166,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="ID" Tag="National ID"   HorizontalAlignment="Left" Height="30" Margin="413,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="8" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
+        <TextBox x:Name="ID" Tag="National ID"   HorizontalAlignment="Left" Height="30" Margin="413,206,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="347" TabIndex="8" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}" FontFamily="Comfortaa" FontSize="10"/>
         <Image x:Name="IDError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="734,211,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
         <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="413,288,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa" TabIndex="10">
             <ListView.View>
@@ -77,6 +77,7 @@
             <Button x:Name="exitButton" Content="x" Margin="770,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="745,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
             <Button x:Name="backButton" Content="&lt;" Margin="10,10,770,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="backButton_Click"/>
+            <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Nursery Management System - Parent Sign Up" VerticalAlignment="Top" Width="493" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="20" Height="21" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136" Foreground="#FFD1D1D1"/>
 
         </Grid>
     </Grid>

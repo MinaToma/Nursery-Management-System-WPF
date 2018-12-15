@@ -105,9 +105,6 @@
     <Compile Include="parentSignUp.xaml.cs">
       <DependentUpon>parentSignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="parentSignUp2.xaml.cs">
-      <DependentUpon>parentSignUp2.xaml</DependentUpon>
-    </Compile>
     <Compile Include="parentWindow.xaml.cs">
       <DependentUpon>parentWindow.xaml</DependentUpon>
     </Compile>
@@ -143,10 +140,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="parentSignUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="parentSignUp2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
