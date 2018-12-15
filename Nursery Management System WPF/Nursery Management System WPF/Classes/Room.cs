@@ -10,7 +10,7 @@ namespace Nursery_Management_System_WPF
     {
         public int id { get; set; }
         public int number { get; set;}
-        public int staffID { get; set; }
+        public Int64 staffID { get; set; }
         
         public Room()
         {

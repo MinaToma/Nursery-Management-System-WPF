@@ -22,10 +22,15 @@ namespace Nursery_Management_System_WPF
     {
         int feedbackIdx = -1;
         LinkedList<Tuple<Tuple<int, string>, string>> feedback;
+        Room mRoom;
+        LinkedList<Child> childList;
+        public LinkedList<RowTemplate> childRow;
 
         public staffWindow()
         {
             InitializeComponent();
+            childRow = new LinkedList<RowTemplate>();
+            childList = new LinkedList<Child>();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -36,11 +41,41 @@ namespace Nursery_Management_System_WPF
         private void roomButton_Click(object sender, RoutedEventArgs e)
         {
             //hide all other windows
+            SQLQuery mSQLQuery = new SQLQuery();
+            mRoom = mSQLQuery.roomToLinkedList(mSQLQuery.getRoomByStaffID(GlobalVariables.globalStaff.id)).ElementAt(0);
+
+            roomName.Content = "Room" + "  " + Convert.ToString(mRoom.number);
+
+            foreach (RowTemplate rt in childRow)
+                children.Children.Remove(rt);
+
+            childList = mSQLQuery.childToLinkedList(mSQLQuery.getChildByRoomID(mRoom.id));
+
+            showPendingChildren();
+
             this.profile.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
             //show room grid
             this.room.Visibility = Visibility.Visible;
         }
+
+        private void showPendingChildren()
+        {
+            double top = childGrid.Margin.Top;
+            double bottom = childGrid.Margin.Bottom;
+            double left = childGrid.Margin.Left;
+            double right = childGrid.Margin.Right;
+
+            for (int i = 0; i < childList.Count; i++)
+            {
+                RowTemplate rt = new RowTemplate(0, 0, i, 0, 0, childList, null, null, children, null, null , this);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += childGrid.Height;
+                childRow.AddLast(rt);
+                children.Children.Add(rt);
+            }
+        }
+
 
         private void staffProfileButton_Click(object sender, RoutedEventArgs e)
         {
