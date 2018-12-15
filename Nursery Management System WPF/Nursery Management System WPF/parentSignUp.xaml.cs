@@ -23,100 +23,30 @@ namespace Nursery_Management_System_WPF
         public parentSignUp()
         {
             InitializeComponent();
-
-            firstName.LostFocus += FirstName_LostFocus;
-            firstName.GotFocus += FirstName_GotFocus;
-
-            lastName.LostFocus += LastName_LostFocus;
-            lastName.GotFocus += LastName_GotFocus;
-
-            ID.LostFocus += ID_LostFocus;
-            ID.GotFocus += ID_GotFocus;
-
-            email.LostFocus += Email_LostFocus;
-            email.GotFocus += Email_GotFocus;
-
-            phoneNumber.LostFocus += PhoneNumber_LostFocus;
-            phoneNumber.GotFocus += PhoneNumber_GotFocus;
-
-            address.LostFocus += Address_LostFocus;
-            address.GotFocus += Address_GotFocus;
         }
-        private void Email_GotFocus(object sender, RoutedEventArgs e)
+        private void addChildButton_Click(object sender, RoutedEventArgs e)
         {
-            email.Text = "";
+            childSignUp signUp = new childSignUp();
+            signUp.roomID.Visibility = Visibility.Hidden;
+            signUp.Show();
         }
 
-        private void Email_LostFocus(object sender, RoutedEventArgs e)
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(email.Text))
-                email.Text = "Enter Email Here";
-        }
-
-        private void ID_GotFocus(object sender, RoutedEventArgs e)
-        {
-            ID.Text = "";
-        }
-
-        private void ID_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(ID.Text))
-                ID.Text = "Enter National Number Here";
-        }
-
-        private void LastName_GotFocus(object sender, RoutedEventArgs e)
-        {
-            lastName.Text = "";
-        }
-
-        private void LastName_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(lastName.Text))
-                lastName.Text = "Enter lastName Here";
-        }
-
-        private void FirstName_GotFocus(object sender, RoutedEventArgs e)
-        {
-            firstName.Text = "";
-        }
-
-        private void Address_GotFocus(object sender, RoutedEventArgs e)
-        {
-            address.Text = "";  
-        }
-
-        private void Address_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(address.Text))
-                address.Text = "Enter address Here";
-        }
-
-        private void PhoneNumber_GotFocus(object sender, RoutedEventArgs e)
-        {
-            phoneNumber.Text = "";
-        }
-
-        private void PhoneNumber_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(phoneNumber.Text))
-                phoneNumber.Text = "Enter Phone Number Here";
-        }
-
-        private void FirstName_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(firstName.Text))
-                firstName.Text = "Enter firstName Here";
-        }
-
-        private void nextButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(checkEnteredData())
+            if (checkEnteredData())
             {
                 GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text
-                    , address.Text, "", 1);
-                parentSignUp2 signUp2 = new parentSignUp2();
-                signUp2.Show();
-                this.Close();
+                   , address.Text, creditCard.Text, 1);
+
+                SQLQuery mSQLQuery = new SQLQuery();
+                mSQLQuery.insertParentData(GlobalVariables.globalParent);
+                mSQLQuery.insertUser(username.Text, password.Password, "Parent", GlobalVariables.globalParent.id);
+
+                MessageBox.Show("Thank you! Your data for  request is being processed ", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            else
+            {
+                MessageBox.Show("check your data", "faild to register", MessageBoxButton.OK, MessageBoxImage.None);
             }
         }
 
@@ -126,7 +56,7 @@ namespace Nursery_Management_System_WPF
             ValidateData validator = new ValidateData();
             SQLQuery mSQLQuery = new SQLQuery();
             
-            if (!validator.verifyField(firstName.Text) || firstName.Text.Equals("Enter First Name Here"))
+            if (!validator.verifyField(firstName.Text))
             {
                 ans = false;
                 firstNameError.Visibility = Visibility.Visible;
@@ -136,7 +66,7 @@ namespace Nursery_Management_System_WPF
                 firstNameError.Visibility = Visibility.Hidden;
             }
 
-            if (!validator.verifyField(lastName.Text) || lastName.Text.Equals("Enter Last Name Here"))
+            if (!validator.verifyField(lastName.Text))
             {
                 ans = false;
                 lastNameError.Visibility = Visibility.Visible;
@@ -176,7 +106,7 @@ namespace Nursery_Management_System_WPF
                 phoneError.Visibility = Visibility.Hidden;
             }
             
-            if(!validator.verifyField(address.Text) || address.Text.Equals("Enter address Here"))
+            if(!validator.verifyField(address.Text))
             {
                 ans = false;
                 addressError.Visibility = Visibility.Visible;
@@ -186,8 +116,60 @@ namespace Nursery_Management_System_WPF
                 addressError.Visibility = Visibility.Hidden;
             }
 
+            if (!validator.checkCreditCardt(creditCard.Text))
+            {
+                ans = false;
+                creditError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                creditError.Visibility = Visibility.Hidden;
+            }
+
+            if (mSQLQuery.checkForUsername(username.Text))
+            {
+                ans = false;
+                usernameError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                usernameError.Visibility = Visibility.Hidden;
+            }
+
+            if (!validator.verifyField(password.Password))
+            {
+                ans = false;
+                passwordError.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                passwordError.Visibility = Visibility.Hidden;
+            }
 
             return ans;
          }
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            signUp create = new signUp();
+            create.Show();
+            this.Close();
+        }
     }
 }
