@@ -63,8 +63,8 @@
                 <Image x:Name="usernameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,386,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,434,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
-            <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
-                <ScrollViewer x:Name="childScrollerView" CanContentScroll="True" Margin="0,0,5.6,37.6">
+            <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+                <ScrollViewer x:Name="childScrollerView" CanContentScroll="True" Margin="0,103,6,38">
                     <Grid x:Name="children" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
                         <Grid x:Name="childGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="750" Margin="10,10,0,0">
@@ -80,6 +80,7 @@
                         </Grid>
                     </Grid>
                 </ScrollViewer>
+                <Label x:Name="roomName" Content="Room ###" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
             </Grid>
             <Grid x:Name="feedbackPanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
