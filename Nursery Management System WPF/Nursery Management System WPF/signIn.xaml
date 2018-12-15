@@ -34,7 +34,7 @@
         <Label x:Name="createAccount" Content="here." HorizontalAlignment="Left" Margin="283,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFB4974B" Cursor="Hand"/>
         <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,266,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
         <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="314,312,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Button x:Name="button1" Content="" Margin="283,444,73.6,102.4" BorderThickness="0" Click="button1_Click">
+        <Button x:Name="button1" Content="" Margin="286,450,77,135" BorderThickness="0" Click="button1_Click">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>

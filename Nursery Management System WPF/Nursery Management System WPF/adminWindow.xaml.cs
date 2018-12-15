@@ -21,11 +21,25 @@ namespace Nursery_Management_System_WPF
     public partial class adminWindow : Window
     {
         int feedbackIdx = -1;
+        //                     id , feedback , name
         LinkedList<Tuple<Tuple<int, string>, string>> feedback;
+        LinkedList<Child> childList;
+        LinkedList<Parent> parentList;
+        LinkedList<Staff> staffList;
+        LinkedList<RowTemplate> childRow;
+        LinkedList<RowTemplate> staffRow;
+        LinkedList<RowTemplate> parentRow;
 
         public adminWindow()
         {
             InitializeComponent();
+
+            childRow = new LinkedList<RowTemplate>();
+            parentRow = new LinkedList<RowTemplate>();
+            staffRow = new LinkedList<RowTemplate>();
+            childList = new LinkedList<Child>();
+            parentList = new LinkedList<Parent>();
+            staffList = new LinkedList<Staff>();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -89,7 +103,22 @@ namespace Nursery_Management_System_WPF
 
         private void pendingRequests_Click(object sender, RoutedEventArgs e)
         {
-            pendingRequests.Visibility = Visibility.Visible;
+            SQLQuery mSQLQuery = new SQLQuery();
+            
+            childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
+            parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getPendingParent());
+            staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getPendingStaff());
+            
+           /* foreach(Child c in childList)
+            {
+               DataTable dt = mSQLQuery.getParentByID(c.parentID);
+                if (Convert.ToInt32(dt.Rows[0]["parentIsPending"]) == 1)
+                    childList.Remove(c);
+            }*/
+
+            showPendingParent();
+
+            pendingRequestsPanel.Visibility = Visibility.Visible;
             profilePanel.Visibility = Visibility.Hidden;
             AdminFeedback.Visibility = Visibility.Hidden;
         }
@@ -256,6 +285,58 @@ namespace Nursery_Management_System_WPF
                 feedbackIdx = (feedbackIdx + 1) % feedback.Count;
                 showFeedBack();
             }
+        }
+
+        private void parentName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void parentsTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            showPendingParent();
+        }
+
+        private void showPendingParent()
+        {
+            double top = parentGrid.Margin.Top;
+            double bottom = parentGrid.Margin.Bottom;
+            double left = parentGrid.Margin.Left;
+            double right = parentGrid.Margin.Right;
+            
+            foreach (Parent p in parentList)
+            {
+                RowTemplate rt = new RowTemplate(1 , 2 , null , p , null , parents);
+                rt.Margin = new Thickness(left , top , right , bottom);
+                top += parentGrid.Height;
+                parents.Children.Add(rt);
+            }
+
+            for(int i = 0; i <10; i++)
+            {
+                RowTemplate rt = new RowTemplate(1, 2, null, parentList.ElementAt(0) , null, parents);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += parentGrid.Height;
+                parents.Children.Add(rt);
+            }
+        }
+
+        private void childrenTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            showPendingChildren();
+        }
+
+        private void showPendingChildren()
+        {
+        }
+
+        private void staffTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            showPendingStaff();
+        }
+
+        private void showPendingStaff()
+        {
         }
     }
 }

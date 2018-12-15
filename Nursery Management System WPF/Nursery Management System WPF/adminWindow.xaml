@@ -93,47 +93,62 @@
                         </Style>
                     </TabControl.Resources>
 
-                    <TabItem x:Name="parentsTab" Header="Parents" HorizontalAlignment="Left" Margin="-2,-2,-1.8,0.2" Width="70" Height="30" FontFamily="Comfortaa">
-                        <Grid x:Name="parents" ScrollViewer.CanContentScroll="True">
-                            <Grid x:Name="parent" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+                    <TabItem x:Name="parentsTab" Header="Parents" HorizontalAlignment="Left" Margin="-2,-1,0,1.4" Width="70" FontFamily="Comfortaa" Height="30" VerticalAlignment="Bottom" MouseDown="parentsTab_MouseDown">
+                        <ScrollViewer x:Name="parentScrollerView" CanContentScroll="True">
+                            
+                        <Grid x:Name="parents" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                            <Grid x:Name="parentGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
 
                                 <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="images/256.png"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <Label x:Name="parentName" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+                                <Label x:Name="parentName" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" MouseDown="parentName_MouseDown"/>
                                 <Button x:Name="acceptButton" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
                                 <Button x:Name="declineButton" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
                             </Grid>
                         </Grid>
+                        </ScrollViewer>
                     </TabItem>
-                    <TabItem x:Name="childrenTab" Header="Children" HorizontalAlignment="Left" Margin="-2,-1.3,0,0.9" Width="70" Height="30" FontFamily="Comfortaa">
+                    <TabItem x:Name="childrenTab" Header="Children" HorizontalAlignment="Left" Margin="-2,-1.3,0,0.9" Width="70" Height="30" FontFamily="Comfortaa" MouseDown="childrenTab_MouseDown">
                         <Grid x:Name="children" ScrollViewer.CanContentScroll="True">
-                            <Grid x:Name="child" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="87*"/>
+                                <ColumnDefinition Width="310*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid x:Name="child" Visibility="Hidden" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="83*"/>
+                                    <ColumnDefinition Width="292*"/>
+                                </Grid.ColumnDefinitions>
 
                                 <Ellipse x:Name="childProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
                                     <Ellipse.Fill>
                                         <ImageBrush ImageSource="images/256.png"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
-                                <Button x:Name="acceptButton1" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
-                                <Button x:Name="declineButton1" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                                <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" Grid.ColumnSpan="2"/>
+                                <Button x:Name="acceptButton1" Content="Accept" Margin="334.2,45,150,45" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
+                                <Button x:Name="declineButton1" Content="Decline" Margin="444.2,45,40,45" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
                             </Grid>
                         </Grid>
                     </TabItem>
-                    <TabItem x:Name="staffTab" Header="Staff" HorizontalAlignment="Left" Margin="-2,-2,0,0.2" Width="70" Height="30" FontFamily="Comfortaa">
-                        <Grid x:Name="staffMember" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+                    <TabItem x:Name="staffTab" Header="Staff" HorizontalAlignment="Left" Margin="-2,-2,0,0.2" Width="70" Height="30" FontFamily="Comfortaa" MouseDown="staffTab_MouseDown">
+                        <Grid x:Name="staffGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="34*"/>
+                                <ColumnDefinition Width="717*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Ellipse x:Name="staffProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                            <Ellipse x:Name="staffProfileImage" HorizontalAlignment="Left" Height="60" Margin="6.5,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2" Grid.Column="1">
                                 <Ellipse.Fill>
                                     <ImageBrush ImageSource="images/256.png"/>
                                 </Ellipse.Fill>
                             </Ellipse>
-                            <Label x:Name="staffName" Content="Staff Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
-                            <Button x:Name="acceptButton2" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
-                            <Button x:Name="declineButton2" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+                            <Label x:Name="staffName" Content="Staff Name" HorizontalAlignment="Left" Margin="86.5,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" Grid.Column="1"/>
+                            <Button x:Name="acceptButton2" Content="Accept" Margin="466.5,45,150,45" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
+                            <Button x:Name="declineButton2" Content="Decline" Margin="576.5,45,40,45" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
                         </Grid>
                     </TabItem>
                 </TabControl>

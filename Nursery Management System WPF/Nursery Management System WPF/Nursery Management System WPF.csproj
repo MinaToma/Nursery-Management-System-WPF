@@ -111,6 +111,9 @@
     <Compile Include="parentWindow.xaml.cs">
       <DependentUpon>parentWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RowTemplate.xaml.cs">
+      <DependentUpon>RowTemplate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="signIn.xaml.cs">
       <DependentUpon>signIn.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="parentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RowTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

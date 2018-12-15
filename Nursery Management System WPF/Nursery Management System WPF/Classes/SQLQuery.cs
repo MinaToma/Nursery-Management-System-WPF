@@ -348,7 +348,7 @@ namespace Nursery_Management_System_WPF
 
             return dt;
         }
-
+        
         public LinkedList<Parent> parentToLinkedList(DataTable dt)
         {
             LinkedList<Parent> parent = new LinkedList<Parent>();
