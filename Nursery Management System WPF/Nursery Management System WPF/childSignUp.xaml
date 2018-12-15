@@ -13,11 +13,12 @@
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None">
 
-    <Grid Margin="0,-1,0,1" Background="#FFEAC599">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
-        </Grid.ColumnDefinitions>
+    <Grid Background="#FFEAC599">
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="400" Background="#FFFFB300">
+            <Button x:Name="exitButton" Content="x" Margin="370,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
+            <Button x:Name="minimizeButton" Content="-" Margin="346,10,34,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
+
+        </Grid>
         <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="79,57,0,0" VerticalAlignment="Top" Width="252" Source="/images/Asset 1.png" OpacityMask="{x:Null}"/>
         <Ellipse HorizontalAlignment="Left" Height="105" Margin="144,96,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
             <Ellipse.Fill>
@@ -28,12 +29,7 @@
         <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="206,384,0,0" VerticalAlignment="Top" Width="136" TabIndex="3" FontFamily="Comfortaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="24"/>
         <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="60,384,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Height="25" Width="88"/>
         <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
-        <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="240,560,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Code Bold" FontSize="14" TabIndex="6" Click="signUpButton_Click"/>
-        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="400" Background="#FFFFB300">
-            <Button x:Name="exitButton" Content="x" Margin="370,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
-            <Button x:Name="minimizeButton" Content="-" Margin="346,10,34,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
-
-        </Grid>
+        <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="231,553,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Code Bold" FontSize="14" TabIndex="6" Click="signUpButton_Click"/>
         <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="61,293,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
             <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
                 <Grid.RowDefinitions>
