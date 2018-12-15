@@ -64,13 +64,22 @@
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,434,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
             <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
-                <ListView x:Name="StaffAssignedRoom" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="790" Margin="0,4,0,0" Background="{x:Null}" IsManipulationEnabled="True">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <ScrollViewer x:Name="childScrollerView" CanContentScroll="True" Margin="0,0,5.6,37.6">
+                    <Grid x:Name="children" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+
+                        <Grid x:Name="childGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="750" Margin="10,10,0,0">
+
+                            <Ellipse x:Name="childProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="images/256.png"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <Label x:Name="childName" Content="Child Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" Grid.ColumnSpan="2"/>
+                            <Button x:Name="acceptButton" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
+                            <Button x:Name="declineButton" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
             </Grid>
             <Grid x:Name="feedbackPanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>

@@ -50,9 +50,8 @@ namespace Nursery_Management_System_WPF
             }
             else
             {
-
-            }
                 female.IsChecked = true;
+            }
             roomID.Text = Convert.ToString(GlobalVariables.globalChild.roomID);
 
             this.dailyDetailsPanel.Visibility = Visibility.Hidden;

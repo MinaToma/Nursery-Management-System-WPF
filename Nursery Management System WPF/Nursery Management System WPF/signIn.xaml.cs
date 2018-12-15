@@ -93,5 +93,7 @@ namespace Nursery_Management_System_WPF
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        
     }
 }
