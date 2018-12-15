@@ -272,8 +272,24 @@ namespace Nursery_Management_System_WPF
                 currentChild.parentID = Convert.ToInt64(dr["parentID"].ToString());
                 currentChild.DOB = Convert.ToDateTime(dr["DOB"].ToString());
                 currentChild.gender = dr["gender"].ToString();
-                currentChild.roomID = Convert.ToInt32(dr["roomID"].ToString());
-                currentChild.image =(byte[])(dr["picture"]);
+                if(dr["roomID"] == DBNull.Value)
+                {
+                    currentChild.roomID = -1;
+                }
+                else
+                {
+                    currentChild.roomID = Convert.ToInt32(dr["roomID"].ToString());
+                }
+
+                if (dr["picture"] == DBNull.Value)
+                {
+                    currentChild.image = null;
+                }
+                else
+                {
+                     currentChild.image =(byte[])(dr["picture"]);
+                }
+
                 currentChild.pending = Convert.ToInt32(dr["childIsPending"].ToString());
 
                 child.AddLast(currentChild);

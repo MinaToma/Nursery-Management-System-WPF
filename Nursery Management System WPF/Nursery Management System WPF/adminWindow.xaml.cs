@@ -26,9 +26,9 @@ namespace Nursery_Management_System_WPF
         LinkedList<Child> childList;
         LinkedList<Parent> parentList;
         LinkedList<Staff> staffList;
-        LinkedList<RowTemplate> childRow;
-        LinkedList<RowTemplate> staffRow;
-        LinkedList<RowTemplate> parentRow;
+        public LinkedList<RowTemplate> childRow;
+        public LinkedList<RowTemplate> staffRow;
+        public LinkedList<RowTemplate> parentRow;
 
         public adminWindow()
         {
@@ -108,14 +108,25 @@ namespace Nursery_Management_System_WPF
             childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
             parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getPendingParent());
             staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getPendingStaff());
-            
-           /* foreach(Child c in childList)
+
+            MessageBox.Show(Convert.ToString(staffList.Count));
+
+            LinkedList<Child> notPending = new LinkedList<Child>();
+            foreach(Child c in childList)
             {
                DataTable dt = mSQLQuery.getParentByID(c.parentID);
                 if (Convert.ToInt32(dt.Rows[0]["parentIsPending"]) == 1)
-                    childList.Remove(c);
-            }*/
+                    notPending.AddLast(c);
+                else c.lastName = dt.Rows[0]["parentFirstName"].ToString();
+            }
 
+            foreach(Child c in notPending)
+            {
+                childList.Remove(c);
+            }
+
+            showPendingStaff();
+            showPendingChildren();
             showPendingParent();
 
             pendingRequestsPanel.Visibility = Visibility.Visible;
@@ -304,19 +315,12 @@ namespace Nursery_Management_System_WPF
             double left = parentGrid.Margin.Left;
             double right = parentGrid.Margin.Right;
             
-            foreach (Parent p in parentList)
-            {
-                RowTemplate rt = new RowTemplate(1 , 2 , null , p , null , parents);
+            for(int i = 0; i < parentList.Count; i++)
+            { 
+                RowTemplate rt = new RowTemplate(1 , 2 , 0 , i , 0 , null , parentList , null , parents , this , null , null);
                 rt.Margin = new Thickness(left , top , right , bottom);
                 top += parentGrid.Height;
-                parents.Children.Add(rt);
-            }
-
-            for(int i = 0; i <10; i++)
-            {
-                RowTemplate rt = new RowTemplate(1, 2, null, parentList.ElementAt(0) , null, parents);
-                rt.Margin = new Thickness(left, top, right, bottom);
-                top += parentGrid.Height;
+                parentRow.AddLast(rt);
                 parents.Children.Add(rt);
             }
         }
@@ -328,15 +332,49 @@ namespace Nursery_Management_System_WPF
 
         private void showPendingChildren()
         {
+            double top = childGrid.Margin.Top;
+            double bottom = childGrid.Margin.Bottom;
+            double left = childGrid.Margin.Left;
+            double right = childGrid.Margin.Right;
+
+            for(int i = 0; i < childList.Count; i++)
+            {
+                RowTemplate rt = new RowTemplate(0, 2 , i , 0 , 0 , childList, null, null, children , this, null, null);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += childGrid.Height;
+                childRow.AddLast(rt);
+                children.Children.Add(rt);
+            }
         }
 
         private void staffTab_MouseDown(object sender, MouseButtonEventArgs e)
         {
             showPendingStaff();
+            MessageBox.Show("SDKAS:O");
         }
 
         private void showPendingStaff()
         {
+            double top = staffGrid.Margin.Top;
+            double bottom = staffGrid.Margin.Bottom;
+            double left = staffGrid.Margin.Left;
+            double right = staffGrid.Margin.Right;
+
+                MessageBox.Show("HI");
+            for(int i = 0; i < staffList.Count; i++)
+            { 
+                RowTemplate rt = new RowTemplate(2, 2, 0 , 0 , i , null, null , staffList, staffs, this, null, null);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += staffGrid.Height;
+                staffRow.AddLast(rt);
+                staffs.Children.Add(rt);
+            }
+        }
+
+        private void staffTab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+
+            showPendingStaff();
         }
     }
 }

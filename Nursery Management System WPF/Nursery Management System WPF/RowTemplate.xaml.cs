@@ -23,17 +23,20 @@ namespace Nursery_Management_System_WPF
         //I wanna send a child , parent or staff to the form 
 
         //set 0 for child , 1 for parnet , 2 for staff
-        int idx = -1;
-        Child child;
-        Parent parent;
-        Staff staff;
+        int idx = -1, cIdx = 0 , pIdx = 0 , sIdx = 0;
+        LinkedList<Child> child;
+        LinkedList<Parent> parent;
+        LinkedList<Staff> staff;
+        adminWindow aWindow;
+        parentWindow pWindow;
+        staffWindow sWindow;    
         Grid super;
-
+        
         //specify previous form
         //0 coming from parent , 1 coming from staff , 2 coming from admin
         int previousForm = -1;
 
-        public RowTemplate(int idx , int previousForm , Child child , Parent parent , Staff staff , Grid super)
+        public RowTemplate(int idx , int previousForm  , int cIdx , int pIdx , int sIdx , LinkedList<Child> child , LinkedList<Parent> parent , LinkedList<Staff> staff, Grid super , adminWindow aWindow , parentWindow pWindow , staffWindow sWindow)
         {
             InitializeComponent();
             this.idx = idx;
@@ -42,6 +45,12 @@ namespace Nursery_Management_System_WPF
             this.staff = staff;
             this.previousForm = previousForm;
             this.super = super;
+            this.aWindow = aWindow;
+            this.pWindow = pWindow;
+            this.sWindow = sWindow;
+            this.cIdx = cIdx;
+            this.pIdx = pIdx;
+            this.sIdx = sIdx;
 
             initialize();
         }
@@ -50,18 +59,16 @@ namespace Nursery_Management_System_WPF
         {
             if(idx == 0)
             {
-                name.Content = child.firstName + " " + child.lastName;
+                name.Content = child.ElementAt(cIdx).firstName + " " + child.ElementAt(cIdx).lastName;
             }
             else if(idx == 1)
             {
-                name.Content = parent.firstName + " " + parent.lastName;
+                name.Content = parent.ElementAt(pIdx).firstName + " " + parent.ElementAt(pIdx).lastName;
             }
             else if(idx == 2)
             {
-                name.Content = staff.firstName + " " + staff.lastName;
+                name.Content = staff.ElementAt(sIdx).firstName + " " + staff.ElementAt(sIdx).lastName;
             }
-
-
 
             if (previousForm == 2)
             {
@@ -75,17 +82,94 @@ namespace Nursery_Management_System_WPF
             if(idx == 0) // Holding child
             {
                 childSignUp window = new childSignUp();
+
+                //fill child data here
+
                 window.Show();
             }
             else if(idx == 1) // Holding Parent
             {
                 parentSignUp window = new parentSignUp();
+
+                //fill parent data here
+
                 window.Show();
             }
             else if(idx == 2) //Holding Staff
             {
                 staffSignUp window = new staffSignUp();
+
+                //fill staff data here
+
                 window.Show();
+            }
+        }
+
+        public void removeFromParent()
+        {
+            /*if(previousForm == 0)
+            {
+                if(idx == 0)
+                {
+                    aWindow.childRow.RemoveLast();
+                    super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                }
+                else if(idx == 1)
+                {
+                    aWindow.parentRow.RemoveLast();
+                    super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                }
+                else if(idx == 2)
+                {
+                    aWindow.staffRow.RemoveLast();
+                    super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                }
+            }
+            else if(previousForm == 1)
+            { 
+                if(idx == 0)
+                {
+                    aWindow.childRow.RemoveLast();
+                    super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                }
+                else if(idx == 1)
+                {
+                    aWindow.parentRow.RemoveLast();
+                    super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                }
+                else if(idx == 2)
+                {
+                    aWindow.staffRow.RemoveLast();
+                    super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                }
+            }
+            else*/
+            if (previousForm == 2)
+            {
+                if(idx == 0)
+                {
+                    if(aWindow.childRow.Count != 0)
+                    {
+                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                        aWindow.childRow.RemoveLast();
+                    }
+                }
+                else if(idx == 1)
+                {
+                    if(aWindow.parentRow.Count != 0)
+                    {
+                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                        aWindow.parentRow.RemoveLast();
+                    }
+                }
+                else if(idx == 2)
+                {
+                    if(aWindow.staffRow.Count != 0)
+                    {
+                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                        aWindow.staffRow.RemoveLast();
+                    }
+                }
             }
         }
 
@@ -93,48 +177,96 @@ namespace Nursery_Management_System_WPF
         {
             //set pending to 0 ---> accepted
             SQLQuery mSQLQuery = new SQLQuery();
+            bool removeMe = false;
             if (idx == 0)
             {
-                child.pending = 0;
-                mSQLQuery.updateChildData(child);
+                child.ElementAt(cIdx).pending = 0;
+                mSQLQuery.updateChildData(child.ElementAt(cIdx));
+                child.Remove(child.ElementAt(cIdx));
+
+                if (child.Count == cIdx)
+                    removeMe = true;
+                else cIdx = child.Count - 1;
             }
             else if(idx == 1)
             {
-                parent.pending = 0;
-                mSQLQuery.updateParentData(parent);
+                parent.ElementAt(pIdx).pending = 0;
+                mSQLQuery.updateParentData(parent.ElementAt(pIdx));
+                parent.Remove(parent.ElementAt(pIdx));
+
+                if (parent.Count == pIdx)
+                    removeMe = true;
+                else pIdx = parent.Count - 1;
             }
             else if(idx == 2)
             {
-                staff.pending = 0;
-                mSQLQuery.updateStaffData(staff);
+                staff.ElementAt(sIdx).pending = 0;
+                mSQLQuery.updateStaffData(staff.ElementAt(sIdx));
+                staff.Remove(staff.ElementAt(sIdx));
+
+                if (staff.Count == sIdx)
+                    removeMe = true;
+                else sIdx = staff.Count - 1;
             }
 
-            super.Children.Remove(this);
+            if (removeMe)
+                super.Children.Remove(this);
+            else
+            {
+                initialize();
+                removeFromParent();
+            }
         }
         
         private void declineButton_Click(object sender, RoutedEventArgs e)
         {
+            bool removeMe = false;
             //rejecting request
             SQLQuery mSQLQuery = new SQLQuery();
             if (idx == 0)
             {
                 LinkedList<int> toDel = new LinkedList<int>();
-                toDel.AddLast((int)child.id);
+                toDel.AddLast((int)child.ElementAt(cIdx).id);
                 mSQLQuery.deleteChildData(toDel);
+
+                child.Remove(child.ElementAt(cIdx));
+
+                if (child.Count == cIdx)
+                    removeMe = true;
+                else cIdx = child.Count - 1;
             }
             else if (idx == 2)
             {
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
-                toDel.AddLast(staff.id);
+                toDel.AddLast(staff.ElementAt(sIdx).id);
                 mSQLQuery.deleteStaffData(toDel);
+
+                staff.Remove(staff.ElementAt(sIdx));
+
+                if (staff.Count == sIdx)
+                    removeMe = true;
+                else sIdx = staff.Count - 1;
             }
             else if (idx == 1)
             {
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
-                toDel.AddLast(parent.id);
+                toDel.AddLast(parent.ElementAt(pIdx).id);
                 mSQLQuery.deleteParentData(toDel);
+
+                parent.Remove(parent.ElementAt(pIdx));
+
+                if (parent.Count == pIdx)
+                    removeMe = true;
+                else pIdx = parent.Count - 1;
             }
-            super.Children.Remove(this);
-        }
+
+            if (removeMe)
+                super.Children.Remove(this);
+            else
+            {
+                initialize();
+                removeFromParent();
+            }
+        }     
     }
 }

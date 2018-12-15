@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Margin="0,0,-480,0">
-        <Grid x:Name="parentGrid" HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="750" MouseDown="parentGrid_MouseDown">
+        <Grid x:Name="rowGrid" HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="750" MouseDown="parentGrid_MouseDown">
 
             <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
                 <Ellipse.Fill>
