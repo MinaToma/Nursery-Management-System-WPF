@@ -75,5 +75,10 @@ namespace Nursery_Management_System_WPF
             prevWindow.Show();  
         }
 
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
     }
 }

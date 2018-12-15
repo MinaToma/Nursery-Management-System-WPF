@@ -22,7 +22,7 @@
 
     <Grid x:Name="windowPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1024" MouseDown="windowPanel_MouseDown">
 
-        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC">
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC" MouseDown="titleBar_MouseDown">
             <Button x:Name="exitButton" Content="x" Margin="994,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="969,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
 

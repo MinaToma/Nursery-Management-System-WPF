@@ -20,7 +20,7 @@
     </Window.Background>
 
     <Grid x:Name="windowPanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="1024" Margin="0,0,0,0">
-        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC" d:IsLocked="True">
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="1024" Background="#FFE8E4DC" MouseDown="titleBar_MouseDown">
             <Button x:Name="exitButton" Content="x" Margin="994,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="969,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FF3C2222" BorderBrush="{x:Null}"  Height="20" RenderTransformOrigin="0.78,-0.93" Click="MinimizeButton_Click"/>
 
@@ -68,11 +68,11 @@
             <Grid x:Name="pendingRequestsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <TabControl x:Name="pendingRequestsControl" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Background="{x:Null}">
                     <TabControl.Resources>
-                        <Style TargetType="TabItem">
+                        <Style TargetType="{x:Type TabItem}">
                             <Setter Property="Template">
                                 <Setter.Value>
-                                    <ControlTemplate TargetType="TabItem">
-                                        <Border Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
+                                    <ControlTemplate TargetType="{x:Type TabItem}">
+                                        <Border x:Name="Border" BorderThickness="1,1,1,0" BorderBrush="Gainsboro" CornerRadius="4,4,0,0" Margin="2,0">
                                             <ContentPresenter x:Name="ContentSite"
                                         VerticalAlignment="Center"
                                         HorizontalAlignment="Center"
@@ -153,7 +153,7 @@
                     </TabItem>
                 </TabControl>
             </Grid>
-            <Grid x:Name="editDatabasePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
+            <Grid x:Name="editDatabasePanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <TabControl x:Name="databaseControl" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Background="{x:Null}">
                     <TabControl.Resources>
                         <Style TargetType="{x:Type TabItem}">

@@ -38,7 +38,6 @@ namespace Nursery_Management_System_WPF
             }
             else if(!mSqlQuery.serachForUser(username.Text , password.Password))
             {
-                MessageBox.Show(password.Password);
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Visible;
             }
@@ -46,8 +45,6 @@ namespace Nursery_Management_System_WPF
             {
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Hidden;
-
-                MessageBox.Show("Hello, " + username.Text + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
 
                 if (GlobalVariables.globalType.Equals("Staff"))
                 {
@@ -89,6 +86,12 @@ namespace Nursery_Management_System_WPF
             signUp signUpForm = new signUp();
             signUpForm.Show();
             this.Close();
+        }
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }

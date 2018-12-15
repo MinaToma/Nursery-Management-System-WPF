@@ -32,9 +32,6 @@ namespace Nursery_Management_System_WPF
 
         private void windowPanel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            //enables dragging cause there's no border for this window
-            if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
         }
 
 
@@ -258,6 +255,11 @@ namespace Nursery_Management_System_WPF
 
             mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id , feedbackText.Text);
         }
-        
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
     }
 }
