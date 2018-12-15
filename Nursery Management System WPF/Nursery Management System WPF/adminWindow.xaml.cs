@@ -103,6 +103,16 @@ namespace Nursery_Management_System_WPF
 
         private void pendingRequests_Click(object sender, RoutedEventArgs e)
         {
+            foreach (RowTemplate rt in childRow)
+                children.Children.Remove(rt);
+
+            foreach (RowTemplate rt in parentRow)
+                parents.Children.Remove(rt);
+
+            foreach (RowTemplate rt in staffRow)
+                staffs.Children.Remove(rt);
+
+
             SQLQuery mSQLQuery = new SQLQuery();
             
             childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
@@ -244,9 +254,7 @@ namespace Nursery_Management_System_WPF
 
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-
         }
-
         
         private void deleteFeedback_Click(object sender, RoutedEventArgs e)
         {

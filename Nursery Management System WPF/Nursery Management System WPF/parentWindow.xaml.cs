@@ -20,9 +20,14 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class parentWindow : Window
     {
+        LinkedList<Child> childList;
+        public LinkedList<RowTemplate> childRow;
         public parentWindow()
         {
             InitializeComponent();
+
+            childRow = new LinkedList<RowTemplate>();
+            childList = new LinkedList<Child>();
         }
 
         private void windowPanel_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,13 +53,50 @@ namespace Nursery_Management_System_WPF
 
         private void childrenButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            foreach (RowTemplate rt in childRow)
+                children.Children.Remove(rt);
+
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            childList = mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
+            LinkedList<Child> notPending = new LinkedList<Child>();
+            foreach (Child c in childList)
+            {
+                DataTable dt = mSQLQuery.getParentByID(c.parentID);
+                if (Convert.ToInt32(dt.Rows[0]["parentIsPending"]) == 1)
+                    notPending.AddLast(c);
+                else c.lastName = dt.Rows[0]["parentFirstName"].ToString();
+            }
+
+            foreach (Child c in notPending)
+            {
+                childList.Remove(c);
+            }
+
+            showPendingChildren();
+
             this.profilePanel.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
             //show children grid
             this.childrenPanel.Visibility = Visibility.Visible;
-
         }
+
+        private void showPendingChildren()
+        {
+            double top = childGrid.Margin.Top;
+            double bottom = childGrid.Margin.Bottom;
+            double left = childGrid.Margin.Left;
+            double right = childGrid.Margin.Right;
+
+            for (int i = 0; i < childList.Count; i++)
+            {
+                RowTemplate rt = new RowTemplate(0, 0, i, 0, 0, childList, null, null, children, null, this, null);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += childGrid.Height;
+                childRow.AddLast(rt);
+                children.Children.Add(rt);
+            }
+        }   
 
         private void parentProfileButton_Click(object sender, RoutedEventArgs e)
         {

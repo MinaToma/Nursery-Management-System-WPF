@@ -60,6 +60,12 @@ namespace Nursery_Management_System_WPF
 
         void initialize()
         {
+            if(previousForm == 0 || previousForm == 1)
+            {
+                acceptButton.Visibility = Visibility.Hidden;
+                declineButton.Visibility = Visibility.Hidden;
+            }
+
             if(idx == 0)
             {
                 name.Content = child.ElementAt(cIdx).firstName + " " + child.ElementAt(cIdx).lastName;
@@ -85,7 +91,44 @@ namespace Nursery_Management_System_WPF
 
         private void parentGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(idx == 0) // Holding child
+            if(previousForm == 0)
+            {
+                childWindow cw = new childWindow();
+                GlobalVariables.globalChild = mChild;
+                cw.Show();
+            }
+            else if(previousForm == 2)
+            {
+                if(idx == 0) // Holding child
+                {
+                    childSignUp window = new childSignUp();
+
+                    //fill child data here
+
+                    window.Show();
+                }
+                else if(idx == 1) // Holding Parent
+                {
+                    parentSignUp window = new parentSignUp();
+
+                    //fill parent data here
+
+                    window.Show();
+                }
+                else if(idx == 2) //Holding Staff
+                {
+                    staffSignUp window = new staffSignUp();
+
+                    //fill staff data here
+
+                    window.Show();
+                }
+            }
+        }
+
+        private void rowGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (idx == 0) // Holding child
             {
                 childSignUp window = new childSignUp();
 
@@ -93,7 +136,7 @@ namespace Nursery_Management_System_WPF
 
                 window.Show();
             }
-            else if(idx == 1) // Holding Parent
+            else if (idx == 1) // Holding Parent
             {
                 parentSignUp window = new parentSignUp();
 
@@ -101,7 +144,7 @@ namespace Nursery_Management_System_WPF
 
                 window.Show();
             }
-            else if(idx == 2) //Holding Staff
+            else if (idx == 2) //Holding Staff
             {
                 staffSignUp window = new staffSignUp();
 
@@ -115,42 +158,101 @@ namespace Nursery_Management_System_WPF
         {
             /*if(previousForm == 0)
             {
-                if(idx == 0)
+                if (idx == 0)
                 {
-                    aWindow.childRow.RemoveLast();
-                    super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                    if (aWindow.childRow.Count != 0)
+                    {
+                        if (child.Count != 1)
+                        {
+                            cIdx = child.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                        aWindow.childRow.RemoveLast();
+                        child.Remove(child.ElementAt(child.Count - 1));
+
+                    }
                 }
-                else if(idx == 1)
+                else if (idx == 1)
                 {
-                    aWindow.parentRow.RemoveLast();
-                    super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                    if (aWindow.parentRow.Count != 0)
+                    {
+                        if (parent.Count != 1)
+                        {
+                            pIdx = parent.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                        aWindow.parentRow.RemoveLast();
+                        parent.Remove(parent.ElementAt(parent.Count - 1));
+
+                    }
                 }
-                else if(idx == 2)
+                else if (idx == 2)
                 {
-                    aWindow.staffRow.RemoveLast();
-                    super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                    if (aWindow.staffRow.Count != 0)
+                    {
+                        if (staff.Count != 1)
+                        {
+                            sIdx = staff.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                        aWindow.staffRow.RemoveLast();
+                        staff.Remove(staff.ElementAt(staff.Count - 1));
+
+                    }
                 }
             }
             else if(previousForm == 1)
             { 
                 if(idx == 0)
                 {
-                    aWindow.childRow.RemoveLast();
-                    super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                    if(aWindow.childRow.Count != 0)
+                    {
+                        if(child.Count != 1)
+                        {
+                            cIdx = child.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                        aWindow.childRow.RemoveLast();
+                        child.Remove(child.ElementAt(child.Count - 1));
+
+                    }
                 }
                 else if(idx == 1)
                 {
-                    aWindow.parentRow.RemoveLast();
-                    super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                    if(aWindow.parentRow.Count != 0)
+                    {
+                        if (parent.Count != 1)
+                        {
+                            pIdx = parent.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                        aWindow.parentRow.RemoveLast();
+                        parent.Remove(parent.ElementAt(parent.Count - 1));
+
+                    }
                 }
                 else if(idx == 2)
                 {
-                    aWindow.staffRow.RemoveLast();
-                    super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                }   
+                    if(aWindow.staffRow.Count != 0)
+                    {
+                        if (staff.Count != 1)
+                        {
+                            sIdx = staff.Count - 1;
+                            initialize();
+                        }
+                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                        aWindow.staffRow.RemoveLast();
+                        staff.Remove(staff.ElementAt(staff.Count - 1));
+
+                    }
+                } 
             }
-            else*/
-            if (previousForm == 2)
+            else*/ if (previousForm == 2)
             {
                 if(idx == 0)
                 {
@@ -192,8 +294,8 @@ namespace Nursery_Management_System_WPF
                             initialize();
                         }
                         super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                        staff.Remove(staff.ElementAt(staff.Count - 1));
                         aWindow.staffRow.RemoveLast();
+                        staff.Remove(staff.ElementAt(staff.Count - 1));
 
                     }
                 }
@@ -225,7 +327,6 @@ namespace Nursery_Management_System_WPF
         
         private void declineButton_Click(object sender, RoutedEventArgs e)
         {
-            bool removeMe = false;
             //rejecting request
             SQLQuery mSQLQuery = new SQLQuery();
             if (idx == 0)
