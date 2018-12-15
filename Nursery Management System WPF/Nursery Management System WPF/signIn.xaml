@@ -24,9 +24,7 @@
         <Image x:Name="usernameImage" HorizontalAlignment="Left" Height="42" Margin="64,252,0,0" VerticalAlignment="Top" Width="270" Source="/images/userame.png"/>
         <Image x:Name="passwordImage" HorizontalAlignment="Left" Height="42" Margin="64,299,0,0" VerticalAlignment="Top" Width="270" Source="/images/password.png"/>
 
-        <TextBox x:Name="username" Text="Enter Username Here" HorizontalAlignment="Left" Height="42" Margin="112,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="13.333" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0" TabIndex="0" TextChanged="username_TextChanged">
-
-        </TextBox>
+        <TextBox x:Name="username" HorizontalAlignment="Left" Height="42" Margin="112,252,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="13.333" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0" TabIndex="0" Style="{StaticResource placeHolder}" Tag="Username"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Height="42" Margin="112,299,0,0" VerticalAlignment="Top" Width="222" Cursor="IBeam" VerticalContentAlignment="Center" FontFamily="Consolas" FontSize="13.333" TextOptions.TextHintingMode="Animated" Background="{x:Null}" BorderThickness="0" TabIndex="1"/>
         <Image x:Name="headerImage" HorizontalAlignment="Center" Height="117" Margin="65,100,59.6,0" VerticalAlignment="Top" Width="269" Source="images/Asset 6.png" Stretch="UniformToFill"/>
         <Image x:Name="footerImage" HorizontalAlignment="Center" Height="17" Margin="65,475,59.6,0" VerticalAlignment="Top" Width="269" Source="images/Asset 7.png"/>
@@ -34,7 +32,7 @@
         <Label x:Name="createAccount" Content="here." HorizontalAlignment="Left" Margin="283,444,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Foreground="#FFB4974B" Cursor="Hand"/>
         <Image x:Name="usernameError" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="20" Margin="310,261,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
         <Image x:Name="passwordError" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="20" Margin="310,307,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Button x:Name="button1" Content="" Margin="286,450,77,135" BorderThickness="0" Click="button1_Click" TabIndex="3">
+        <Button x:Name="signUpButton" Content="" Margin="286,450,77,135" BorderThickness="0" Click="signUpButton_Click" TabIndex="3">
             <Button.Background>
                 <ImageBrush/>
             </Button.Background>

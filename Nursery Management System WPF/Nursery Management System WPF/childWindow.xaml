@@ -67,7 +67,7 @@
             </Grid>
             <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>
-                <Image x:Name="dailyDetailsCard" Margin="25,95,40,39" Source="daily details_2@4x.png" Stretch="Fill"/>
+                <Image x:Name="dailyDetailsCard" Margin="25,95,40,39" Source="images/daily details_2@4x.png" Stretch="Fill"/>
                 <Ellipse x:Name="profileImage_Copy" HorizontalAlignment="Left" Height="86" Margin="59,125,0,0" VerticalAlignment="Top" Width="86" StrokeThickness="2">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="images/128.png"/>
