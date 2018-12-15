@@ -108,9 +108,7 @@ namespace Nursery_Management_System_WPF
             childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
             parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getPendingParent());
             staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getPendingStaff());
-
-            MessageBox.Show(Convert.ToString(staffList.Count));
-
+            
             LinkedList<Child> notPending = new LinkedList<Child>();
             foreach(Child c in childList)
             {
@@ -228,7 +226,7 @@ namespace Nursery_Management_System_WPF
             return ans;
         }
 
-        private void editProfileButton_Click_2(object sender, RoutedEventArgs e)
+        private void editProfileButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSql = new SQLQuery();
 
@@ -350,7 +348,6 @@ namespace Nursery_Management_System_WPF
         private void staffTab_MouseDown(object sender, MouseButtonEventArgs e)
         {
             showPendingStaff();
-            MessageBox.Show("SDKAS:O");
         }
 
         private void showPendingStaff()
@@ -360,7 +357,6 @@ namespace Nursery_Management_System_WPF
             double left = staffGrid.Margin.Left;
             double right = staffGrid.Margin.Right;
 
-                MessageBox.Show("HI");
             for(int i = 0; i < staffList.Count; i++)
             { 
                 RowTemplate rt = new RowTemplate(2, 2, 0 , 0 , i , null, null , staffList, staffs, this, null, null);
@@ -373,8 +369,7 @@ namespace Nursery_Management_System_WPF
 
         private void staffTab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
-            showPendingStaff();
+            
         }
     }
 }

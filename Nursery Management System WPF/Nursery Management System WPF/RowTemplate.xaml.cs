@@ -24,6 +24,9 @@ namespace Nursery_Management_System_WPF
 
         //set 0 for child , 1 for parnet , 2 for staff
         int idx = -1, cIdx = 0 , pIdx = 0 , sIdx = 0;
+        Child mChild;
+        Parent mParent;
+        Staff mStaff;
         LinkedList<Child> child;
         LinkedList<Parent> parent;
         LinkedList<Staff> staff;
@@ -60,14 +63,17 @@ namespace Nursery_Management_System_WPF
             if(idx == 0)
             {
                 name.Content = child.ElementAt(cIdx).firstName + " " + child.ElementAt(cIdx).lastName;
+                mChild = child.ElementAt(cIdx);
             }
             else if(idx == 1)
             {
                 name.Content = parent.ElementAt(pIdx).firstName + " " + parent.ElementAt(pIdx).lastName;
+                mParent = parent.ElementAt(pIdx);
             }
             else if(idx == 2)
             {
                 name.Content = staff.ElementAt(sIdx).firstName + " " + staff.ElementAt(sIdx).lastName;
+                mStaff = staff.ElementAt(sIdx);
             }
 
             if (previousForm == 2)
@@ -141,7 +147,7 @@ namespace Nursery_Management_System_WPF
                 {
                     aWindow.staffRow.RemoveLast();
                     super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                }
+                }   
             }
             else*/
             if (previousForm == 2)
@@ -150,24 +156,45 @@ namespace Nursery_Management_System_WPF
                 {
                     if(aWindow.childRow.Count != 0)
                     {
+                        if(child.Count != 1)
+                        {
+                            cIdx = child.Count - 1;
+                            initialize();
+                        }
                         super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
                         aWindow.childRow.RemoveLast();
+                        child.Remove(child.ElementAt(child.Count - 1));
+
                     }
                 }
                 else if(idx == 1)
                 {
                     if(aWindow.parentRow.Count != 0)
                     {
+                        if (parent.Count != 1)
+                        {
+                            pIdx = parent.Count - 1;
+                            initialize();
+                        }
                         super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
                         aWindow.parentRow.RemoveLast();
+                        parent.Remove(parent.ElementAt(parent.Count - 1));
+
                     }
                 }
                 else if(idx == 2)
                 {
                     if(aWindow.staffRow.Count != 0)
                     {
+                        if (staff.Count != 1)
+                        {
+                            sIdx = staff.Count - 1;
+                            initialize();
+                        }
                         super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                        staff.Remove(staff.ElementAt(staff.Count - 1));
                         aWindow.staffRow.RemoveLast();
+
                     }
                 }
             }
@@ -177,45 +204,23 @@ namespace Nursery_Management_System_WPF
         {
             //set pending to 0 ---> accepted
             SQLQuery mSQLQuery = new SQLQuery();
-            bool removeMe = false;
             if (idx == 0)
             {
-                child.ElementAt(cIdx).pending = 0;
-                mSQLQuery.updateChildData(child.ElementAt(cIdx));
-                child.Remove(child.ElementAt(cIdx));
-
-                if (child.Count == cIdx)
-                    removeMe = true;
-                else cIdx = child.Count - 1;
+                mChild.pending = 0;
+                mSQLQuery.updateChildData(mChild);
             }
             else if(idx == 1)
             {
-                parent.ElementAt(pIdx).pending = 0;
-                mSQLQuery.updateParentData(parent.ElementAt(pIdx));
-                parent.Remove(parent.ElementAt(pIdx));
-
-                if (parent.Count == pIdx)
-                    removeMe = true;
-                else pIdx = parent.Count - 1;
+                mParent.pending = 0;
+                mSQLQuery.updateParentData(mParent);
             }
             else if(idx == 2)
             {
-                staff.ElementAt(sIdx).pending = 0;
-                mSQLQuery.updateStaffData(staff.ElementAt(sIdx));
-                staff.Remove(staff.ElementAt(sIdx));
-
-                if (staff.Count == sIdx)
-                    removeMe = true;
-                else sIdx = staff.Count - 1;
+                mStaff.pending = 0;
+                mSQLQuery.updateStaffData(mStaff);
             }
 
-            if (removeMe)
-                super.Children.Remove(this);
-            else
-            {
-                initialize();
-                removeFromParent();
-            }
+            removeFromParent();
         }
         
         private void declineButton_Click(object sender, RoutedEventArgs e)
@@ -228,45 +233,21 @@ namespace Nursery_Management_System_WPF
                 LinkedList<int> toDel = new LinkedList<int>();
                 toDel.AddLast((int)child.ElementAt(cIdx).id);
                 mSQLQuery.deleteChildData(toDel);
-
-                child.Remove(child.ElementAt(cIdx));
-
-                if (child.Count == cIdx)
-                    removeMe = true;
-                else cIdx = child.Count - 1;
             }
             else if (idx == 2)
             {
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
                 toDel.AddLast(staff.ElementAt(sIdx).id);
                 mSQLQuery.deleteStaffData(toDel);
-
-                staff.Remove(staff.ElementAt(sIdx));
-
-                if (staff.Count == sIdx)
-                    removeMe = true;
-                else sIdx = staff.Count - 1;
             }
             else if (idx == 1)
             {
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
                 toDel.AddLast(parent.ElementAt(pIdx).id);
                 mSQLQuery.deleteParentData(toDel);
-
-                parent.Remove(parent.ElementAt(pIdx));
-
-                if (parent.Count == pIdx)
-                    removeMe = true;
-                else pIdx = parent.Count - 1;
             }
 
-            if (removeMe)
-                super.Children.Remove(this);
-            else
-            {
-                initialize();
-                removeFromParent();
-            }
+            removeFromParent();
         }     
     }
 }

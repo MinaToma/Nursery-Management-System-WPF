@@ -609,15 +609,33 @@ namespace Nursery_Management_System_WPF
             SqlCommand mCommand = new SqlCommand("updateChildData");
             mCommand.CommandType = CommandType.StoredProcedure;
 
+            mCommand.Parameters.AddWithValue("@childID", child.id);
             mCommand.Parameters.AddWithValue("@childName", child.firstName);
+
+            if (child.image == null)
+            {
+                SqlParameter imageParameter = new SqlParameter("@picture", SqlDbType.Image);
+                imageParameter.Value = DBNull.Value;
+                mCommand.Parameters.Add(imageParameter);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@picture" , child.image);
+            }
             mCommand.Parameters.AddWithValue("@parentID", child.parentID);
             mCommand.Parameters.AddWithValue("@DOB", child.DOB);
             mCommand.Parameters.AddWithValue("@gender", child.gender);
-            mCommand.Parameters.AddWithValue("@picture", child.image);
-            mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            if(child.roomID == -1)
+            {
+                mCommand.Parameters.AddWithValue("@roomID", DBNull.Value);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            }
             mCommand.Parameters.AddWithValue("@childPending", child.pending);
 
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -637,7 +655,7 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@parentEmail", parent.email);
             mCommand.Parameters.AddWithValue("@parentPending", parent.pending);
 
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -657,7 +675,7 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@staffType", staff.type);
             mCommand.Parameters.AddWithValue("@staffPending", staff.pending);
 
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -673,7 +691,7 @@ namespace Nursery_Management_System_WPF
                 mCommand.Parameters.AddWithValue("@roomStaffID", DBNull.Value);
             else
                 mCommand.Parameters.AddWithValue("@roomStaffID", room.staffID);
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
