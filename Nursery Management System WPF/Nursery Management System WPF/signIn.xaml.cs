@@ -25,9 +25,6 @@ namespace Nursery_Management_System_WPF
         public signIn()
         {
             InitializeComponent();
-
-            username.LostFocus += addUserNameText;
-            username.GotFocus += removeUserNameText;
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
@@ -77,29 +74,6 @@ namespace Nursery_Management_System_WPF
                 this.Close();
             }
         }
-        
-        public void removeUserNameText(object sender, EventArgs e)
-        {
-            username.Text = "";
-        }
-
-        public void addUserNameText(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(username.Text))
-                username.Text = "Enter Username Here";
-        }
-        private void username_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            signUp signUpForm = new signUp();
-            signUpForm.Show();
-            this.Close();
-        }
-
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -108,6 +82,13 @@ namespace Nursery_Management_System_WPF
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
+        {
+            signUp signUpForm = new signUp();
+            signUpForm.Show();
+            this.Close();
         }
     }
 }
