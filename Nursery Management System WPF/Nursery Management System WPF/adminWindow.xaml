@@ -285,21 +285,21 @@
                     </Ellipse.Fill>
                 </Ellipse>
                 <Label x:Name="parentNameLabel" Content="Parent Name" HorizontalAlignment="Left" Margin="99,303,0,0" VerticalAlignment="Top" Height="38" Width="148" FontFamily="Comfortaa" FontSize="14" RenderTransformOrigin="0.5,0.5" HorizontalContentAlignment="Center"/>
-                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Click="nextButton_Click">
+                <Button x:Name="nextButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="678,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Click="nextButton_Click" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/next icon 50px.png"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471" Click="previousButton_Click">
+                <Button x:Name="previousButton" HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Margin="44,443,0,0" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="-1.75,0.471" Click="previousButton_Click" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/back icon 50px.png"/>
                         </ControlTemplate>
                     </Button.Template>
                 </Button>
-                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="deleteFeedback_Click">
+                <Button x:Name="deleteFeedback" HorizontalAlignment="Left" VerticalAlignment="Top" Width="45" Margin="703,30,0,0" Height="46" Background="{x:Null}" BorderBrush="{x:Null}" RenderTransformOrigin="0.5,0.5" Click="deleteFeedback_Click" Cursor="Hand">
                     <Button.Template>
                         <ControlTemplate>
                             <Image Source="images/delete 70px.png"/>

@@ -249,17 +249,19 @@ namespace Nursery_Management_System_WPF
             return ans;
         }
 
-        private void sendFeedback_Click(object sender, RoutedEventArgs e)
-        {
-            SQLQuery mSQLQuery = new SQLQuery();
-
-            mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id , feedbackText.Text);
-        }
 
         private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void submitFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id, feedbackText.Text);
+
         }
     }
 }

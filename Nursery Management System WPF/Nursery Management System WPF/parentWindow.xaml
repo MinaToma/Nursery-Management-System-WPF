@@ -69,7 +69,7 @@
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="701,459,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
 
-            <ScrollViewer x:Name="childrenPanel" Visibility="Visible" CanContentScroll="True">
+            <ScrollViewer x:Name="childrenPanel" Visibility="Visible" CanContentScroll="True" d:IsHidden="True">
                 <ScrollViewer x:Name="childrenScrollerView" CanContentScroll="True" Height="560" Width="800">
                     <Grid x:Name="children" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
@@ -96,6 +96,7 @@
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
+                <Button x:Name="submitFeedback" Content="Submit" HorizontalAlignment="Left" Margin="651,492,0,0" VerticalAlignment="Top" Width="100" Click="submitFeedback_Click" Height="30" FontFamily="Code Bold" FontSize="10" Background="#FF173445" Foreground="#FFD4D4D4"/>
             </Grid>
         </Grid>
 

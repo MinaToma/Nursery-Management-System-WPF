@@ -54,5 +54,12 @@ namespace Nursery_Management_System_WPF
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            signIn logIn = new signIn();
+            logIn.Show();
+            this.Close();
+        }
     }
 }
