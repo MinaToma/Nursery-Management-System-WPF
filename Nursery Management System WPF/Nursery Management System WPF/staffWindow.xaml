@@ -39,7 +39,7 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profile" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="profile" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible" d:IsHidden="True">
                 <TextBox x:Name="firstName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="356,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177" TabIndex="0"/>
                 <TextBox x:Name="lastName" Text=" "  HorizontalAlignment="Left" Height="33" Margin="566,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="178" TabIndex="1"/>
                 <TextBox x:Name="ID" Text=" "  HorizontalAlignment="Left" Height="34" Margin="356,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="388" TabIndex="2" IsReadOnly="True"/>
@@ -54,14 +54,14 @@
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
-                <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="508,169,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,169,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <Image x:Name="IDError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,223,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <Image x:Name="emailError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,284,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <Image x:Name="phoneError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,340,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="356,428,0,0" VerticalAlignment="Top" Height="33" Width="388"/>
-                <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,389,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-                <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="721,438,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="510,164,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,164,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="IDError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,219,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="emailError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,280,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="phoneError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,336,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="356,428,0,0" VerticalAlignment="Top" Height="33" Width="388" TabIndex="6"/>
+                <Image x:Name="usernameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,386,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+                <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="721,434,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
             <Grid x:Name="room" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <ListView x:Name="StaffAssignedRoom" HorizontalAlignment="Left" Height="550" VerticalAlignment="Top" Width="790" Margin="0,4,0,0" Background="{x:Null}" IsManipulationEnabled="True">

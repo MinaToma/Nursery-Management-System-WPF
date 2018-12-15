@@ -12,9 +12,9 @@
         WindowStyle="None" >
 
     <Grid Margin="0,-4,3.6,4.4">
-        <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="18,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0"/>
-        <TextBox x:Name="username" Text="Enter username Here"  HorizontalAlignment="Left" Height="30" Margin="18,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1" TextChanged="username_TextChanged"/>
-        <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="18,269,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa">
+        <TextBox x:Name="creditCard" Text="Enter Credit Number Here"  HorizontalAlignment="Left" Height="30" Margin="18,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="username" Text="Enter username Here"  HorizontalAlignment="Left" Height="30" Margin="18,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1" TextChanged="username_TextChanged" VerticalContentAlignment="Center"/>
+        <ListView x:Name="childrenListView" HorizontalAlignment="Left" Height="150" Margin="18,269,0,0" VerticalAlignment="Top" Width="350" Background="{x:Null}" IsManipulationEnabled="True" FontFamily="Comfortaa" TabIndex="3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn/>
@@ -52,10 +52,10 @@
                 <ImageBrush />
             </Button.Background>
         </Button>
-        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,103,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="creditError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,48,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="5"/>
-        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="345,165,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="18,157,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="2"/>
+        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="345,100,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="creditError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="345,45,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="345,162,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
 
     </Grid>
 
