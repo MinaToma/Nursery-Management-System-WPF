@@ -126,34 +126,6 @@ namespace Nursery_Management_System_WPF
             }
         }
 
-        private void rowGrid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            if (idx == 0) // Holding child
-            {
-                childSignUp window = new childSignUp();
-
-                //fill child data here
-
-                window.Show();
-            }
-            else if (idx == 1) // Holding Parent
-            {
-                parentSignUp window = new parentSignUp();
-
-                //fill parent data here
-
-                window.Show();
-            }
-            else if (idx == 2) //Holding Staff
-            {
-                staffSignUp window = new staffSignUp();
-
-                //fill staff data here
-
-                window.Show();
-            }
-        }
-
         public void removeFromParent()
         {
             /*if(previousForm == 0)
