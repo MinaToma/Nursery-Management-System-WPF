@@ -65,7 +65,7 @@
                 <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="356,430,0,0" VerticalAlignment="Top" Width="388" Height="32"/>
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="719,439,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Visible" d:IsHidden="True"/>
             </Grid>
-            <Grid x:Name="pendingRequestsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Visible">
+            <Grid x:Name="pendingRequestsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <TabControl x:Name="pendingRequestsControl" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Background="{x:Null}">
                     <TabControl.Resources>
                         <Style TargetType="TabItem">
