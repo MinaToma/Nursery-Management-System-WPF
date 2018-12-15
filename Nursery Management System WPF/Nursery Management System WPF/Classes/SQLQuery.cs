@@ -353,6 +353,12 @@ namespace Nursery_Management_System_WPF
             return getChild(query);
         }
 
+        public DataTable getNotPendingChild()
+        {
+            string query = "select * from Child where childIsPending = 0";
+            return getChild(query);
+        }
+
         /****************  RETRIEVING PARENT DATA FROM DATABASE  ****************/
 
         private DataTable getParent(string query)
@@ -407,6 +413,12 @@ namespace Nursery_Management_System_WPF
             string query = "select * from Parent where parentIsPending = 1";
             return getParent(query);
         }
+        public DataTable getNotPendingParent()
+        {
+            string query = "select * from Parent where parentIsPending = 0";
+            return getParent(query);
+        }
+
 
         /****************  RETRIEVING STAFF DATA FROM DATABASE  ****************/
 
@@ -487,6 +499,12 @@ namespace Nursery_Management_System_WPF
         public DataTable getPendingStaff()
         {
             string query = "select * from Staff where staffIsPending = 1";
+            return getStaff(query);
+        }
+
+        public DataTable getNotPendingStaff()
+        {
+            string query = @"select * from Staff where staffIsPending = 0 and staffType like 'Staff'";
             return getStaff(query);
         }
 

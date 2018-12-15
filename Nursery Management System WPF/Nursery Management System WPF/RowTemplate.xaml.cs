@@ -335,17 +335,17 @@ namespace Nursery_Management_System_WPF
                 toDel.AddLast((int)child.ElementAt(cIdx).id);
                 mSQLQuery.deleteChildData(toDel);
             }
-            else if (idx == 2)
-            {
-                LinkedList<Int64> toDel = new LinkedList<Int64>();
-                toDel.AddLast(staff.ElementAt(sIdx).id);
-                mSQLQuery.deleteStaffData(toDel);
-            }
             else if (idx == 1)
             {
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
                 toDel.AddLast(parent.ElementAt(pIdx).id);
                 mSQLQuery.deleteParentData(toDel);
+            }
+            else if (idx == 2)
+            {
+                LinkedList<Int64> toDel = new LinkedList<Int64>();
+                toDel.AddLast(staff.ElementAt(sIdx).id);
+                mSQLQuery.deleteStaffData(toDel);
             }
 
             removeFromParent();

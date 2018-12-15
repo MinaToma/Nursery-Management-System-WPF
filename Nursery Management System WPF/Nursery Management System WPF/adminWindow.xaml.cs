@@ -65,15 +65,36 @@ namespace Nursery_Management_System_WPF
              this.profilePanel.Visibility = Visibility.Visible;
             AdminFeedback.Visibility = Visibility.Hidden;
             pendingRequestsPanel.Visibility = Visibility.Hidden;
+            this.editDatabasePanel.Visibility = Visibility.Hidden;
         }
 
         private void editDatabase_Click(object sender, RoutedEventArgs e)
         {
-            AdminFeedback.Visibility = Visibility.Hidden;
-            pendingRequestsPanel.Visibility = Visibility.Hidden;
-            this.profilePanel.Visibility = Visibility.Hidden;
-        }
+            foreach (RowTemplate rt in childRow)
+                children.Children.Remove(rt);
 
+            foreach (RowTemplate rt in parentRow)
+                parents.Children.Remove(rt);
+
+            foreach (RowTemplate rt in staffRow)
+                staffs.Children.Remove(rt);
+
+            SQLQuery mSQLQuery = new SQLQuery();
+
+            childList = mSQLQuery.childToLinkedList(mSQLQuery.getNotPendingChild());
+            parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getNotPendingParent());
+            staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getNotPendingStaff());
+            
+            showPendingStaff(staffs1);
+            showPendingChildren(children1);
+            showPendingParent(parents1);
+
+            this.AdminFeedback.Visibility = Visibility.Hidden;
+            this.pendingRequestsPanel.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Hidden;
+            this.editDatabasePanel.Visibility = Visibility.Visible;
+        }
+        
         private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSQLQuery = new SQLQuery();
@@ -91,7 +112,7 @@ namespace Nursery_Management_System_WPF
             this.AdminFeedback.Visibility = Visibility.Visible;
             this.profilePanel.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
-
+            this.editDatabasePanel.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -111,7 +132,6 @@ namespace Nursery_Management_System_WPF
 
             foreach (RowTemplate rt in staffRow)
                 staffs.Children.Remove(rt);
-
 
             SQLQuery mSQLQuery = new SQLQuery();
             
@@ -133,18 +153,176 @@ namespace Nursery_Management_System_WPF
                 childList.Remove(c);
             }
 
-            showPendingStaff();
-            showPendingChildren();
-            showPendingParent();
+            showPendingStaff(staffs);
+            showPendingChildren(children);
+            showPendingParent(parents);
 
             pendingRequestsPanel.Visibility = Visibility.Visible;
             profilePanel.Visibility = Visibility.Hidden;
             AdminFeedback.Visibility = Visibility.Hidden;
+            this.editDatabasePanel.Visibility = Visibility.Hidden;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void editProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            SQLQuery mSql = new SQLQuery();
+
+            if (checkEnteredData())
+            {
+                GlobalVariables.globalAdmin.id = Convert.ToInt64(ID.Text);
+                GlobalVariables.globalAdmin.firstName = firstName.Text;
+                GlobalVariables.globalAdmin.lastName = lastName.Text;
+
+                mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
+
+                GlobalVariables.globalAdmin.email = email.Text;
+                GlobalVariables.globalAdmin.phoneNumber = phoneNumber.Text;
+                mSql.updateStaffData(GlobalVariables.globalAdmin);
+
+                MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+        
+        private void deleteFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0 && feedbackIdx != -1)
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
+
+                mSQLQuery.deleteParentFeedback(id);
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+
+                feedback.Remove(feedback.ElementAt(feedbackIdx));
+                feedbackIdx--;
+            }
+        }
+
+        public void showFeedBack()
+        {
+            if(feedbackIdx >= 0 && feedbackIdx < feedback.Count)
+            {
+                parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
+                feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;
+            }
+            else
+            {
+                parentNameLabel.Content = "";
+                feedbackText.Text = "";
+            }
+        }
+
+        private void previousButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx - 1 + feedback.Count) % feedback.Count;
+                showFeedBack();
+            }
+        }
+
+        private void nextButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (feedback.Count != 0)
+            {
+                feedbackIdx = (feedbackIdx + 1) % feedback.Count;
+                showFeedBack();
+            }
+        }
+
+        private void parentName_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void parentsTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void showPendingParent(Grid super)
+        {
+            double top = parentGrid.Margin.Top;
+            double bottom = parentGrid.Margin.Bottom;
+            double left = parentGrid.Margin.Left;
+            double right = parentGrid.Margin.Right;
+            
+            for(int i = 0; i < parentList.Count; i++)
+            { 
+                RowTemplate rt = new RowTemplate(1 , 2 , 0 , i , 0 , null , parentList , null , super , this , null , null);
+                rt.Margin = new Thickness(left , top , right , bottom);
+                top += parentGrid.Height;
+                if(super == parents1)
+                {
+                    rt.declineButton.Content = "Delete";
+                    rt.acceptButton.Visibility = Visibility.Hidden;
+                }
+                parentRow.AddLast(rt);
+                super.Children.Add(rt);
+            }
+        }
+
+        private void childrenTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+        }
+
+        private void showPendingChildren(Grid super)
+        {
+            double top = childGrid.Margin.Top;
+            double bottom = childGrid.Margin.Bottom;
+            double left = childGrid.Margin.Left;
+            double right = childGrid.Margin.Right;
+
+            for(int i = 0; i < childList.Count; i++)
+            {
+                RowTemplate rt = new RowTemplate(0, 2 , i , 0 , 0 , childList, null, null, super , this, null, null);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += childGrid.Height;
+                if (super == children1)
+                {
+                    rt.declineButton.Content = "Delete";
+                    rt.acceptButton.Visibility = Visibility.Hidden;
+                }
+                childRow.AddLast(rt);
+                super.Children.Add(rt);
+            }
+        }
+
+        private void staffTab_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void showPendingStaff(Grid super)
+        {
+            double top = staffGrid.Margin.Top;
+            double bottom = staffGrid.Margin.Bottom;
+            double left = staffGrid.Margin.Left;
+            double right = staffGrid.Margin.Right;
+
+            for(int i = 0; i < staffList.Count; i++)
+            { 
+                RowTemplate rt = new RowTemplate(2, 2, 0 , 0 , i , null, null , staffList, super, this, null, null);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top += staffGrid.Height;
+                if (super == staffs1)
+                {
+                    rt.declineButton.Content = "Delete";
+                    rt.acceptButton.Visibility = Visibility.Hidden;
+                }
+                staffRow.AddLast(rt);
+                super.Children.Add(rt);
+            }
+        }
+
+        private void staffTab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            
         }
 
         public bool checkEnteredData()
@@ -236,148 +414,10 @@ namespace Nursery_Management_System_WPF
             return ans;
         }
 
-        private void editProfileButton_Click(object sender, RoutedEventArgs e)
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            SQLQuery mSql = new SQLQuery();
-
-            if (checkEnteredData())
-            {
-                GlobalVariables.globalAdmin.id = Convert.ToInt64(ID.Text);
-                GlobalVariables.globalAdmin.firstName = firstName.Text;
-                GlobalVariables.globalAdmin.lastName = lastName.Text;
-
-                mSql.updateUsername(Convert.ToInt64(ID.Text), "Admin", username.Text, password.Password);
-
-                GlobalVariables.globalAdmin.email = email.Text;
-                GlobalVariables.globalAdmin.phoneNumber = phoneNumber.Text;
-                mSql.updateStaffData(GlobalVariables.globalAdmin);
-
-                MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-        }
-        
-        private void deleteFeedback_Click(object sender, RoutedEventArgs e)
-        {
-            if (feedback.Count != 0 && feedbackIdx != -1)
-            {
-                SQLQuery mSQLQuery = new SQLQuery();
-                int id = feedback.ElementAt(feedbackIdx).Item1.Item1;
-
-                mSQLQuery.deleteParentFeedback(id);
-                parentNameLabel.Content = "";
-                feedbackText.Text = "";
-
-                feedback.Remove(feedback.ElementAt(feedbackIdx));
-                feedbackIdx--;
-            }
-        }
-
-        public void showFeedBack()
-        {
-            if(feedbackIdx >= 0 && feedbackIdx < feedback.Count)
-            {
-                parentNameLabel.Content = feedback.ElementAt(feedbackIdx).Item2;
-                feedbackText.Text = feedback.ElementAt(feedbackIdx).Item1.Item2;
-            }
-            else
-            {
-                parentNameLabel.Content = "";
-                feedbackText.Text = "";
-            }
-        }
-
-        private void previousButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (feedback.Count != 0)
-            {
-                feedbackIdx = (feedbackIdx - 1 + feedback.Count) % feedback.Count;
-                showFeedBack();
-            }
-        }
-
-        private void nextButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (feedback.Count != 0)
-            {
-                feedbackIdx = (feedbackIdx + 1) % feedback.Count;
-                showFeedBack();
-            }
-        }
-
-        private void parentName_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void parentsTab_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            showPendingParent();
-        }
-
-        private void showPendingParent()
-        {
-            double top = parentGrid.Margin.Top;
-            double bottom = parentGrid.Margin.Bottom;
-            double left = parentGrid.Margin.Left;
-            double right = parentGrid.Margin.Right;
-            
-            for(int i = 0; i < parentList.Count; i++)
-            { 
-                RowTemplate rt = new RowTemplate(1 , 2 , 0 , i , 0 , null , parentList , null , parents , this , null , null);
-                rt.Margin = new Thickness(left , top , right , bottom);
-                top += parentGrid.Height;
-                parentRow.AddLast(rt);
-                parents.Children.Add(rt);
-            }
-        }
-
-        private void childrenTab_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            showPendingChildren();
-        }
-
-        private void showPendingChildren()
-        {
-            double top = childGrid.Margin.Top;
-            double bottom = childGrid.Margin.Bottom;
-            double left = childGrid.Margin.Left;
-            double right = childGrid.Margin.Right;
-
-            for(int i = 0; i < childList.Count; i++)
-            {
-                RowTemplate rt = new RowTemplate(0, 2 , i , 0 , 0 , childList, null, null, children , this, null, null);
-                rt.Margin = new Thickness(left, top, right, bottom);
-                top += childGrid.Height;
-                childRow.AddLast(rt);
-                children.Children.Add(rt);
-            }
-        }
-
-        private void staffTab_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            showPendingStaff();
-        }
-
-        private void showPendingStaff()
-        {
-            double top = staffGrid.Margin.Top;
-            double bottom = staffGrid.Margin.Bottom;
-            double left = staffGrid.Margin.Left;
-            double right = staffGrid.Margin.Right;
-
-            for(int i = 0; i < staffList.Count; i++)
-            { 
-                RowTemplate rt = new RowTemplate(2, 2, 0 , 0 , i , null, null , staffList, staffs, this, null, null);
-                rt.Margin = new Thickness(left, top, right, bottom);
-                top += staffGrid.Height;
-                staffRow.AddLast(rt);
-                staffs.Children.Add(rt);
-            }
-        }
-
-        private void staffTab_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
     }
 }
