@@ -18,18 +18,18 @@
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="firstName" Text="Enter First Name Here" HorizontalAlignment="Left" Height="30" Margin="19,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
-        <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="209,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1"/>
-        <TextBox x:Name="ID" Text="Enter National Number Here"   HorizontalAlignment="Left" Height="30" Margin="19,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
-        <TextBox x:Name="email" Text="Enter Email Here"  HorizontalAlignment="Left" Height="30" Margin="19,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3"/>
+        <TextBox x:Name="firstName" Text="Enter First Name Here" HorizontalAlignment="Left" Height="30" Margin="19,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="209,275,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="ID" Text="Enter National Number Here"   HorizontalAlignment="Left" Height="30" Margin="19,324,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="email" Text="Enter Email Here"  HorizontalAlignment="Left" Height="30" Margin="19,373,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3" VerticalContentAlignment="Center"/>
         <Button x:Name="nextButton" Content="Next" HorizontalAlignment="Left" Margin="219,516,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Consolas" FontSize="13.333" TabIndex="6" Click="nextButton_Click"/>
-        <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="347,283,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="158,283,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="IDError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="347,333,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="emailError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="347,381,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <TextBox x:Name="phoneNumber" Text="Enter phone number Here"  HorizontalAlignment="Left" Height="30" Margin="19,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1" RenderTransformOrigin="0.542,4.5"/>
-        <TextBox x:Name="address" Text="Enter address Here"  HorizontalAlignment="Left" Height="30" Margin="19,465,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="1"/>
-        <Image x:Name="addressError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="347,474,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="phoneError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="347,424,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="347,280,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="157,280,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="IDError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="347,329,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="emailError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="347,379,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <TextBox x:Name="phoneNumber" Text="Enter phone number Here"  HorizontalAlignment="Left" Height="30" Margin="19,417,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4" RenderTransformOrigin="0.542,4.5" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="address" Text="Enter address Here"  HorizontalAlignment="Left" Height="30" Margin="19,465,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5" VerticalContentAlignment="Center"/>
+        <Image x:Name="addressError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="347,470,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="phoneError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="347,422,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
     </Grid>
 </Window>

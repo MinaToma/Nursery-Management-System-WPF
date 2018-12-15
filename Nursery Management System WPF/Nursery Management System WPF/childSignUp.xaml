@@ -28,7 +28,7 @@
         <TextBox x:Name="childName" Text="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
         <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="206,384,0,0" VerticalAlignment="Top" Width="136" TabIndex="3" FontFamily="Comfortaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="24"/>
         <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="60,384,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Height="25" Width="88"/>
-        <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
         <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="231,553,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Code Bold" FontSize="14" TabIndex="6" Click="signUpButton_Click"/>
         <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="61,293,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
             <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
@@ -43,7 +43,7 @@
             </Grid>
 
         </GroupBox>
-        <ComboBox x:Name="featuresComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="282" Margin="60,457,0,0" Height="22" SelectionChanged="featuresComboBox_SelectionChanged">
+        <ComboBox x:Name="featuresComboBox" TabIndex="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="282" Margin="60,457,0,0" Height="22" SelectionChanged="featuresComboBox_SelectionChanged">
             <CheckBox x:Name="checkBox" Content="CheckBox"/>
 
         </ComboBox>

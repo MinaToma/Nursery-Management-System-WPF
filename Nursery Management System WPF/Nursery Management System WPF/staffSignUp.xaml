@@ -15,19 +15,19 @@
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="firstName" Text="Enter First Name Here"  HorizontalAlignment="Left" Height="30" Margin="20,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0"/>
-        <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="210,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1"/>
-        <TextBox x:Name="ID" Text="Enter National Number Here"  HorizontalAlignment="Left" Height="30" Margin="20,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2"/>
-        <TextBox x:Name="email" Text="Enter Email Here" HorizontalAlignment="Left" Height="30" Margin="20,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3"/>
-        <TextBox x:Name="phoneNumber" Text="Enter Phone Number Here"  HorizontalAlignment="Left" Height="30" Margin="20,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4"/>
-        <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="30" Margin="20,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5"/>
+        <TextBox x:Name="firstName" Text="Enter First Name Here"  HorizontalAlignment="Left" Height="30" Margin="20,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="0" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="lastName" Text="Enter Last Name Here"  HorizontalAlignment="Left" Height="30" Margin="210,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="1" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="ID" Text="Enter National Number Here"  HorizontalAlignment="Left" Height="30" Margin="20,281,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="2" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="email" Text="Enter Email Here" HorizontalAlignment="Left" Height="30" Margin="20,325,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="3" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="phoneNumber" Text="Enter Phone Number Here"  HorizontalAlignment="Left" Height="30" Margin="20,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="4" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="username" Text="Enter Username Here"  HorizontalAlignment="Left" Height="30" Margin="20,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="350" TabIndex="5" VerticalContentAlignment="Center"/>
         <PasswordBox x:Name="password" HorizontalAlignment="Left" Margin="20,459,0,0" VerticalAlignment="Top" Width="350" Height="30" TabIndex="6"/>
         <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="271,497,0,0">
             <Ellipse.Fill>
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="signUpButton_Copy" Content="Sign Up" HorizontalAlignment="Left" Margin="271,497,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="4" BorderThickness="0" Click="signUpButton_Click" IsHitTestVisible="True">
+        <Button x:Name="signUpButton" Content="Sign Up" HorizontalAlignment="Left" Margin="271,497,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="7" BorderThickness="0" Click="signUpButton_Click" IsHitTestVisible="True">
             <Button.Background>
                 <ImageBrush />
             </Button.Background>
@@ -37,18 +37,18 @@
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>
         </Ellipse>
-        <Button x:Name="back" Content="Back" HorizontalAlignment="Left" Margin="50,497,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="4" BorderThickness="0" Click="back_Click" >
+        <Button x:Name="back" Content="Back" HorizontalAlignment="Left" Margin="50,497,0,0" VerticalAlignment="Top" Width="66" Height="63" FontFamily="Consolas" FontSize="13.333" TabIndex="8" BorderThickness="0" Click="back_Click" >
             <Button.Background>
                 <ImageBrush />
             </Button.Background>
         </Button>
 
-        <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,248,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="IDError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,290,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="emailError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,334,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="phoneError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,379,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,424,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="350,468,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
-        <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="162,248,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="lastNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,244,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="IDError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,286,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="emailError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,330,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="phoneError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,375,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="usernameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,420,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="passwordError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="348,464,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
+        <Image x:Name="firstNameError" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="20" Margin="160,244,0,0" Source="images/Error.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
     </Grid>
 </Window>

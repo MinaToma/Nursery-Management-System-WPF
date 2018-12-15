@@ -47,10 +47,10 @@
                         <ImageBrush ImageSource="images/256.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="364,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa"/>
-                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="501,354,0,0" VerticalAlignment="Top" Width="135" TabIndex="3"/>
+                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="364,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="501,354,0,0" VerticalAlignment="Top" Width="135" TabIndex="3" VerticalContentAlignment="Center"/>
                 <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="365,354,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
-                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="365,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="5"/>
+                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="365,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" VerticalContentAlignment="Center"/>
                 <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="364,261,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
                     <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
                         <Grid.RowDefinitions>
