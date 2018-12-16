@@ -205,8 +205,6 @@ namespace Nursery_Management_System_WPF
 
         private void back_Click(object sender, RoutedEventArgs e)
         {
-            signUp signUpForm = new signUp();
-            signUpForm.Show();
             this.Close();
         }
 
@@ -217,7 +215,7 @@ namespace Nursery_Management_System_WPF
 
             firstName.Text = GlobalVariables.globalStaff.firstName;
             lastName.Text = GlobalVariables.globalStaff.lastName;
-            MessageBox.Show(Convert.ToString(GlobalVariables.globalStaff.id));
+
             DataTable dt = mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalStaff.id), "Staff");
 
             username.Text = dt.Rows[0]["userName"].ToString();

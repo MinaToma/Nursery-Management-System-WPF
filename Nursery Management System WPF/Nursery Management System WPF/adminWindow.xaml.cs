@@ -257,6 +257,7 @@ namespace Nursery_Management_System_WPF
                 top += parentGrid.Height;
                 if(super == parents1)
                 {
+                    rt.previousForm = 3;
                     rt.declineButton.Content = "Delete";
                     rt.acceptButton.Visibility = Visibility.Hidden;
                 }
@@ -283,6 +284,7 @@ namespace Nursery_Management_System_WPF
                 top += childGrid.Height;
                 if (super == children1)
                 {
+                    rt.previousForm = 3;
                     rt.declineButton.Content = "Delete";
                     rt.acceptButton.Visibility = Visibility.Hidden;
                 }
@@ -310,6 +312,7 @@ namespace Nursery_Management_System_WPF
                 top += staffGrid.Height;
                 if (super == staffs1)
                 {
+                    rt.previousForm = 3;
                     rt.declineButton.Content = "Delete";
                     rt.acceptButton.Visibility = Visibility.Hidden;
                 }

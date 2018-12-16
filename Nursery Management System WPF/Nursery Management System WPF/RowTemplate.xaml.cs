@@ -37,7 +37,7 @@ namespace Nursery_Management_System_WPF
         
         //specify previous form
         //0 coming from parent , 1 coming from staff , 2 coming from admin 
-        int previousForm = -1;
+        public int previousForm = -1;
 
         public RowTemplate(int idx , int previousForm  , int cIdx , int pIdx , int sIdx , LinkedList<Child> child , LinkedList<Parent> parent , LinkedList<Staff> staff, Grid super , adminWindow aWindow , parentWindow pWindow , staffWindow sWindow)
         {
@@ -119,7 +119,10 @@ namespace Nursery_Management_System_WPF
             }
             else if(previousForm == 2)
             {
-                if(idx == 0) // Holding child
+                //from pending
+                //disable all texts and buttons
+
+                if (idx == 0) // Holding child
                 {
                     GlobalVariables.globalChild = mChild;
                     childSignUp window = new childSignUp();
@@ -160,18 +163,26 @@ namespace Nursery_Management_System_WPF
             }
             else if(previousForm == 3)
             {
-                //disable all texts and buttons
+                //from editDatabase
 
                 if (idx == 0) // Holding child
                 {
+                    GlobalVariables.globalChild = mChild;
                     childSignUp window = new childSignUp();
-                    //fill child data here
+                    window.signUpButton.Visibility = Visibility.Hidden;
 
+
+                    //fill child data here
+                    window.fillCdata();
+                    
                     window.ShowDialog();
                 }
                 else if (idx == 1) // Holding Parent
                 {
+                    GlobalVariables.globalParent = mParent;
                     parentSignUp window = new parentSignUp();
+                    //fill parent data here
+                    window.fillPdata1();
 
                     //fill parent data here
 
@@ -179,7 +190,11 @@ namespace Nursery_Management_System_WPF
                 }
                 else if (idx == 2) //Holding Staff
                 {
+                    GlobalVariables.globalStaff = mStaff;
                     staffSignUp window = new staffSignUp();
+                    window.signUpButton.Visibility = Visibility.Hidden;
+                    //fill staff data here
+                    window.fillSdata();
 
                     //fill staff data here
 
@@ -286,8 +301,8 @@ namespace Nursery_Management_System_WPF
                     }
                 } 
             }
-            else*/ if (previousForm == 2)
-            {
+            else if (previousForm == 2)
+            {*/
                 if(idx == 0)
                 {
                     if(aWindow.childRow.Count != 0)
@@ -333,7 +348,7 @@ namespace Nursery_Management_System_WPF
 
                     }
                 }
-            }
+            //}
         }
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
