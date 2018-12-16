@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -176,5 +177,37 @@ namespace Nursery_Management_System_WPF
         {
             MessageBox.Show("Holaaa :D");
         }
+
+        public void fillPdata1()
+        {
+            firstName.Text = GlobalVariables.globalParent.firstName;
+            lastName.Text = GlobalVariables.globalParent.lastName;
+            email.Text = GlobalVariables.globalParent.email;
+            ID.Text = GlobalVariables.globalParent.id.ToString();
+            phoneNumber.Text = GlobalVariables.globalParent.phoneNumber;
+            address.Text = GlobalVariables.globalParent.address;
+
+            signUpButton.Visibility = Visibility.Hidden;
+            SQLQuery mSqlquery = new SQLQuery();
+            DataTable userAndPass = mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalParent.id), "Parent");
+            username.Text = (userAndPass.Rows[0]["userName"].ToString());
+            password.Password = userAndPass.Rows[0]["userPassword"].ToString();
+            creditCard.Text = GlobalVariables.globalParent.creditCard;
+        }
+
+        public void disabledParent_info1()
+        {
+            firstName.IsEnabled = false;
+            lastName.IsEnabled = false;
+            email.IsEnabled = false;
+            ID.IsEnabled = false;
+            phoneNumber.IsEnabled = false;
+            address.IsEnabled = false;
+
+            username.IsEnabled = false;
+            password.IsEnabled = false;
+            creditCard.IsEnabled = false;
+        }
     }
+
 }

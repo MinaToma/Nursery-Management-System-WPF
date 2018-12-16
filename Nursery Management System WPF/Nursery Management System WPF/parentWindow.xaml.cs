@@ -50,9 +50,8 @@ namespace Nursery_Management_System_WPF
 
         private void childrenButton_Click(object sender, RoutedEventArgs e)
         {
-            foreach (RowTemplate rt in childRow)
-                children.Children.Remove(rt);
             childRow.Clear();
+            children.Children.Clear();
 
             SQLQuery mSQLQuery = new SQLQuery();
 

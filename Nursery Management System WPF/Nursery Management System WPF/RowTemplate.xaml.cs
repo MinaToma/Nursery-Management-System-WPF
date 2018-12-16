@@ -36,7 +36,7 @@ namespace Nursery_Management_System_WPF
         Grid super;
         
         //specify previous form
-        //0 coming from parent , 1 coming from staff , 2 coming from admin
+        //0 coming from parent , 1 coming from staff , 2 coming from admin 
         int previousForm = -1;
 
         public RowTemplate(int idx , int previousForm  , int cIdx , int pIdx , int sIdx , LinkedList<Child> child , LinkedList<Parent> parent , LinkedList<Staff> staff, Grid super , adminWindow aWindow , parentWindow pWindow , staffWindow sWindow)
@@ -121,23 +121,38 @@ namespace Nursery_Management_System_WPF
             {
                 if(idx == 0) // Holding child
                 {
+                    GlobalVariables.globalChild = mChild;
                     childSignUp window = new childSignUp();
+                    window.signUpButton.Visibility = Visibility.Hidden;
+                    
+                    
                     //fill child data here
-
+                    window.fillCdata();
+                    window.disabledChild_info();
+                    
                     window.ShowDialog();
                 }
                 else if(idx == 1) // Holding Parent
                 {
+                    GlobalVariables.globalParent = mParent;
                     parentSignUp window = new parentSignUp();
-
+                    //fill parent data here
+                    window.fillPdata1();
+                    window.disabledParent_info1();
+                    
                     //fill parent data here
 
                     window.ShowDialog();
                 }
                 else if(idx == 2) //Holding Staff
                 {
+                    GlobalVariables.globalStaff = mStaff;
                     staffSignUp window = new staffSignUp();
-
+                    window.signUpButton.Visibility = Visibility.Hidden;
+                    //fill staff data here
+                    window.fillSdata();
+                    window.disabledStaff();
+                    
                     //fill staff data here
 
                     window.ShowDialog();

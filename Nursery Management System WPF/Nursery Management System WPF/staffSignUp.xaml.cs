@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -207,6 +208,38 @@ namespace Nursery_Management_System_WPF
             signUp signUpForm = new signUp();
             signUpForm.Show();
             this.Close();
+        }
+
+        public void fillSdata()
+        {
+            SQLQuery mSQLQuery = new SQLQuery();
+
+
+            firstName.Text = GlobalVariables.globalStaff.firstName;
+            lastName.Text = GlobalVariables.globalStaff.lastName;
+            MessageBox.Show(Convert.ToString(GlobalVariables.globalStaff.id));
+            DataTable dt = mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalStaff.id), "Staff");
+
+            username.Text = dt.Rows[0]["userName"].ToString();
+            password.Password = dt.Rows[0]["userPassword"].ToString();
+
+            email.Text = GlobalVariables.globalStaff.email;
+            phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
+            ID.Text = (GlobalVariables.globalStaff.id).ToString();
+
+            signUpButton.Visibility = Visibility.Hidden;
+
+        }
+        public void disabledStaff()
+        {
+            firstName.IsEnabled = false;
+            lastName.IsEnabled = false;
+            ID.IsEnabled = false;
+            phoneNumber.IsEnabled = false;
+            email.IsEnabled = false;
+            password.IsEnabled = false;
+            username.IsEnabled = false;
+
         }
     }
 }

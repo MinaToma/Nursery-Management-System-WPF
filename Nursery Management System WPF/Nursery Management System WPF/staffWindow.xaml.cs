@@ -45,10 +45,9 @@ namespace Nursery_Management_System_WPF
             mRoom = mSQLQuery.roomToLinkedList(mSQLQuery.getRoomByStaffID(GlobalVariables.globalStaff.id)).ElementAt(0);
 
             roomName.Content = "Room" + "  " + Convert.ToString(mRoom.number);
-
-            foreach (RowTemplate rt in childRow)
-                children.Children.Remove(rt);
+            
             childRow.Clear();
+            children.Children.Clear();
 
             childList = mSQLQuery.childToLinkedList(mSQLQuery.getChildByRoomID(mRoom.id));
 
@@ -298,5 +297,7 @@ namespace Nursery_Management_System_WPF
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
+
+        
     }
 }

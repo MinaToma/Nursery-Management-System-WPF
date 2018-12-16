@@ -78,5 +78,28 @@ namespace Nursery_Management_System_WPF
             parent.Show();
             this.Close();
         }
+
+        public void fillCdata()
+        {
+            childName.Text = GlobalVariables.globalChild.firstName;
+            DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
+            if (GlobalVariables.globalChild.gender == "Male")
+            {
+                male.IsChecked = true;
+            }
+            else
+            {
+                female.IsChecked = true;
+            }
+            roomID.Text = Convert.ToString(GlobalVariables.globalChild.roomID);
+        }
+
+        public void disabledChild_info()
+        {
+            childName.IsEnabled = false;
+            genderBox.IsEnabled = false;
+            DOBpicker.IsEnabled = false;
+
+        }
     }
 }
