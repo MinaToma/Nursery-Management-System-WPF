@@ -66,10 +66,12 @@ namespace Nursery_Management_System_WPF
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
 
-             this.profilePanel.Visibility = Visibility.Visible;
+            roomPanel.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Visible;
             AdminFeedback.Visibility = Visibility.Hidden;
             pendingRequestsPanel.Visibility = Visibility.Hidden;
             this.editDatabasePanel.Visibility = Visibility.Hidden;
+            featuresPanel.Visibility = Visibility.Hidden;
         }
 
         private void editDatabase_Click(object sender, RoutedEventArgs e)
@@ -96,11 +98,13 @@ namespace Nursery_Management_System_WPF
             showPendingChildren(children1);
             showPendingParent(parents1);
             showAllRoomsAndChildren(rooms);
-            
+
+            roomPanel.Visibility = Visibility.Hidden;
             this.AdminFeedback.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Hidden;
             this.editDatabasePanel.Visibility = Visibility.Visible;
+            featuresPanel.Visibility = Visibility.Hidden;
         }
         
         private void adminFeedbackButton_Click(object sender, RoutedEventArgs e)
@@ -121,6 +125,8 @@ namespace Nursery_Management_System_WPF
             this.profilePanel.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
             this.editDatabasePanel.Visibility = Visibility.Hidden;
+            this.featuresPanel.Visibility = Visibility.Hidden;
+            roomPanel.Visibility = Visibility.Hidden;
         }
 
         private void signOutButton_Click(object sender, RoutedEventArgs e)
@@ -168,6 +174,8 @@ namespace Nursery_Management_System_WPF
             this.profilePanel.Visibility = Visibility.Hidden;
             this.AdminFeedback.Visibility = Visibility.Hidden;
             this.editDatabasePanel.Visibility = Visibility.Hidden;
+            roomPanel.Visibility = Visibility.Hidden;
+            this.featuresPanel.Visibility = Visibility.Hidden;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -459,9 +467,83 @@ namespace Nursery_Management_System_WPF
         {
             children2.Visibility = Visibility.Hidden;
             room5.Visibility = Visibility.Hidden;
-            roomName.Visibility = Visibility.Hidden;
             roomScrollerView.Visibility = Visibility.Visible;
             roomBack.Visibility = Visibility.Hidden;
+        }
+
+        private void adminFeatureButton_Click(object sender, RoutedEventArgs e)
+        {
+            featuresPanel.Visibility = Visibility.Visible;
+            profilePanel.Visibility = Visibility.Hidden;
+            editDatabasePanel.Visibility = Visibility.Hidden;
+            AdminFeedback.Visibility = Visibility.Hidden;
+            pendingRequestsPanel.Visibility = Visibility.Hidden;
+            roomPanel.Visibility = Visibility.Hidden;
+        }
+        
+        private void submitFeatureButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(featureTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter a feature", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            else
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                mSQLQuery.insertFeature(featureTextBox.Text);
+                MessageBox.Show("Feature added successfully!", "Submission done!", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+        }
+
+        private void submitRoomButton_Click(object sender, RoutedEventArgs e)
+        {
+            //check for empty entries
+            if (roomNumberTextBox.Text.Length==0)
+            {
+                MessageBox.Show("Please enter a room number", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            if (roomStaffIDTextBox.Text.Length == 0)
+            {
+                MessageBox.Show("Please enter staff id", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            else
+            { 
+                SQLQuery mSQLQuery = new SQLQuery();
+                bool canEnter = true;
+                Room mRoom;
+                DataTable dtStaffID = mSQLQuery.getStaffByID(Convert.ToInt64(roomStaffIDTextBox.Text));
+                DataTable dtRoomNo = mSQLQuery.getRoomByNumber(Convert.ToInt32(roomNumberTextBox.Text));
+                //check for room number entry
+                if (dtRoomNo.Rows.Count!=0) 
+                {
+                    MessageBox.Show("Room number already exists!", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
+                    canEnter = false;
+                }
+                
+                //check for staff id entry
+                if (dtStaffID.Rows.Count == 0 || dtStaffID.Rows[0]["staffType"].ToString() == "Admin")
+                {
+                    MessageBox.Show("Staff ID doesn't exist!", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
+                    canEnter = false;
+                }
+                
+                if (canEnter)
+                {
+                    mRoom = new Room(-1 , Convert.ToInt32(roomNumberTextBox.Text), Convert.ToInt64(roomStaffIDTextBox.Text));
+                    mSQLQuery.insertRoomData(mRoom);
+                    MessageBox.Show("Room added successfully!", "Submission Done!", MessageBoxButton.OK, MessageBoxImage.None);
+                }
+            }
+        }
+
+        private void roomButton_Click(object sender, RoutedEventArgs e)
+        {
+            featuresPanel.Visibility = Visibility.Hidden;
+            profilePanel.Visibility = Visibility.Hidden;
+            editDatabasePanel.Visibility = Visibility.Hidden;
+            AdminFeedback.Visibility = Visibility.Hidden;
+            pendingRequestsPanel.Visibility = Visibility.Hidden;
+            roomPanel.Visibility = Visibility.Visible;
         }
     }
 }
