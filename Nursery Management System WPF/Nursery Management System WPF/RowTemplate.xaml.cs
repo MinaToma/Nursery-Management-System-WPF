@@ -22,14 +22,16 @@ namespace Nursery_Management_System_WPF
     {
         //I wanna send a child , parent or staff to the form 
 
-        //set 0 for child , 1 for parnet , 2 for staff
-        int idx = -1, cIdx = 0 , pIdx = 0 , sIdx = 0;
-        Child mChild;
+        //set 0 for child , 1 for parent , 2 for staff , 3 for room
+        int idx = -1, cIdx = 0 , pIdx = 0 , sIdx = 0 , rIdx;
+        Child mChild; 
         Parent mParent;
         Staff mStaff;
+        Room mRoom;
         LinkedList<Child> child;
         LinkedList<Parent> parent;
         LinkedList<Staff> staff;
+        LinkedList<Room> room;
         adminWindow aWindow;
         parentWindow pWindow;
         staffWindow sWindow;    
@@ -38,6 +40,23 @@ namespace Nursery_Management_System_WPF
         //specify previous form
         //0 coming from parent , 1 coming from staff , 2 coming from admin 
         public int previousForm = -1;
+
+        public RowTemplate(int idx , int rIdx , LinkedList<Room> room  ,  Grid super , adminWindow aWindow)
+        {
+            InitializeComponent();
+            this.idx = idx;
+            this.rIdx = rIdx;
+            this.room = room;
+            this.mRoom = room.ElementAt(rIdx);
+            this.super = super;
+            cIdx = -1;
+            pIdx = -1;
+            sIdx = -1;
+            this.aWindow = aWindow;
+          //  aWindow.room5.Visibility = Visibility.Hidden;
+
+            initializeR();
+        }
 
         public RowTemplate(int idx , int previousForm  , int cIdx , int pIdx , int sIdx , LinkedList<Child> child , LinkedList<Parent> parent , LinkedList<Staff> staff, Grid super , adminWindow aWindow , parentWindow pWindow , staffWindow sWindow)
         {
@@ -58,7 +77,17 @@ namespace Nursery_Management_System_WPF
             initialize();
         }
 
+        void initializeR()
+        {
+            this.parentProfileImage.Visibility = Visibility.Hidden;
+            acceptButton.Visibility = Visibility.Hidden;
+            declineButton.Content = "Delete";
+            name.Content=Convert.ToString(mRoom.number);
+
+        }
+
         void initialize()
+
         {
             if(previousForm == 0 || previousForm == 1)
             {
@@ -89,6 +118,29 @@ namespace Nursery_Management_System_WPF
             }
         }
 
+        private void name_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (idx == 3)
+            {
+                aWindow.children2.Visibility = Visibility.Visible;
+                aWindow.room5.Visibility = Visibility.Visible;
+                aWindow.roomScrollerView.Visibility = Visibility.Hidden;
+                aWindow.roomTab1.IsSelected = false;
+                aWindow.children2.Children.Clear();
+                SQLQuery mSQLQuery = new SQLQuery();
+                child = mSQLQuery.childToLinkedList(mSQLQuery.getChildByRoomID(mRoom.id));
+                
+                aWindow.childCount.Content = mSQLQuery.staffToLinkedList(mSQLQuery.getStaffByID(mRoom.staffID)).ElementAt(0).firstName;
+
+                aWindow.childList = child;
+                aWindow.roomName.Content = "Room  " + Convert.ToString(mRoom.number);
+                aWindow.roomBack.Visibility = Visibility.Visible;
+
+                aWindow.showPendingChildren(aWindow.children2);
+            }
+            
+        }
+
         private void parentGrid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if(previousForm == 0)
@@ -96,10 +148,10 @@ namespace Nursery_Management_System_WPF
                 childWindow cw = new childWindow(pWindow);
                 cw.dailyDetails.IsReadOnly = true;
                 GlobalVariables.globalChild = mChild;
-                cw.sendFeedback.Visibility = Visibility.Hidden;
+                cw.sendDailyDetails.Visibility = Visibility.Hidden;
                 cw.roomID.IsEnabled = false;
                 cw.editProfileButton.Visibility = Visibility.Visible;
-                cw.showFeedback.Visibility = Visibility.Visible;
+                cw.showDailyDetails.Visibility = Visibility.Visible;
                 cw.fillProfile();
                 cw.ShowDialog();
             }
@@ -112,7 +164,7 @@ namespace Nursery_Management_System_WPF
                 cw.editProfileButton.Visibility = Visibility.Hidden;
                 cw.female.IsEnabled = false;
                 cw.male.IsEnabled = false;
-                cw.showFeedback.Visibility = Visibility.Hidden;
+                cw.showDailyDetails.Visibility = Visibility.Hidden;
                 GlobalVariables.globalChild = mChild;
                 cw.fillProfile();
                 cw.ShowDialog();
@@ -200,6 +252,7 @@ namespace Nursery_Management_System_WPF
 
                     window.ShowDialog();
                 }
+              
             }
         }
 
@@ -303,52 +356,66 @@ namespace Nursery_Management_System_WPF
             }
             else if (previousForm == 2)
             {*/
-                if(idx == 0)
+            if (idx == 0)
+            {
+                if (aWindow.childRow.Count != 0)
                 {
-                    if(aWindow.childRow.Count != 0)
+                    if (child.Count != 1)
                     {
-                        if(child.Count != 1)
-                        {
-                            cIdx = child.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
-                        aWindow.childRow.RemoveLast();
-                        child.Remove(child.ElementAt(child.Count - 1));
-
+                        cIdx = child.Count - 1;
+                        initialize();
                     }
+                    super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
+                    aWindow.childRow.RemoveLast();
+                    child.Remove(child.ElementAt(child.Count - 1));
+
                 }
-                else if(idx == 1)
+            }
+            else if (idx == 1)
+            {
+                if (aWindow.parentRow.Count != 0)
                 {
-                    if(aWindow.parentRow.Count != 0)
+                    if (parent.Count != 1)
                     {
-                        if (parent.Count != 1)
-                        {
-                            pIdx = parent.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
-                        aWindow.parentRow.RemoveLast();
-                        parent.Remove(parent.ElementAt(parent.Count - 1));
-
+                        pIdx = parent.Count - 1;
+                        initialize();
                     }
+                    super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
+                    aWindow.parentRow.RemoveLast();
+                    parent.Remove(parent.ElementAt(parent.Count - 1));
+
                 }
-                else if(idx == 2)
+            }
+            else if (idx == 2)
+            {
+                if (aWindow.staffRow.Count != 0)
                 {
-                    if(aWindow.staffRow.Count != 0)
+                    if (staff.Count != 1)
                     {
-                        if (staff.Count != 1)
-                        {
-                            sIdx = staff.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                        aWindow.staffRow.RemoveLast();
-                        staff.Remove(staff.ElementAt(staff.Count - 1));
-
+                        sIdx = staff.Count - 1;
+                        initialize();
                     }
+                    super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
+                    aWindow.staffRow.RemoveLast();
+                    staff.Remove(staff.ElementAt(staff.Count - 1));
+
                 }
-            //}
+            }
+            else if (idx == 3)
+            {
+                if (aWindow.roomRow.Count != 0)
+                {
+                    if (room.Count != 1)
+                    {
+                        rIdx = room.Count - 1;
+                        initialize();
+                    }
+                    super.Children.Remove(aWindow.roomRow.ElementAt(aWindow.roomRow.Count - 1));
+                    aWindow.roomRow.RemoveLast();
+                    room.Remove(room.ElementAt(room.Count - 1));
+                }
+                //}
+            }
         }
 
         private void acceptButton_Click(object sender, RoutedEventArgs e)
@@ -370,6 +437,7 @@ namespace Nursery_Management_System_WPF
                 mStaff.pending = 0;
                 mSQLQuery.updateStaffData(mStaff);
             }
+            
 
             removeFromParent();
         }
@@ -395,6 +463,12 @@ namespace Nursery_Management_System_WPF
                 LinkedList<Int64> toDel = new LinkedList<Int64>();
                 toDel.AddLast(staff.ElementAt(sIdx).id);
                 mSQLQuery.deleteStaffData(toDel);
+            }
+            else if (idx == 3)
+            {
+                LinkedList<int> toDel = new LinkedList<int>();
+                toDel.AddLast(room.ElementAt(rIdx).id);
+                mSQLQuery.deleteRoomData(toDel);
             }
 
             removeFromParent();

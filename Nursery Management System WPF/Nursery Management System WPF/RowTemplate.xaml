@@ -14,7 +14,7 @@
                     <ImageBrush ImageSource="images/256.png"/>
                 </Ellipse.Fill>
             </Ellipse>
-            <Label x:Name="name" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422"/>
+            <Label x:Name="name" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" MouseDown="name_MouseDown"/>
             <Button x:Name="acceptButton" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="acceptButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
             <Button x:Name="declineButton" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="declineButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
         </Grid>

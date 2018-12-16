@@ -23,12 +23,14 @@ namespace Nursery_Management_System_WPF
         int feedbackIdx = -1;
         //                     id , feedback , name
         LinkedList<Tuple<Tuple<int, string>, string>> feedback;
-        LinkedList<Child> childList;
+       public  LinkedList<Child> childList;
         LinkedList<Parent> parentList;
         LinkedList<Staff> staffList;
+        LinkedList<Room> roomList;
         public LinkedList<RowTemplate> childRow;
         public LinkedList<RowTemplate> staffRow;
         public LinkedList<RowTemplate> parentRow;
+        public LinkedList<RowTemplate> roomRow;
 
         public adminWindow()
         {
@@ -37,9 +39,11 @@ namespace Nursery_Management_System_WPF
             childRow = new LinkedList<RowTemplate>();
             parentRow = new LinkedList<RowTemplate>();
             staffRow = new LinkedList<RowTemplate>();
+            roomRow = new LinkedList<RowTemplate>();
             childList = new LinkedList<Child>();
             parentList = new LinkedList<Parent>();
             staffList = new LinkedList<Staff>();
+            roomList = new LinkedList<Room>();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
@@ -73,20 +77,26 @@ namespace Nursery_Management_System_WPF
             staffs1.Children.Clear();
             parents1.Children.Clear();
             children1.Children.Clear();
+            rooms.Children.Clear();
 
             childRow.Clear();
             staffRow.Clear();
             parentRow.Clear();
+            roomRow.Clear();
+            
 
             SQLQuery mSQLQuery = new SQLQuery();
 
             childList = mSQLQuery.childToLinkedList(mSQLQuery.getNotPendingChild());
             parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getNotPendingParent());
             staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getNotPendingStaff());
+            roomList = mSQLQuery.roomToLinkedList(mSQLQuery.getAllRooms());
             
             showPendingStaff(staffs1);
             showPendingChildren(children1);
             showPendingParent(parents1);
+            showAllRoomsAndChildren(rooms);
+
 
             this.AdminFeedback.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
@@ -266,11 +276,29 @@ namespace Nursery_Management_System_WPF
             }
         }
 
+        private void showAllRoomsAndChildren(Grid super)
+        {
+            double top = roomGrid.Margin.Top;
+            double bottom = roomGrid.Margin.Bottom;
+            double left = roomGrid.Margin.Left;
+            double right = roomGrid.Margin.Right;
+
+            for (int i=0; i<roomList.Count;i++)
+            {
+                RowTemplate rt = new RowTemplate(3, i, roomList, super,this);
+                rt.Margin = new Thickness(left, top, right, bottom);
+                top  += roomGrid.Height;
+                
+                roomRow.AddLast(rt);
+                super.Children.Add(rt);
+            }
+        }
+
         private void childrenTab_MouseDown(object sender, MouseButtonEventArgs e)
         {
         }
 
-        private void showPendingChildren(Grid super)
+        public void showPendingChildren(Grid super)
         {
             double top = childGrid.Margin.Top;
             double bottom = childGrid.Margin.Bottom;
@@ -287,6 +315,13 @@ namespace Nursery_Management_System_WPF
                     rt.previousForm = 3;
                     rt.declineButton.Content = "Delete";
                     rt.acceptButton.Visibility = Visibility.Hidden;
+                }
+
+                if (super == children2)
+                {
+                    rt.previousForm = 2;
+                    rt.acceptButton.Visibility = Visibility.Hidden;
+                    rt.declineButton.Visibility = Visibility.Hidden;
                 }
                 childRow.AddLast(rt);
                 super.Children.Add(rt);
@@ -419,6 +454,14 @@ namespace Nursery_Management_System_WPF
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void roomBack_Click(object sender, RoutedEventArgs e)
+        {
+            children2.Visibility = Visibility.Hidden;
+            room5.Visibility = Visibility.Hidden;
+            roomScrollerView.Visibility = Visibility.Visible;
+            roomBack.Visibility = Visibility.Hidden;
         }
     }
 }
