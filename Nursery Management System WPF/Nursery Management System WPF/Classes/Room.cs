@@ -16,7 +16,7 @@ namespace Nursery_Management_System_WPF
         {
             staffID = -1;
         }
-        public Room(int _id , int _number , int _staffID = -1)
+        public Room(int _id , int _number , Int64 _staffID = -1)
         {
             id = _id;
             number = _number;
