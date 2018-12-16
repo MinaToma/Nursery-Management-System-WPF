@@ -239,5 +239,36 @@ namespace Nursery_Management_System_WPF
             username.IsEnabled = false;
 
         }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBox.Show("you clicked my image :D");
+        }
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
