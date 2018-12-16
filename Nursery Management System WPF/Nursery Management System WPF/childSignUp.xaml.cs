@@ -20,8 +20,8 @@ namespace Nursery_Management_System_WPF
     public partial class childSignUp : Window
     {
 
-        
-        IDictionary<string, int> FeatureToID;
+
+        Dictionary<string, int> FeatureToID = new Dictionary<string, int>();
         public childSignUp()
         {
             InitializeComponent();
@@ -37,6 +37,7 @@ namespace Nursery_Management_System_WPF
             foreach (DataRow dr in allFeatures.Rows)
             {
                 Features ft = new Features(dr[1].ToString());
+                
                 FeatureToID.Add(dr[1].ToString(), Int32.Parse(dr[0].ToString()));
                 list.Add(ft);
             }
@@ -66,7 +67,7 @@ namespace Nursery_Management_System_WPF
                 {
                     mSQLQuery.insertChildFeature(childID, FeatureToID[item.featureName]);
                 }
-
+                
 
 
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
