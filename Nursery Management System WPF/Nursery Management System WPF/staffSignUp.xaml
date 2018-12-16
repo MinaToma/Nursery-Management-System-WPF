@@ -40,7 +40,7 @@
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>
-        <Ellipse HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="709,516,0,0">
+        <Ellipse x:Name="signup_elipse" HorizontalAlignment="Left" Height="63" Stroke="Black" VerticalAlignment="Top" Width="66" Margin="709,516,0,0">
             <Ellipse.Fill>
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>

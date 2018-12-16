@@ -245,14 +245,14 @@
                                 <Grid x:Name="rooms" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" Height="522" Width="794">
 
                                     <Grid x:Name="roomGrid" HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="750" Margin="10,10,0,0" Visibility="Hidden">
-                                        <Label x:Name="roomName" Content="Room ###" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
+                                        <Label x:Name="roomName" Content="Room ###" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold" Visibility="Hidden"/>
                                     </Grid>
                                 </Grid>
                             </ScrollViewer>
                             <Grid x:Name="room5"  HorizontalAlignment="Left" Height="522" VerticalAlignment="Top" Width="794" Margin="0,0,-694,-492">
                                 <Button x:Name="roomBack" Content="Back" HorizontalAlignment="Left" VerticalAlignment="Top" Width="84" Margin="656,0,0,0" RenderTransformOrigin="0.467,1.493" Height="50" Click="roomBack_Click" Visibility="Hidden"/>
                                 <Label x:Name="childCount" HorizontalAlignment="Left" Margin="464,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
-                                <Label x:Name="roomNumber" Content="Room ###" HorizontalAlignment="Left" Margin="85,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
+                                <Label x:Name="roomNumber" Content="Room ###" HorizontalAlignment="Left" Margin="85,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold" Visibility="Hidden"/>
                                 <ScrollViewer x:Name="childScrollerView2" CanContentScroll="True" Margin="0,97,0,0">
                                     <Grid x:Name="children2" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 

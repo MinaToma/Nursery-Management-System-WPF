@@ -35,10 +35,10 @@ namespace Nursery_Management_System_WPF
                 else
                     gender = "Male";
 
-                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value , null, 1);
+                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, null, 1);
                 mSQLQuery.insertChildData(child);
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
-                this.Close(); 
+                this.Close();
             }
             else if (childName.Text.Length < 2)
             {
@@ -48,7 +48,7 @@ namespace Nursery_Management_System_WPF
             {
                 MessageBox.Show("Please enter the Date of Birth", "Missing DOB", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-          
+
         }
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
@@ -105,12 +105,11 @@ namespace Nursery_Management_System_WPF
             SQLQuery mSqlQuery = new SQLQuery();
             if (roomID.Text != null || roomID.Text != " room ID ")
             {
-
-
                 GlobalVariables.globalChild.roomID = Convert.ToInt32(roomID.Text);
                 mSqlQuery.updateChildData(GlobalVariables.globalChild);
                 MessageBox.Show("Data Updated Successflly", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
         }
+    }
 }

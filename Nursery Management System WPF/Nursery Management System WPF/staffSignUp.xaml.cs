@@ -25,24 +25,7 @@ namespace Nursery_Management_System_WPF
         {
             InitializeComponent();
 
-            firstName.LostFocus += FirstName_LostFocus;
-            firstName.GotFocus += FirstName_GotFocus;
-
-            lastName.LostFocus += LastName_LostFocus;
-            lastName.GotFocus += LastName_GotFocus;
-
-            ID.LostFocus += ID_LostFocus;
-            ID.GotFocus += ID_GotFocus;
-
-            email.LostFocus += Email_LostFocus;
-            email.GotFocus += Email_GotFocus;
-
-            phoneNumber.LostFocus += PhoneNumber_LostFocus;
-            phoneNumber.GotFocus += PhoneNumber_GotFocus;
-
-            username.LostFocus += Username_LostFocus;
-            username.GotFocus += Username_GotFocus;
-
+            
         }
         
         private void Username_GotFocus(object sender, RoutedEventArgs e)
@@ -218,14 +201,15 @@ namespace Nursery_Management_System_WPF
 
             DataTable dt = mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalStaff.id), "Staff");
 
-            //username.Text = dt.Rows[0]["userName"].ToString();
-            //  password.Password = dt.Rows[0]["userPassword"].ToString();
+            username.Text = dt.Rows[0]["userName"].ToString();
+            password.Password = dt.Rows[0]["userPassword"].ToString();
 
             email.Text = GlobalVariables.globalStaff.email;
             phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
             ID.Text = (GlobalVariables.globalStaff.id).ToString();
-
+            
             signUpButton.Visibility = Visibility.Hidden;
+            signup_elipse.Visibility = Visibility.Hidden;
 
         }
         public void disabledStaff()
@@ -272,12 +256,12 @@ namespace Nursery_Management_System_WPF
         public bool checkSalaryValue()
         {
             bool ans = true;
-            string salaryString = salary.Text;
+            String salaryString = salary.Text;
             foreach (char i in salaryString)
                 if (i > '9' || i < '0')
                     ans = false;
 
-            if (Convert.ToDecimal(salary.Text) == 0 || salary.Text == null || !ans)
+            if (salaryString.Length == 0 || !ans)
                 return false;
             return true;
         }

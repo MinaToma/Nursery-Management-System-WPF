@@ -38,7 +38,7 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Margin="10,-10,-10,0">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Margin="10,-10,-10,0">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -65,7 +65,7 @@
 
                 </GroupBox>
             </Grid>
-            <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
+            <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>
                 <Image x:Name="dailyDetailsCard" Margin="32,71,30,111" Source="images/daily details_2@4x.png" Stretch="Fill"/>
                 <Ellipse x:Name="profileImage1" HorizontalAlignment="Left" Height="76" Margin="66,98,0,0" VerticalAlignment="Top" Width="86" StrokeThickness="2">

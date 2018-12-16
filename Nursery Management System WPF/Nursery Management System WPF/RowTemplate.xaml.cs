@@ -83,7 +83,6 @@ namespace Nursery_Management_System_WPF
             acceptButton.Visibility = Visibility.Hidden;
             declineButton.Content = "Delete";
             name.Content=Convert.ToString(mRoom.number);
-
         }
 
         void initialize()
@@ -236,7 +235,6 @@ namespace Nursery_Management_System_WPF
 
                     //fill parent data here
                     window.fillPdata1();
-                    window.disabledParent_info1();
 
                     //fill parent data here
 
@@ -251,7 +249,6 @@ namespace Nursery_Management_System_WPF
                     window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
                     window.fillSdata();
-                    window.disabledStaff();
                     //fill staff data here
 
                     window.ShowDialog();

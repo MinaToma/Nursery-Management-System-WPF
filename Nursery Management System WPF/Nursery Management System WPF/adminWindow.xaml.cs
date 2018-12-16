@@ -96,8 +96,7 @@ namespace Nursery_Management_System_WPF
             showPendingChildren(children1);
             showPendingParent(parents1);
             showAllRoomsAndChildren(rooms);
-
-
+            
             this.AdminFeedback.Visibility = Visibility.Hidden;
             this.pendingRequestsPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Hidden;
@@ -460,6 +459,7 @@ namespace Nursery_Management_System_WPF
         {
             children2.Visibility = Visibility.Hidden;
             room5.Visibility = Visibility.Hidden;
+            roomName.Visibility = Visibility.Hidden;
             roomScrollerView.Visibility = Visibility.Visible;
             roomBack.Visibility = Visibility.Hidden;
         }
