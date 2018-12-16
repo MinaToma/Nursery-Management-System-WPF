@@ -21,15 +21,23 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class parentSignUp : Window
     {
+        private bool signedUp = false;
         public parentSignUp()
         {
             InitializeComponent();
         }
         private void addChildButton_Click(object sender, RoutedEventArgs e)
         {
-            childSignUp signUp = new childSignUp();
-            signUp.roomID.Visibility = Visibility.Hidden;
-            signUp.Show();
+            if (signedUp == true)
+            {
+                childSignUp signUp = new childSignUp();
+                signUp.roomID.Visibility = Visibility.Hidden;
+                signUp.Show();
+            }
+            else
+            {
+                MessageBox.Show("Please Sign Up first", "Error", MessageBoxButton.OK, MessageBoxImage.None);
+            }
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
@@ -42,7 +50,7 @@ namespace Nursery_Management_System_WPF
                 SQLQuery mSQLQuery = new SQLQuery();
                 mSQLQuery.insertParentData(GlobalVariables.globalParent);
                 mSQLQuery.insertUser(username.Text, password.Password, "Parent", GlobalVariables.globalParent.id);
-
+                signedUp = true;
                 MessageBox.Show("Thank you! Your data for  request is being processed ", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
             }
             else
