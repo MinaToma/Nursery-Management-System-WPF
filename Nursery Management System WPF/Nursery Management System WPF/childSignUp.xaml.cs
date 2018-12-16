@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data;
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
@@ -19,13 +19,36 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class childSignUp : Window
     {
+
+
+        Dictionary<string, int> FeatureToID = new Dictionary<string, int>();
         public childSignUp()
         {
             InitializeComponent();
+            addFeaturesToList();
+
+        }
+        public void addFeaturesToList()
+        {
+            List<Features> list = new List<Features>();
+            SQLQuery sQLQuery = new SQLQuery();
+            DataTable allFeatures;
+            allFeatures = sQLQuery.allFeatures();
+            foreach (DataRow dr in allFeatures.Rows)
+            {
+                Features ft = new Features(dr[1].ToString());
+                
+                FeatureToID.Add(dr[1].ToString(), Int32.Parse(dr[0].ToString()));
+                list.Add(ft);
+            }
+
+            childFeaturesList.ItemsSource = list;
+            childFeaturesList.SelectionMode = SelectionMode.Multiple;
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
+
             SQLQuery mSQLQuery = new SQLQuery();
             if (childName.Text.Length >= 2 && DOBpicker.SelectedDate != null)
             {
@@ -37,6 +60,16 @@ namespace Nursery_Management_System_WPF
 
                 Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, null, 1);
                 mSQLQuery.insertChildData(child);
+                int childID = mSQLQuery.getIDForChild(childName.Text, GlobalVariables.globalParent.id.ToString());
+                List<Features> featurs = new List<Features>();
+                featurs =checkedFeatures();
+                foreach(var item in featurs)
+                {
+                    mSQLQuery.insertChildFeature(childID, FeatureToID[item.featureName]);
+                }
+                
+
+
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
                 this.Close();
             }
@@ -48,11 +81,22 @@ namespace Nursery_Management_System_WPF
             {
                 MessageBox.Show("Please enter the Date of Birth", "Missing DOB", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            
 
+        }
+        public List<Features> checkedFeatures()
+        {
+            List<Features> list = new List<Features>();
+            foreach (var item in childFeaturesList.SelectedItems)
+            {
+                list.Add((Features)item);
+            }
+            return list;
         }
 
         private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
+            
             WindowState = WindowState.Minimized;
         }
 
