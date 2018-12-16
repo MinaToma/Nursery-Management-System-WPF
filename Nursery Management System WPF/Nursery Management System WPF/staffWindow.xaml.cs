@@ -48,6 +48,7 @@ namespace Nursery_Management_System_WPF
 
             foreach (RowTemplate rt in childRow)
                 children.Children.Remove(rt);
+            childRow.Clear();
 
             childList = mSQLQuery.childToLinkedList(mSQLQuery.getChildByRoomID(mRoom.id));
 
@@ -68,7 +69,7 @@ namespace Nursery_Management_System_WPF
 
             for (int i = 0; i < childList.Count; i++)
             {
-                RowTemplate rt = new RowTemplate(0, 0, i, 0, 0, childList, null, null, children, null, null , this);
+                RowTemplate rt = new RowTemplate(0, 1, i, 0, 0, childList, null, null, children, null, null , this);
                 rt.Margin = new Thickness(left, top, right, bottom);
                 top += childGrid.Height;
                 childRow.AddLast(rt);

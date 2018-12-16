@@ -212,6 +212,12 @@ namespace Nursery_Management_System_WPF
         public void insertDailyChildDetails(DateTime detailsDate , string childDetails , int childID)
         {
             SQL mSQL = new SQL();
+
+            if(getChildDailyDetails(detailsDate , childID).Equals("Nothing to show") == false)
+            {
+                deleteChildDailyDetails(detailsDate, childID);
+            }
+
             SqlCommand mCommand = new SqlCommand("insertChildDailyDetails");
             mCommand.CommandType = CommandType.StoredProcedure;
 
@@ -608,15 +614,33 @@ namespace Nursery_Management_System_WPF
         {
             DataTable dt = new DataTable();
             SQL mSQL = new SQL();
-            string childDetails;
+            string childDetails = "Nothing to show";
 
-            string query = "select childDetails from childDailyDetails where detailsDate = " + detailsDate + " and childID = " + Convert.ToString(childID);
+            string query = "select childDetails from childDailyDetails where detailsDate between '" + (DateTime) detailsDate + "' and '" + (DateTime) detailsDate + "' and childID = " + Convert.ToString(childID);
             dt = mSQL.retrieveQuery(query);
-            childDetails = dt.Rows[0]["childDetails"].ToString();
+
+            if(dt.Rows.Count != 0)
+            {
+                childDetails = dt.Rows[0]["childDetails"].ToString(); 
+            }
+
 
             return childDetails;
         }
 
+        public void deleteChildDailyDetails(DateTime dt , int id)
+        {
+            SQL mSQL = new SQL();
+            
+            SqlCommand mCommand = new SqlCommand("deleteChildDailyDetails");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@childID", id);
+            mCommand.Parameters.AddWithValue("@date", dt);
+
+            mSQL.deleteQuery(mCommand);
+            return;
+        }
 
 
         /****************  UPDATING DATA FROM DATABASE  ****************/

@@ -52,17 +52,18 @@ namespace Nursery_Management_System_WPF
         {
             foreach (RowTemplate rt in childRow)
                 children.Children.Remove(rt);
+            childRow.Clear();
 
             SQLQuery mSQLQuery = new SQLQuery();
 
-            childList = mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
+            childList = mSQLQuery.childToLinkedList(mSQLQuery.getChildByParentID(GlobalVariables.globalParent.id));
+
             LinkedList<Child> notPending = new LinkedList<Child>();
             foreach (Child c in childList)
             {
-                DataTable dt = mSQLQuery.getParentByID(c.parentID);
-                if (Convert.ToInt32(dt.Rows[0]["parentIsPending"]) == 1)
+                if (c.pending == 1)
                     notPending.AddLast(c);
-                else c.lastName = dt.Rows[0]["parentFirstName"].ToString();
+                else c.lastName = GlobalVariables.globalParent.firstName;
             }
 
             foreach (Child c in notPending)

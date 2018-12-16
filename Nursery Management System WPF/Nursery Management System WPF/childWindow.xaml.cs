@@ -42,8 +42,16 @@ namespace Nursery_Management_System_WPF
 
         private void childProfileButton_Click(object sender, RoutedEventArgs e)
         {
+            fillProfile();
+
+            this.dailyDetailsPanel.Visibility = Visibility.Hidden;
+            this.profilePanel.Visibility = Visibility.Visible;
+        }
+        public void fillProfile()
+        {
             childName.Text = GlobalVariables.globalChild.firstName;
             DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
+
             if (GlobalVariables.globalChild.gender == "Male")
             {
                 male.IsChecked = true;
@@ -53,17 +61,10 @@ namespace Nursery_Management_System_WPF
                 female.IsChecked = true;
             }
             roomID.Text = Convert.ToString(GlobalVariables.globalChild.roomID);
-
-            this.dailyDetailsPanel.Visibility = Visibility.Hidden;
-            this.profilePanel.Visibility = Visibility.Visible;
         }
 
         private void dailyDetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            SQLQuery mSQLQuery = new SQLQuery();
-            string details = mSQLQuery.getChildDailyDetails(selectedDay.SelectedDate.Value, GlobalVariables.globalChild.id);
-            dailyDetailsContent.Text = details;
-
             this.dailyDetailsPanel.Visibility = Visibility.Visible;
             this.profilePanel.Visibility = Visibility.Hidden;
         }
@@ -71,13 +72,62 @@ namespace Nursery_Management_System_WPF
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-            prevWindow.Show();  
         }
 
         private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedDay.SelectedDate != null)
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                string details = mSQLQuery.getChildDailyDetails(selectedDay.SelectedDate.Value, GlobalVariables.globalChild.id);
+                dailyDetailsContent.Text = details;
+
+            }
+        }
+
+        private void sendFeedback_Click(object sender, RoutedEventArgs e)
+        {
+            if(selectedDay.SelectedDate != null)
+            {
+                SQLQuery mSQLQuery = new SQLQuery();
+                mSQLQuery.insertDailyChildDetails(selectedDay.SelectedDate.Value, dailyDetailsContent.Text , (int)GlobalVariables.globalChild.id);
+            }
+        }
+
+        private void editProfileButton_Click(object sender, RoutedEventArgs e)
+        {
+            SQLQuery mSQLQuery = new SQLQuery();
+            if (childName.Text.Length >= 2 && DOBpicker.SelectedDate != null)
+            {
+                string gender;
+                if (female.IsChecked == true)
+                    gender = "Female";
+                else
+                    gender = "Male";
+                
+                GlobalVariables.globalChild.DOB = DOBpicker.SelectedDate.Value;
+                GlobalVariables.globalChild.firstName = childName.Text;
+                GlobalVariables.globalChild.lastName = GlobalVariables.globalParent.firstName;
+                GlobalVariables.globalChild.gender = gender;
+
+
+                mSQLQuery.updateChildData(GlobalVariables.globalChild);
+                MessageBox.Show("Updated", "Updated successfully ", MessageBoxButton.OK, MessageBoxImage.None);
+            }
+            else if (childName.Text.Length < 2)
+            {
+                MessageBox.Show("Please Enter at least 2 letter", "Invaild Child Name", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                MessageBox.Show("Please enter the Date of Birth", "Missing DOB", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
     }
 }

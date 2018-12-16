@@ -70,14 +70,13 @@ namespace Nursery_Management_System_WPF
 
         private void editDatabase_Click(object sender, RoutedEventArgs e)
         {
-            foreach (RowTemplate rt in childRow)
-                children.Children.Remove(rt);
+            staffs1.Children.Clear();
+            parents1.Children.Clear();
+            children1.Children.Clear();
 
-            foreach (RowTemplate rt in parentRow)
-                parents.Children.Remove(rt);
-
-            foreach (RowTemplate rt in staffRow)
-                staffs.Children.Remove(rt);
+            childRow.Clear();
+            staffRow.Clear();
+            parentRow.Clear();
 
             SQLQuery mSQLQuery = new SQLQuery();
 
@@ -123,22 +122,23 @@ namespace Nursery_Management_System_WPF
         }
 
         private void pendingRequests_Click(object sender, RoutedEventArgs e)
-        {
-            foreach (RowTemplate rt in childRow)
-                children.Children.Remove(rt);
+        { 
+            staffs.Children.Clear();
+            parents.Children.Clear();
+            children.Children.Clear();
 
-            foreach (RowTemplate rt in parentRow)
-                parents.Children.Remove(rt);
-
-            foreach (RowTemplate rt in staffRow)
-                staffs.Children.Remove(rt);
+            childRow.Clear();
+            parentRow.Clear();
+            staffRow.Clear();
 
             SQLQuery mSQLQuery = new SQLQuery();
             
             childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
             parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getPendingParent());
             staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getPendingStaff());
-            
+
+            MessageBox.Show(Convert.ToString(staffList.Count));
+
             LinkedList<Child> notPending = new LinkedList<Child>();
             foreach(Child c in childList)
             {
@@ -157,9 +157,9 @@ namespace Nursery_Management_System_WPF
             showPendingChildren(children);
             showPendingParent(parents);
 
-            pendingRequestsPanel.Visibility = Visibility.Visible;
-            profilePanel.Visibility = Visibility.Hidden;
-            AdminFeedback.Visibility = Visibility.Hidden;
+            this.pendingRequestsPanel.Visibility = Visibility.Visible;
+            this.profilePanel.Visibility = Visibility.Hidden;
+            this.AdminFeedback.Visibility = Visibility.Hidden;
             this.editDatabasePanel.Visibility = Visibility.Hidden;
         }
 

@@ -247,24 +247,6 @@
                                     <Label x:Name="roomName" Content="Room ###" HorizontalAlignment="Left" Margin="70,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
                                     <Label x:Name="childCount" Content="## Children" HorizontalAlignment="Left" Margin="464,40,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" FontSize="20" FontFamily="Code Bold"/>
                                 </Grid>
-                                <Grid x:Name="staffs2" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto" Margin="0,0,-17.4,0.4">
-
-                                    <Grid x:Name="staffGrid2" Visibility="Hidden" HorizontalAlignment="Left" Height="120" Margin="10,10,0,0" VerticalAlignment="Top" Width="750">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="34*"/>
-                                            <ColumnDefinition Width="717*"/>
-                                        </Grid.ColumnDefinitions>
-
-                                        <Ellipse x:Name="staffProfileImage2" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2" Grid.Column="1">
-                                            <Ellipse.Fill>
-                                                <ImageBrush ImageSource="images/256.png"/>
-                                            </Ellipse.Fill>
-                                        </Ellipse>
-                                        <Label x:Name="staffName2" Content="Staff Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" Grid.Column="1"/>
-                                        <Button x:Name="acceptButton6" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
-                                        <Button x:Name="declineButton6" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="exitButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30" Grid.Column="1"/>
-                                    </Grid>
-                                </Grid>
                             </Grid>
                         </ScrollViewer>
                     </TabItem>

@@ -93,19 +93,38 @@ namespace Nursery_Management_System_WPF
         {
             if(previousForm == 0)
             {
-                childWindow cw = new childWindow();
+                childWindow cw = new childWindow(pWindow);
+                cw.dailyDetails.IsReadOnly = true;
                 GlobalVariables.globalChild = mChild;
-                cw.Show();
+                cw.sendFeedback.Visibility = Visibility.Hidden;
+                cw.roomID.IsEnabled = false;
+                cw.editProfileButton.Visibility = Visibility.Visible;
+                cw.showFeedback.Visibility = Visibility.Visible;
+                cw.fillProfile();
+                cw.ShowDialog();
+            }
+            else if(previousForm == 1)
+            {
+                childWindow cw = new childWindow(pWindow);
+                cw.roomID.IsReadOnly = true;
+                cw.childName.IsReadOnly = true;
+                cw.DOBpicker.IsEnabled = false;
+                cw.editProfileButton.Visibility = Visibility.Hidden;
+                cw.female.IsEnabled = false;
+                cw.male.IsEnabled = false;
+                cw.showFeedback.Visibility = Visibility.Hidden;
+                GlobalVariables.globalChild = mChild;
+                cw.fillProfile();
+                cw.ShowDialog();
             }
             else if(previousForm == 2)
             {
                 if(idx == 0) // Holding child
                 {
                     childSignUp window = new childSignUp();
-
                     //fill child data here
 
-                    window.Show();
+                    window.ShowDialog();
                 }
                 else if(idx == 1) // Holding Parent
                 {
@@ -113,7 +132,7 @@ namespace Nursery_Management_System_WPF
 
                     //fill parent data here
 
-                    window.Show();
+                    window.ShowDialog();
                 }
                 else if(idx == 2) //Holding Staff
                 {
@@ -121,7 +140,35 @@ namespace Nursery_Management_System_WPF
 
                     //fill staff data here
 
-                    window.Show();
+                    window.ShowDialog();
+                }
+            }
+            else if(previousForm == 3)
+            {
+                //disable all texts and buttons
+
+                if (idx == 0) // Holding child
+                {
+                    childSignUp window = new childSignUp();
+                    //fill child data here
+
+                    window.ShowDialog();
+                }
+                else if (idx == 1) // Holding Parent
+                {
+                    parentSignUp window = new parentSignUp();
+
+                    //fill parent data here
+
+                    window.ShowDialog();
+                }
+                else if (idx == 2) //Holding Staff
+                {
+                    staffSignUp window = new staffSignUp();
+
+                    //fill staff data here
+
+                    window.ShowDialog();
                 }
             }
         }
