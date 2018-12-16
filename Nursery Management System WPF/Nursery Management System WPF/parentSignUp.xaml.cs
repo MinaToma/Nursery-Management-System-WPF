@@ -178,19 +178,25 @@ namespace Nursery_Management_System_WPF
 
         public void fillPdata1()
         {
+            addChildButton.Visibility = Visibility.Hidden;
+            addChild_elipse_.Visibility = Visibility.Hidden;
+            childrenListView.Visibility = Visibility.Hidden;
+            signUpButton.Visibility = Visibility.Hidden;
+            ellipse_sign.Visibility = Visibility.Hidden;
+            OKButton.Visibility = Visibility.Visible;
+            
             firstName.Text = GlobalVariables.globalParent.firstName;
             lastName.Text = GlobalVariables.globalParent.lastName;
             email.Text = GlobalVariables.globalParent.email;
             ID.Text = GlobalVariables.globalParent.id.ToString();
             phoneNumber.Text = GlobalVariables.globalParent.phoneNumber;
             address.Text = GlobalVariables.globalParent.address;
-
-            signUpButton.Visibility = Visibility.Hidden;
             SQLQuery mSqlquery = new SQLQuery();
             DataTable userAndPass = mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalParent.id), "Parent");
             username.Text = (userAndPass.Rows[0]["userName"].ToString());
             password.Password = userAndPass.Rows[0]["userPassword"].ToString();
             creditCard.Text = GlobalVariables.globalParent.creditCard;
+
         }
 
         public void disabledParent_info1()
@@ -203,14 +209,35 @@ namespace Nursery_Management_System_WPF
             address.IsEnabled = false;
 
             username.IsEnabled = false;
+            
             password.IsEnabled = false;
             creditCard.IsEnabled = false;
         }
-
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            SQLQuery mSqlQuery = new SQLQuery();
+
+            if(checkEnteredData())
+            {
+
+                GlobalVariables.globalParent.firstName = firstName.Text;
+                GlobalVariables.globalParent.lastName = lastName.Text;
+                GlobalVariables.globalParent.email = email.Text;
+                GlobalVariables.globalParent.id = Convert.ToInt64(ID.Text);
+                GlobalVariables.globalParent.phoneNumber = phoneNumber.Text;
+                GlobalVariables.globalParent.address = address.Text;
+
+                mSqlQuery.updateParentData(GlobalVariables.globalParent);
+                mSqlQuery.updateUsername(GlobalVariables.globalParent.id, "Parent", username.Text, password.Password);
+                MessageBox.Show("Updated", "Successfully Updated", MessageBoxButton.OK);
+            }
+            else
+                MessageBox.Show("Check your data", "Update failed", MessageBoxButton.OK , MessageBoxImage.Error);
+
 
         }
+
+
     }
 
 }

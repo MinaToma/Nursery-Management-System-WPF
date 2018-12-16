@@ -38,7 +38,7 @@
 
         </Grid>
         <Grid x:Name="viewPanel" HorizontalAlignment="Left" Height="560" Margin="229,40,0,0" VerticalAlignment="Top" Width="800">
-            <Grid x:Name="profilePanel" Visibility="Visible" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Margin="10,-10,-10,0">
+            <Grid x:Name="profilePanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Margin="10,-10,-10,0">
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
@@ -64,28 +64,24 @@
                     </Grid>
 
                 </GroupBox>
-                <ComboBox x:Name="featuresComboBox" TabIndex="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Margin="365,450,0,0" Height="22" SelectionChanged="featuresComboBox_SelectionChanged">
-                    <CheckBox x:Name="checkBox" Content="CheckBox"/>
-
-                </ComboBox>
             </Grid>
-            <Grid x:Name="dailyDetailsPanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
+            <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>
-                <Image x:Name="dailyDetailsCard" Margin="25,95,40,39" Source="images/daily details_2@4x.png" Stretch="Fill"/>
-                <Ellipse x:Name="profileImage_Copy" HorizontalAlignment="Left" Height="86" Margin="59,125,0,0" VerticalAlignment="Top" Width="86" StrokeThickness="2">
+                <Image x:Name="dailyDetailsCard" Margin="32,71,30,111" Source="images/daily details_2@4x.png" Stretch="Fill"/>
+                <Ellipse x:Name="profileImage1" HorizontalAlignment="Left" Height="76" Margin="66,98,0,0" VerticalAlignment="Top" Width="86" StrokeThickness="2">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="images/128.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <RichTextBox x:Name="dailyDetails" HorizontalAlignment="Left" Height="225" Margin="63,242,0,0" VerticalAlignment="Top" Width="663" FontFamily="Consolas" FontSize="20" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0">
+                <RichTextBox x:Name="dailyDetails" HorizontalAlignment="Left" Height="201" Margin="70,201,0,0" VerticalAlignment="Top" Width="666" FontFamily="Consolas" FontSize="20" Background="{x:Null}" BorderBrush="{x:Null}" BorderThickness="0">
                     <FlowDocument>
                         <Paragraph>
                             <Run x:Name ="dailyDetailsContent" Text="Describe daily details of the child..."/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
-                <Button x:Name="showFeedback" Content="Show" HorizontalAlignment="Left" Margin="462,27,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-                <Button x:Name="sendFeedback" Content="send Feedback" HorizontalAlignment="Left" Margin="462,27,0,0" VerticalAlignment="Top" Width="75" RenderTransformOrigin="1.286,-2.385" Click="sendFeedback_Click"/>
+                <Button x:Name="showDailyDetails" Content="Show" HorizontalAlignment="Left" Margin="610,481,0,0" VerticalAlignment="Top" Width="160" Click="button_Click" Height="40" FontFamily="Comfortaa" FontSize="16" Background="#FFE8E4DC" FontWeight="Bold"/>
+                <Button x:Name="sendDailyDetails" Content="Send" HorizontalAlignment="Left" Margin="610,481,0,0" VerticalAlignment="Top" Width="160" RenderTransformOrigin="1.286,-2.385" Click="sendFeedback_Click" Height="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Comfortaa" FontSize="16" Background="#FFE8E4DC" FontWeight="Bold"/>
             </Grid>
         </Grid>
 

@@ -43,7 +43,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Ellipse HorizontalAlignment="Left" Height="60" Margin="682,470,0,0" Stroke="Black" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5">
+        <Ellipse x:Name="addChild_elipse_" HorizontalAlignment="Left" Height="60" Margin="682,470,0,0" Stroke="Black" VerticalAlignment="Top" Width="60" RenderTransformOrigin="0.5,0.5">
             <Ellipse.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -63,7 +63,7 @@
                 </ControlTemplate>
             </Button.Template>
         </Button>
-        <Ellipse HorizontalAlignment="Left" Height="60" Stroke="Black" VerticalAlignment="Top" Width="60" Margin="443,470,0,0">
+        <Ellipse x:Name="ellipse_sign" HorizontalAlignment="Left" Height="60" Stroke="Black" VerticalAlignment="Top" Width="60" Margin="443,470,0,0">
             <Ellipse.Fill>
                 <ImageBrush Stretch="None"/>
             </Ellipse.Fill>

@@ -25,24 +25,7 @@ namespace Nursery_Management_System_WPF
         {
             InitializeComponent();
 
-            firstName.LostFocus += FirstName_LostFocus;
-            firstName.GotFocus += FirstName_GotFocus;
-
-            lastName.LostFocus += LastName_LostFocus;
-            lastName.GotFocus += LastName_GotFocus;
-
-            ID.LostFocus += ID_LostFocus;
-            ID.GotFocus += ID_GotFocus;
-
-            email.LostFocus += Email_LostFocus;
-            email.GotFocus += Email_GotFocus;
-
-            phoneNumber.LostFocus += PhoneNumber_LostFocus;
-            phoneNumber.GotFocus += PhoneNumber_GotFocus;
-
-            username.LostFocus += Username_LostFocus;
-            username.GotFocus += Username_GotFocus;
-
+            
         }
         
         private void Username_GotFocus(object sender, RoutedEventArgs e)
@@ -224,12 +207,15 @@ namespace Nursery_Management_System_WPF
             email.Text = GlobalVariables.globalStaff.email;
             phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
             ID.Text = (GlobalVariables.globalStaff.id).ToString();
-
+            
             signUpButton.Visibility = Visibility.Hidden;
+            signup_elipse.Visibility = Visibility.Hidden;
 
         }
         public void disabledStaff()
         {
+            signUpButton.Visibility = Visibility.Hidden;
+            signup_elipse.Visibility = Visibility.Hidden;
             firstName.IsEnabled = false;
             lastName.IsEnabled = false;
             ID.IsEnabled = false;
@@ -237,6 +223,7 @@ namespace Nursery_Management_System_WPF
             email.IsEnabled = false;
             password.IsEnabled = false;
             username.IsEnabled = false;
+            qualifications.IsEnabled = false;
 
         }
 
@@ -266,9 +253,40 @@ namespace Nursery_Management_System_WPF
                 this.DragMove();
         }
 
+        public bool checkSalaryValue()
+        {
+            bool ans = true;
+            String salaryString = salary.Text;
+            foreach (char i in salaryString)
+                if (i > '9' || i < '0')
+                    ans = false;
+
+            if (salaryString.Length == 0 || !ans)
+                return false;
+            return true;
+        }
+
+        private bool checkSalary()
+        {
+            if (!checkSalaryValue())
+            {
+                MessageBox.Show("Salary Wrong Format", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            else
+            {
+                GlobalVariables.globalStaff.salary = Convert.ToDouble(salary.Text);
+                return true;
+            }
+        }
+
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SQLQuery mSqlQuery = new SQLQuery();
+            if (checkSalary())
+            {
+                mSqlQuery.updateStaffData(GlobalVariables.globalStaff);
+            }
         }
     }
 }
