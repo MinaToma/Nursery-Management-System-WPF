@@ -136,9 +136,7 @@ namespace Nursery_Management_System_WPF
             childList= mSQLQuery.childToLinkedList(mSQLQuery.getPendingChild());
             parentList = mSQLQuery.parentToLinkedList(mSQLQuery.getPendingParent());
             staffList = mSQLQuery.staffToLinkedList(mSQLQuery.getPendingStaff());
-
-            MessageBox.Show(Convert.ToString(staffList.Count));
-
+            
             LinkedList<Child> notPending = new LinkedList<Child>();
             foreach(Child c in childList)
             {
