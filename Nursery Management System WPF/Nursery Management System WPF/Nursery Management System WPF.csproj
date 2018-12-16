@@ -93,6 +93,7 @@
     <Compile Include="Classes\Admin.cs" />
     <Compile Include="Classes\Child.cs" />
     <Compile Include="Classes\connectionString.cs" />
+    <Compile Include="Classes\Features.cs" />
     <Compile Include="Classes\GlobalVariables.cs" />
     <Compile Include="Classes\Human.cs" />
     <Compile Include="Classes\ImageOperation.cs" />

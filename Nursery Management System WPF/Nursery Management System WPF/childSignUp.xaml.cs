@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.Data;
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
@@ -19,9 +19,28 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class childSignUp : Window
     {
+
+        SQLQuery sQLQuery = new SQLQuery();
+        DataTable allFeatures;
         public childSignUp()
         {
             InitializeComponent();
+            addFeaturesToList();
+
+        }
+        public void addFeaturesToList()
+        {
+            List<Features> list = new List<Features>();
+            allFeatures = sQLQuery.allFeatures();
+            foreach (DataRow dr in allFeatures.Rows)
+            {
+                Features ft = new Features(dr[1].ToString());
+                
+                list.Add(ft);
+            }
+
+            childFeaturesList.ItemsSource = list;
+            
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)

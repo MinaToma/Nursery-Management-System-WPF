@@ -642,6 +642,25 @@ namespace Nursery_Management_System_WPF
             return;
         }
 
+        /****************  RETRIEVING Features DATA FROM DATABASE  ****************/
+        public DataTable getFeatures(string query)
+        {
+            SQL sql = new SQL();
+
+            DataTable dt = new DataTable();
+            dt = sql.retrieveQuery(query);
+
+            return dt;
+
+        }
+
+        public DataTable allFeatures()
+        {
+            string query = "select * from Feature";
+            return getFeatures(query);
+        }
+
+
 
         /****************  UPDATING DATA FROM DATABASE  ****************/
 
