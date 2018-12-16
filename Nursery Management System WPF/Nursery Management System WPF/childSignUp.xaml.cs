@@ -74,8 +74,6 @@ namespace Nursery_Management_System_WPF
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-            parentSignUp parent = new parentSignUp();
-            parent.Show();
             this.Close();
         }
 
