@@ -218,8 +218,8 @@ namespace Nursery_Management_System_WPF
 
             DataTable dt = mSQLQuery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalStaff.id), "Staff");
 
-            username.Text = dt.Rows[0]["userName"].ToString();
-            password.Password = dt.Rows[0]["userPassword"].ToString();
+            //username.Text = dt.Rows[0]["userName"].ToString();
+            //  password.Password = dt.Rows[0]["userPassword"].ToString();
 
             email.Text = GlobalVariables.globalStaff.email;
             phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
@@ -230,6 +230,8 @@ namespace Nursery_Management_System_WPF
         }
         public void disabledStaff()
         {
+            signUpButton.Visibility = Visibility.Hidden;
+            signup_elipse.Visibility = Visibility.Hidden;
             firstName.IsEnabled = false;
             lastName.IsEnabled = false;
             ID.IsEnabled = false;
@@ -237,6 +239,7 @@ namespace Nursery_Management_System_WPF
             email.IsEnabled = false;
             password.IsEnabled = false;
             username.IsEnabled = false;
+            qualifications.IsEnabled = false;
 
         }
 
@@ -266,9 +269,40 @@ namespace Nursery_Management_System_WPF
                 this.DragMove();
         }
 
+        public bool checkSalaryValue()
+        {
+            bool ans = true;
+            string salaryString = salary.Text;
+            foreach (char i in salaryString)
+                if (i > '9' || i < '0')
+                    ans = false;
+
+            if (Convert.ToDecimal(salary.Text) == 0 || salary.Text == null || !ans)
+                return false;
+            return true;
+        }
+
+        private bool checkSalary()
+        {
+            if (!checkSalaryValue())
+            {
+                MessageBox.Show("Salary Wrong Format", "Error", MessageBoxButton.OK, MessageBoxImage.Information);
+                return false;
+            }
+            else
+            {
+                GlobalVariables.globalStaff.salary = Convert.ToDouble(salary.Text);
+                return true;
+            }
+        }
+
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SQLQuery mSqlQuery = new SQLQuery();
+            if (checkSalary())
+            {
+                mSqlQuery.updateStaffData(GlobalVariables.globalStaff);
+            }
         }
     }
 }

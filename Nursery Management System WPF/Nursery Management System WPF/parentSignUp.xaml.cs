@@ -178,14 +178,17 @@ namespace Nursery_Management_System_WPF
 
         public void fillPdata1()
         {
+            addChildButton.Visibility = Visibility.Hidden;
+            addChild_elipse_.Visibility = Visibility.Hidden;
+            childrenListView.Visibility = Visibility.Hidden;
+            signUpButton.Visibility = Visibility.Hidden;
+
             firstName.Text = GlobalVariables.globalParent.firstName;
             lastName.Text = GlobalVariables.globalParent.lastName;
             email.Text = GlobalVariables.globalParent.email;
             ID.Text = GlobalVariables.globalParent.id.ToString();
             phoneNumber.Text = GlobalVariables.globalParent.phoneNumber;
             address.Text = GlobalVariables.globalParent.address;
-
-            signUpButton.Visibility = Visibility.Hidden;
             SQLQuery mSqlquery = new SQLQuery();
             DataTable userAndPass = mSqlquery.selectUsernameByIDAndType(Convert.ToInt64(GlobalVariables.globalParent.id), "Parent");
             username.Text = (userAndPass.Rows[0]["userName"].ToString());
@@ -206,11 +209,16 @@ namespace Nursery_Management_System_WPF
             password.IsEnabled = false;
             creditCard.IsEnabled = false;
         }
-
-        private void OKButton_Click(object sender, RoutedEventArgs e)
+        private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-
+            SQLQuery mSqlQuery = new SQLQuery();
+            mSqlQuery.updateParentData(GlobalVariables.globalParent);
+            this.Hide();
+            adminWindow awindow = new adminWindow();
+            awindow.Show();
         }
+
+     
     }
 
 }

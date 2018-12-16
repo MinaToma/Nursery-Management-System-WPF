@@ -222,19 +222,21 @@ namespace Nursery_Management_System_WPF
                     GlobalVariables.globalChild = mChild;
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
-
+                    window.OKButton.Visibility = Visibility.Visible;
 
                     //fill child data here
                     window.fillCdata();
-                    
+
                     window.ShowDialog();
                 }
                 else if (idx == 1) // Holding Parent
                 {
                     GlobalVariables.globalParent = mParent;
                     parentSignUp window = new parentSignUp();
+
                     //fill parent data here
                     window.fillPdata1();
+                    window.disabledParent_info1();
 
                     //fill parent data here
 
@@ -245,9 +247,11 @@ namespace Nursery_Management_System_WPF
                     GlobalVariables.globalStaff = mStaff;
                     staffSignUp window = new staffSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
+                    window.ID.IsEnabled = false;
+                    window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
                     window.fillSdata();
-
+                    window.disabledStaff();
                     //fill staff data here
 
                     window.ShowDialog();

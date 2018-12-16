@@ -102,7 +102,15 @@ namespace Nursery_Management_System_WPF
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            SQLQuery mSqlQuery = new SQLQuery();
+            if (roomID.Text != null || roomID.Text != " room ID ")
+            {
 
+
+                GlobalVariables.globalChild.roomID = Convert.ToInt32(roomID.Text);
+                mSqlQuery.updateChildData(GlobalVariables.globalChild);
+                MessageBox.Show("Data Updated Successflly", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
+
+            }
         }
-    }
 }
