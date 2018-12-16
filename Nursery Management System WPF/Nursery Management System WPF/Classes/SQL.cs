@@ -83,7 +83,7 @@ namespace Nursery_Management_System_WPF
            /* try
             {*/
                 mConnection.Open();
-                mCommand.ExecuteNonQuery();
+                    mCommand.ExecuteNonQuery();
             /*}
             catch
             {
