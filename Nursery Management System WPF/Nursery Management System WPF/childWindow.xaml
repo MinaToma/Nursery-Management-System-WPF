@@ -64,6 +64,10 @@
                     </Grid>
 
                 </GroupBox>
+                <ComboBox x:Name="featuresComboBox" TabIndex="5" HorizontalAlignment="Left" VerticalAlignment="Top" Width="280" Margin="365,450,0,0" Height="22" SelectionChanged="featuresComboBox_SelectionChanged">
+                    <CheckBox x:Name="checkBox" Content="CheckBox"/>
+
+                </ComboBox>
             </Grid>
             <Grid x:Name="dailyDetailsPanel" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>

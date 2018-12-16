@@ -101,5 +101,10 @@ namespace Nursery_Management_System_WPF
             DOBpicker.IsEnabled = false;
 
         }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
