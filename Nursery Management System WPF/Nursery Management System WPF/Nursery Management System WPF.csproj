@@ -188,6 +188,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="images\images-20181214T112951Z-001.zip" />
+    <None Include="images\photothumb.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -284,6 +285,11 @@
     <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\delete.png" />
+    <Resource Include="images\features.png" />
+    <Resource Include="images\next icon 1600px.png" />
+    <Content Include="images\pay icon.svg" />
+    <Resource Include="images\room.png" />
     <Resource Include="images\Error.png" />
     <Resource Include="images\delete 70px.png" />
     <Resource Include="images\next icon 50px.png" />
