@@ -129,5 +129,10 @@ namespace Nursery_Management_System_WPF
                 MessageBox.Show("Please enter the Date of Birth", "Missing DOB", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        private void featuresComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

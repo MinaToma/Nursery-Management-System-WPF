@@ -28,12 +28,14 @@
 
         </Grid>
         <Grid x:Name="sidePanel" HorizontalAlignment="Left" Height="600" VerticalAlignment="Top" Width="224" Background="#FFE8E4DC">
-            <Button x:Name="parentProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,245,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentProfileButton_Click"/>
-            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,255,145,300"/>
-            <Button x:Name="childrenButton" Content="Children" HorizontalAlignment="Left" Margin="0,315,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="childrenButton_Click"/>
-            <Image x:Name="childrenIcon" Height="45" Width="45" Source="images/children 95px.png" Margin="34,330,145,225"/>
-            <Button x:Name="parentFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,375,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
-            <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,385,145,170"/>
+            <Button x:Name="parentProfileButton" Content="Profile" HorizontalAlignment="Left" Margin="0,177,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentProfileButton_Click"/>
+            <Image x:Name="profileIcon" Height="45" Width="45" Source="images/128.png" Margin="34,187,145,368"/>
+            <Button x:Name="childrenButton" Content="Children" HorizontalAlignment="Left" Margin="0,247,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="childrenButton_Click"/>
+            <Image x:Name="childrenIcon" Height="45" Width="45" Source="images/children 95px.png" Margin="34,262,145,293"/>
+            <Button x:Name="parentFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,307,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
+            <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,317,145,238"/>
+            <Button x:Name="payFeesButton" Content="Pay Fees" HorizontalAlignment="Left" Margin="0,377,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
+            <Image x:Name="payFeesIcon" Height="45" Width="45" Source="images/pay icon.png" Margin="34,389,145,166"/>
             <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click" />
             <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,461,150,104"/>
             <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="0,30,0,0" TextWrapping="Wrap" Text="Nursery Management System" VerticalAlignment="Top" Width="224" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="26.667" Height="110" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136"/>

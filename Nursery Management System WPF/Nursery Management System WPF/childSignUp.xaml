@@ -26,7 +26,7 @@
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
-        <TextBox x:Name="childName" Text="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="childName" Tag="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
         <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="206,384,0,0" VerticalAlignment="Top" Width="136" TabIndex="3" FontFamily="Comfortaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="24"/>
         <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="60,384,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Height="25" Width="88"/>
         <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
@@ -48,5 +48,6 @@
             <CheckBox x:Name="checkBox" Content="CheckBox"/>
 
         </ComboBox>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="270,553,0,0" VerticalAlignment="Top" Width="100" Click="OKButton_Click" Height="30" FontFamily="Code Bold" FontSize="10" Background="#FFFFB300" Foreground="Black" BorderBrush="{x:Null}" Visibility="Hidden"/>
     </Grid>
 </Window>

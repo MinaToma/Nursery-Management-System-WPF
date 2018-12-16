@@ -206,6 +206,11 @@ namespace Nursery_Management_System_WPF
             password.IsEnabled = false;
             creditCard.IsEnabled = false;
         }
+
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
 }

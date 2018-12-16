@@ -73,6 +73,7 @@
                 <ImageBrush />
             </Button.Background>
         </Button>
+        <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="665,532,0,0" VerticalAlignment="Top" Width="100" Click="OKButton_Click" Height="30" FontFamily="Code Bold" FontSize="10" Background="#FF173445" Foreground="#FFD4D4D4" Visibility="Hidden"/>
         <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="800" Background="#FF082635" MouseDown="titleBar_MouseDown" MaxWidth="800">
             <Button x:Name="exitButton" Content="x" Margin="770,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="745,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
