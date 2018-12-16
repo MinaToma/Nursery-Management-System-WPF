@@ -45,7 +45,7 @@
 
         </GroupBox>
         <Button x:Name="OKButton" Content="OK" HorizontalAlignment="Left" Margin="270,553,0,0" VerticalAlignment="Top" Width="100" Click="OKButton_Click" Height="30" FontFamily="Code Bold" FontSize="10" Background="#FFFFB300" Foreground="Black" BorderBrush="{x:Null}" Visibility="Hidden"/>
-        <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"  Name="childFeaturesList"  Background="#FFEAC599" Height="100" Margin="61,448,0,0" VerticalAlignment="Top" Width="281">
+        <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   Name="childFeaturesList"  Background="#FFEAC599" Height="100" Margin="61,448,0,0" VerticalAlignment="Top" Width="281">
             <ListView.View>
                 <GridView>
 
@@ -53,7 +53,7 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <CheckBox IsChecked="False" />
+                                    <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ListViewItem},Path=IsSelected}" />
 
                                 </StackPanel>
                             </DataTemplate>

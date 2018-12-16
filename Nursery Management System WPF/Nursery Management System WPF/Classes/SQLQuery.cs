@@ -135,6 +135,20 @@ namespace Nursery_Management_System_WPF
 
             return;
         }
+        // child feature data
+        public void insertChildFeature(int childID, int featureID)
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("insertChildFeature");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@childID", childID);
+            mCommand.Parameters.AddWithValue("@featureID", featureID);
+           
+            mSQL.insertQuery(mCommand);
+
+            return;
+        }
 
         //staff data insertion
         public void insertStaffData(Staff staff, string department)
@@ -181,19 +195,8 @@ namespace Nursery_Management_System_WPF
             return;
         }
 
-        //insert child feature
-        public void insertChildFeature(int childID, int featureID)
-        {
-            SQL mSQL = new SQL();
-            SqlCommand mCommand = new SqlCommand("insertChildFeature");
-            mCommand.CommandType = CommandType.StoredProcedure;
-
-            mCommand.Parameters.AddWithValue("@childID", childID);
-            mCommand.Parameters.AddWithValue("@featureID", featureID);
-
-            mSQL.insertQuery(mCommand);
-            return;
-        }
+        
+        
 
         //insert feature
         public void insertFeature(string featureName)
@@ -312,6 +315,18 @@ namespace Nursery_Management_System_WPF
         {
             string query = "select * from Child";
             return getChild(query);
+        }
+        //uses specific query to get id for children from database
+        public int getIDForChild(string firstName, string ID)
+        {
+            string query = "select childID from Child where childName = "+firstName+" and parentID = " + ID;
+            DataTable dt = getChild(query);
+            int x=0;
+            foreach(DataRow dr in dt.Rows)
+            {
+                x=Int32.Parse(dr[0].ToString());
+            }
+            return x;
         }
 
         //uses specific query to select child by ID from database
@@ -806,10 +821,10 @@ namespace Nursery_Management_System_WPF
             mSql.deleteQuery(query);
         }
 
-        public void deleteChildFeature(int featureID)
+        public void deleteChildFeature(int childID)
         {
             SQL mSql = new SQL();
-            string query = "delete from Child_Feature where featureID = " +Convert. ToString(featureID);
+            string query = "delete from Child_Feature where childID = " +Convert. ToString(childID);
             mSql.deleteQuery(query);
         }
 

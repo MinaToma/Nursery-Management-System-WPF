@@ -10,10 +10,12 @@ namespace Nursery_Management_System_WPF
     {
         public string featureName { get; set; }
         
+        public bool selected { get; set; }
+
         public Features(string _featureName )
         {
             featureName = _featureName;
-
+            selected = false;
             
         }
 
