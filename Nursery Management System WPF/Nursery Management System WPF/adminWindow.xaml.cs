@@ -31,7 +31,7 @@ namespace Nursery_Management_System_WPF
         public LinkedList<RowTemplate> staffRow;
         public LinkedList<RowTemplate> parentRow;
         public LinkedList<RowTemplate> roomRow;
-
+        string currentUserName;
         public adminWindow()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace Nursery_Management_System_WPF
             email.Text = GlobalVariables.globalAdmin.email;
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
-
+            currentUserName = username.Text;
             roomPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Visible;
             AdminFeedback.Visibility = Visibility.Hidden;
@@ -430,7 +430,7 @@ namespace Nursery_Management_System_WPF
                 phoneError.Visibility = Visibility.Hidden;
             }
 
-            if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
+            if ((mSql.checkForUsername(username.Text) && currentUserName != username.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your UserName !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
