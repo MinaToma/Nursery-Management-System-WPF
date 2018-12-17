@@ -64,7 +64,7 @@
                     </Grid>
 
                 </GroupBox>
-                <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   x:Name="childFeaturesList"  Background="White" Height="100" Margin="364,450,0,0" VerticalAlignment="Top" Width="281">
+                <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   Name="childFeaturesList"  Background="White" Height="100" Margin="364,450,0,0" VerticalAlignment="Top" Width="281">
                     <ListView.View>
                         <GridView>
 
@@ -81,6 +81,13 @@
                             <GridViewColumn Header="Feature" Width="281" DisplayMemberBinding="{Binding featureName}"  />
 
 
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <ListView HorizontalAlignment="Left" Height="100" Margin="45,450,0,0" VerticalAlignment="Top" Width="184" Name="selcetedFeatures" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Current Feature" Width="184" DisplayMemberBinding="{Binding featureName}"/>
                         </GridView>
                     </ListView.View>
                 </ListView>
