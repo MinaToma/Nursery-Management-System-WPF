@@ -182,7 +182,7 @@ namespace Nursery_Management_System_WPF
                     GlobalVariables.globalChild = mChild;
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
-                    
+                    window.childFeaturesList.IsEnabled = false;
                     
                     //fill child data here
                     window.fillCdata();
@@ -196,6 +196,7 @@ namespace Nursery_Management_System_WPF
                     parentSignUp window = new parentSignUp();
                     //fill parent data here
                     window.fillPdata1();
+                    window.OKButton.Visibility = Visibility.Hidden;
                     window.disabledParent_info1();
                     
                     //fill parent data here

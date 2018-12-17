@@ -44,7 +44,7 @@ namespace Nursery_Management_System_WPF
             }
             else if (type.Equals("Admin"))
             {
-                Int64 id = Convert.ToInt64(dt.Rows[0]["staffID"].ToString());
+                Int64 id = Convert.ToInt64(dt.Rows[0]["adminID"].ToString());
                 GlobalVariables.globalAdmin = adminToLinkedList(getAdminByID(id)).ElementAt(0);
                 GlobalVariables.globalType = "Admin";
             }
@@ -104,9 +104,13 @@ namespace Nursery_Management_System_WPF
         {
             SQL mSQL = new SQL();
             string query;
-            if (type == "Staff" || type == "Admin")
+            if (type == "Staff")
             {
                 query = "select * from User_Password where staffID  =  " + Convert.ToString(id);
+            }
+            else if(type == "Admin")
+            {
+                query = "select * from User_Password where adminID  =  " + Convert.ToString(id);
             }
             else
             {
@@ -278,9 +282,18 @@ namespace Nursery_Management_System_WPF
             {
                 mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@parentID", id);
+
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
+            }
+            else if(type == "Admin")
+            {
+                mCommand.Parameters.AddWithValue("@adminID", id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@parentID", id);
             }
             else
             {
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@staffID", id);
                 mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
             }
@@ -835,13 +848,21 @@ namespace Nursery_Management_System_WPF
             SqlCommand mCommand = new SqlCommand("updateUsername");
             mCommand.CommandType = CommandType.StoredProcedure;
 
-            if (type == "Staff" || type == "Admin")
+            if (type == "Staff")
             {
                 mCommand.Parameters.AddWithValue("@staffID", id);
+                mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
+            }
+            else if(type == "Admin")
+            {
+                mCommand.Parameters.AddWithValue("@adminID", id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
             }
             else
             {
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@parentID", id);
                 mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
             }
