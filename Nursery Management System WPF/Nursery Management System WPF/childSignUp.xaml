@@ -20,8 +20,8 @@
             <Button x:Name="backButton" Content="&lt;" Margin="10,10,370,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="Black" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="backButton_Click"/>
 
         </Grid>
-        <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="79,57,0,0" VerticalAlignment="Top" Width="252" Source="/images/Asset 1.png" OpacityMask="{x:Null}"/>
-        <Ellipse HorizontalAlignment="Left" Height="105" Margin="144,96,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
+        <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="79,57,0,0" VerticalAlignment="Top" Width="243" Source="/images/Asset 1.png" OpacityMask="{x:Null}"/>
+        <Ellipse HorizontalAlignment="Left" Name="childImage" Height="105" Margin="144,96,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
             <Ellipse.Fill>
                 <ImageBrush ImageSource="/images/128.png"/>
             </Ellipse.Fill>
@@ -67,5 +67,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button Content="Import Pic" Background="#FFEAC599" HorizontalAlignment="Left" Margin="322,154,0,0" VerticalAlignment="Top" Width="75" Click="import_Pic_Click"/>
     </Grid>
 </Window>

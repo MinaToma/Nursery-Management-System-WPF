@@ -324,7 +324,7 @@ namespace Nursery_Management_System_WPF
         //uses specific query to get id for children from database
         public int getIDForChild(string firstName, string ID)
         {
-            string query = "select childID from Child where childName = " + firstName + " and parentID = " + ID;
+            string query = "select childID from Child where childName = '" + firstName + "' and parentID = '" + ID +"'";
             DataTable dt = getChild(query);
             int x = 0;
             foreach (DataRow dr in dt.Rows)

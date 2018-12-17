@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Data;
+using System.IO;
+using Microsoft.Win32;
+
+
 namespace Nursery_Management_System_WPF
 {
     /// <summary>
@@ -22,11 +26,12 @@ namespace Nursery_Management_System_WPF
 
 
         Dictionary<string, int> FeatureToID = new Dictionary<string, int>();
+        bool mainPic=false;
         public childSignUp()
         {
             InitializeComponent();
             addFeaturesToList();
-
+            
         }
         public void addFeaturesToList()
         {
@@ -44,25 +49,30 @@ namespace Nursery_Management_System_WPF
 
             childFeaturesList.ItemsSource = list;
             childFeaturesList.SelectionMode = SelectionMode.Multiple;
+           
         }
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
 
             SQLQuery mSQLQuery = new SQLQuery();
-            if (childName.Text.Length >= 2 && DOBpicker.SelectedDate != null)
+            List<Features> featurs = new List<Features>();
+            featurs = checkedFeatures();
+            if (childName.Text.Length >= 2 && DOBpicker.SelectedDate != null && featurs.Count>0 && mainPic!=false)
             {
                 string gender;
                 if (female.IsChecked == true)
                     gender = "Female";
                 else
                     gender = "Male";
-
-                Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, null, 1);
-                mSQLQuery.insertChildData(child);
+               
+                    ImageOperation OP = new ImageOperation();
+                    Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, OP.ImageToBinary(profileHeader), 1);
+                    mSQLQuery.insertChildData(child);
+                
+                
                 int childID = mSQLQuery.getIDForChild(childName.Text, GlobalVariables.globalParent.id.ToString());
-                List<Features> featurs = new List<Features>();
-                featurs =checkedFeatures();
+                
                 foreach(var item in featurs)
                 {
                     mSQLQuery.insertChildFeature(childID, FeatureToID[item.featureName]);
@@ -72,6 +82,14 @@ namespace Nursery_Management_System_WPF
 
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
                 this.Close();
+            }
+            else if(featurs.Count==0)
+            {
+                MessageBox.Show("Please Enter atleast one feature", "Invaild Data", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else if(mainPic==false)
+            {
+                MessageBox.Show("Please Enter child image", "Invaild Data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else if (childName.Text.Length < 2)
             {
@@ -154,6 +172,22 @@ namespace Nursery_Management_System_WPF
                 MessageBox.Show("Data Updated Successflly", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
 
             }
+        }
+
+        private void import_Pic_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Title = "Select a picture";
+            op.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+              "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+              "Portable Network Graphic (*.png)|*.png";
+            if (op.ShowDialog() == true)
+            {
+                profileHeader.Source = new BitmapImage(new Uri(op.FileName));
+                mainPic = true;
+                childImage.Visibility = Visibility.Hidden;
+            }
+            
         }
     }
 }
