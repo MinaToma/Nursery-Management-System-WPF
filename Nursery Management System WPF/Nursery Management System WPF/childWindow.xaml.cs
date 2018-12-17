@@ -50,6 +50,7 @@ namespace Nursery_Management_System_WPF
             this.dailyDetailsPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Visible;
         }
+
         public void fillProfile()
         {
             childName.Text = GlobalVariables.globalChild.firstName;
