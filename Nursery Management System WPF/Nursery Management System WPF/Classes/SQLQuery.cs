@@ -429,6 +429,11 @@ namespace Nursery_Management_System_WPF
             string query = "select * from Child where childIsPending = 0";
             return getChild(query);
         }
+        public DataTable getChildFeaturesByID(string ID)
+        {
+            string query = "select featureID from Child_Feature where childID = '" + ID + "'";
+            return getChild(query);
+        }
 
         /****************  RETRIEVING PARENT DATA FROM DATABASE  ****************/
 

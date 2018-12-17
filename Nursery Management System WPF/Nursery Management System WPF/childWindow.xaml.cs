@@ -22,10 +22,13 @@ namespace Nursery_Management_System_WPF
     {
 
         Dictionary<string, int> FeatureToID = new Dictionary<string, int>();
+        Dictionary<int, int> IsChecked = new Dictionary<int, int>();
         Window prevWindow = null;
         public childWindow()
         {
             InitializeComponent();
+            
+            
         }
         public childWindow(Window prevWindow)
         {
@@ -46,7 +49,7 @@ namespace Nursery_Management_System_WPF
         private void childProfileButton_Click(object sender, RoutedEventArgs e)
         {
             fillProfile();
-            addFeaturesToList();
+            
             this.dailyDetailsPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Visible;
         }
@@ -55,7 +58,6 @@ namespace Nursery_Management_System_WPF
         {
             childName.Text = GlobalVariables.globalChild.firstName;
             DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
-
             addFeaturesToList();
             if (GlobalVariables.globalChild.gender == "Male")
             {
@@ -66,6 +68,8 @@ namespace Nursery_Management_System_WPF
                 female.IsChecked = true;
             }
             roomID.Text = Convert.ToString(GlobalVariables.globalChild.roomID);
+            getCheckedFeatures();
+            addFeaturesToList();
         }
 
         public List<Features> checkedFeatures()
@@ -119,6 +123,7 @@ namespace Nursery_Management_System_WPF
         {
             FeatureToID.Clear();
             List<Features> list = new List<Features>();
+            List<Features> list2 = new List<Features>();
             SQLQuery sQLQuery = new SQLQuery();
             DataTable allFeatures;
             allFeatures = sQLQuery.allFeatures();
@@ -126,13 +131,33 @@ namespace Nursery_Management_System_WPF
             {
                 Features ft = new Features(dr[1].ToString());
                 
-               FeatureToID.Add(dr[1].ToString(), Int32.Parse(dr[0].ToString()));
+                FeatureToID.Add(dr[1].ToString(), Int32.Parse(dr[0].ToString()));
                 list.Add(ft);
-            }
 
+                int id = Int32.Parse(dr[0].ToString());
+                
+                if (IsChecked.ContainsKey(id)==true)
+                {
+                    
+                    list2.Add(ft);
+                }
+            }
+            selcetedFeatures.ItemsSource = list2;
             childFeaturesList.ItemsSource = list;
             childFeaturesList.SelectionMode = SelectionMode.Multiple;
+            IsChecked.Clear();
 
+        }
+        private void getCheckedFeatures()
+        {
+            
+            SQLQuery sQLQuery = new SQLQuery();
+            DataTable dt =sQLQuery.getChildFeaturesByID(GlobalVariables.globalChild.id.ToString());
+            foreach(DataRow dr in dt.Rows)
+            {
+               
+                IsChecked.Add(Int32.Parse(dr[0].ToString()),1);
+            }
         }
 
         private void editProfileButton_Click(object sender, RoutedEventArgs e)
@@ -148,20 +173,20 @@ namespace Nursery_Management_System_WPF
                 else
                     gender = "Male";
 
-                List<Features> featurs = new List<Features>();
-
-                featurs = checkedFeatures();
-                foreach (var item in featurs)
-                {
-                    mSQLQuery.insertChildFeature((int)GlobalVariables.globalChild.id , FeatureToID[item.featureName]);
-                }
-
+                
+                mSQLQuery.deleteChildFeature((int)GlobalVariables.globalChild.id);
                 GlobalVariables.globalChild.DOB = DOBpicker.SelectedDate.Value;
                 GlobalVariables.globalChild.firstName = childName.Text;
                 GlobalVariables.globalChild.lastName = GlobalVariables.globalParent.firstName;
                 GlobalVariables.globalChild.gender = gender;
 
+                List<Features> featurs = new List<Features>();
 
+                featurs = checkedFeatures();
+                foreach (var item in featurs)
+                {
+                    mSQLQuery.insertChildFeature((int)GlobalVariables.globalChild.id, FeatureToID[item.featureName]);
+                }
                 mSQLQuery.updateChildData(GlobalVariables.globalChild);
                 MessageBox.Show("Updated", "Updated successfully ", MessageBoxButton.OK, MessageBoxImage.None);
             }
