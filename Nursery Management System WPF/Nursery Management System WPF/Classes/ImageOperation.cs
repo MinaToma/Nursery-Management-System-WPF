@@ -33,21 +33,20 @@ namespace Nursery_Management_System_WPF
             }
             return buffer;
         }
-/*
-        public  Image BinaryToImage(byte[] byteArray)
+
+        public  ImageSource BinaryToImage(byte[] byteArray)
         {
-            
-                MemoryStream ms = new MemoryStream(byteArray, 0, byteArray.Length);
-                ms.Write(byteArray, 0, byteArray.Length);
-                Image image = Image.FromStream(ms, true);
+            if (byteArray == null)
+                return null;
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(byteArray);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
 
-            int x = 1;
-                return image;
-           
-            
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
         }
-        */
-        
-
     }
 }

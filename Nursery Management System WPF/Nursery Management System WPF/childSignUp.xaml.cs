@@ -35,10 +35,12 @@ namespace Nursery_Management_System_WPF
         }
         public void addFeaturesToList()
         {
+            FeatureToID.Clear();
             List<Features> list = new List<Features>();
             SQLQuery sQLQuery = new SQLQuery();
             DataTable allFeatures;
             allFeatures = sQLQuery.allFeatures();
+
             foreach (DataRow dr in allFeatures.Rows)
             {
                 Features ft = new Features(dr[1].ToString());
@@ -67,7 +69,7 @@ namespace Nursery_Management_System_WPF
                     gender = "Male";
                
                     ImageOperation OP = new ImageOperation();
-                    Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, OP.ImageToBinary(profileHeader), 1);
+                    Child child = new Child(childName.Text, GlobalVariables.globalParent.firstName, GlobalVariables.globalParent.id, -1, gender, DOBpicker.SelectedDate.Value, OP.ImageToBinary(profileHeader) , 1);
                     mSQLQuery.insertChildData(child);
                 
                 
@@ -78,8 +80,6 @@ namespace Nursery_Management_System_WPF
                     mSQLQuery.insertChildFeature(childID, FeatureToID[item.featureName]);
                 }
                 
-
-
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
                 this.Close();
             }
@@ -141,6 +141,8 @@ namespace Nursery_Management_System_WPF
 
         public void fillCdata()
         {
+
+            addFeaturesToList();
             childName.Text = GlobalVariables.globalChild.firstName;
             DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
             if (GlobalVariables.globalChild.gender == "Male")
@@ -183,9 +185,9 @@ namespace Nursery_Management_System_WPF
               "Portable Network Graphic (*.png)|*.png";
             if (op.ShowDialog() == true)
             {
-                profileHeader.Source = new BitmapImage(new Uri(op.FileName));
+                profileImage.ImageSource = new BitmapImage(new Uri(op.FileName));
                 mainPic = true;
-                childImage.Visibility = Visibility.Hidden;
+             //   childImage.Visibility = Visibility.Hidden;
             }
             
         }

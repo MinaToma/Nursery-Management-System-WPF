@@ -44,14 +44,47 @@ namespace Nursery_Management_System_WPF
             }
             else if (type.Equals("Admin"))
             {
-                GlobalVariables.globalType = "Admin";
                 Int64 id = Convert.ToInt64(dt.Rows[0]["staffID"].ToString());
-                GlobalVariables.globalAdmin = GlobalVariables.globalAdmin.ToAdmin(staffToLinkedList(getStaffByID(id)).ElementAt(0));
-                if (GlobalVariables.globalAdmin.pending == 1)
-                    return false;
+                GlobalVariables.globalAdmin = adminToLinkedList(getAdminByID(id)).ElementAt(0);
+                GlobalVariables.globalType = "Admin";
             }
 
             return true;
+        }
+
+
+        public LinkedList<Admin> adminToLinkedList(DataTable dt)
+        {
+            LinkedList<Admin> admin = new LinkedList<Admin>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Admin currentAdmin = new Admin();
+
+                currentAdmin.id = Convert.ToInt64(dr["adminID"].ToString());
+                currentAdmin.firstName = dr["adminFirstName"].ToString();
+                currentAdmin.lastName = dr["adminLastName"].ToString();
+                currentAdmin.phoneNumber = dr["adminPhoneNumber"].ToString();
+                currentAdmin.email = dr["adminEmail"].ToString();
+                admin.AddLast(currentAdmin);
+            }
+
+            return admin;
+        }
+
+        private DataTable getAdmin(string query)
+        {
+            SQL sql = new SQL();
+
+            DataTable dt = new DataTable();
+            dt = sql.retrieveQuery(query);
+
+            return dt;
+        }
+
+        public DataTable getAdminByID(Int64 id)
+        {
+            string query = "select * from Admin where adminID = " + Convert.ToString(id);
+            return getAdmin(query);
         }
 
         public bool checkForUsername(string username)
@@ -170,7 +203,7 @@ namespace Nursery_Management_System_WPF
             {
                 mCommand.Parameters.AddWithValue("@staffSalary", staff.salary);
             }
-            mCommand.Parameters.AddWithValue("@staffType", department);
+            mCommand.Parameters.AddWithValue("@qualification", staff.qualification);
             mCommand.Parameters.AddWithValue("@staffPending", staff.pending);
 
             mSQL.insertQuery(mCommand);
@@ -251,7 +284,6 @@ namespace Nursery_Management_System_WPF
                 mCommand.Parameters.AddWithValue("@staffID", id);
                 mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
             }
-
             mCommand.Parameters.AddWithValue("@userPassword", password);
             mCommand.Parameters.AddWithValue("@userType", type);
 
@@ -470,8 +502,8 @@ namespace Nursery_Management_System_WPF
                 currentStaff.lastName = dr["staffLastName"].ToString();
                 currentStaff.phoneNumber = dr["staffPhoneNumber"].ToString();
                 currentStaff.email = dr["staffEmail"].ToString();
-                currentStaff.type = dr["staffType"].ToString();
                 currentStaff.pending = Convert.ToInt32(dr["staffIsPending"].ToString());
+                currentStaff.qualification = dr["qualification"].ToString();
                 if (currentStaff.pending == 1)
                 {
                     currentStaff.salary = -1;
@@ -530,7 +562,7 @@ namespace Nursery_Management_System_WPF
 
         public DataTable getNotPendingStaff()
         {
-            string query = @"select * from Staff where staffIsPending = 0 and staffType like 'Staff'";
+            string query = @"select * from Staff where staffIsPending = 0";
             return getStaff(query);
         }
 
@@ -741,6 +773,23 @@ namespace Nursery_Management_System_WPF
             return;
         }
 
+        public void updateAdminData(Admin admin)
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("updateAdminData");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@adminID", admin.id);
+            mCommand.Parameters.AddWithValue("@adminFirstName", admin.firstName);
+            mCommand.Parameters.AddWithValue("@adminLastName", admin.lastName);
+            mCommand.Parameters.AddWithValue("@adminPhoneNumber", admin.phoneNumber);
+            mCommand.Parameters.AddWithValue("@adminEmail", admin.email);
+
+            mSQL.updateQuery(mCommand);
+
+            return;
+        }
+
         public void updateStaffData(Staff staff)
         {
             SQL mSQL = new SQL();
@@ -753,7 +802,6 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@staffPhoneNumber", staff.phoneNumber);
             mCommand.Parameters.AddWithValue("@staffEmail", staff.email);
             mCommand.Parameters.AddWithValue("@staffSalary", staff.salary);
-            mCommand.Parameters.AddWithValue("@staffType", staff.type);
             mCommand.Parameters.AddWithValue("@staffPending", staff.pending);
 
             mSQL.updateQuery(mCommand);

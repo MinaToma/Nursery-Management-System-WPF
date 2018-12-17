@@ -34,7 +34,7 @@
             <Image x:Name="childrenIcon" Height="45" Width="45" Source="images/children 95px.png" Margin="34,262,145,293"/>
             <Button x:Name="parentFeedbackButton" Content="Feedback" HorizontalAlignment="Left" Margin="0,307,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
             <Image x:Name="feedbackIcon" Height="45" Width="45" Source="images/feedback - Copy.png" Margin="34,317,145,238"/>
-            <Button x:Name="payFeesButton" Content="Pay Fees" HorizontalAlignment="Left" Margin="0,377,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="parentFeedbackButton_Click"/>
+            <Button x:Name="payFeesButton" Content="Pay Fees" HorizontalAlignment="Left" Margin="0,377,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="payFeesButton_Click"/>
             <Image x:Name="payFeesIcon" Height="45" Width="45" Source="images/pay icon.png" Margin="34,389,145,166"/>
             <Button x:Name="signOutButton" Content="Sign Out" HorizontalAlignment="Left" Margin="0,445,0,0" VerticalAlignment="Top" Width="224" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" FontFamily="Code Bold" Click="signOutButton_Click" />
             <Image x:Name="signOutIcon" Source="images/sign out icon 128px.png" Margin="39,461,150,104"/>
@@ -71,8 +71,8 @@
                 <Image x:Name="passwordError" HorizontalAlignment="Left" Height="13" VerticalAlignment="Top" Width="13" Margin="701,459,0,0" Source="images/back 50px.png" RenderTransformOrigin="1.708,1.908" Visibility="Hidden"/>
             </Grid>
 
-            <ScrollViewer x:Name="childrenPanel" Visibility="Visible" CanContentScroll="True" d:IsHidden="True">
-                <ScrollViewer x:Name="childrenScrollerView" CanContentScroll="True" Height="560" Width="800">
+            <ScrollViewer x:Name="childrenPanel" Visibility="Visible" CanContentScroll="True" Margin="0,51,0,0">
+                <ScrollViewer x:Name="childrenScrollerView" CanContentScroll="True" Height="509" Width="800">
                     <Grid x:Name="children" ScrollViewer.CanContentScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
 
                         <Grid x:Name="childGrid" Visibility="Hidden" HorizontalAlignment="Left" Height="113" VerticalAlignment="Top" Width="750" Panel.ZIndex="1">
@@ -100,6 +100,18 @@
                 </RichTextBox>
                 <Button x:Name="submitFeedback" Content="Submit" HorizontalAlignment="Left" Margin="651,492,0,0" VerticalAlignment="Top" Width="100" Click="submitFeedback_Click" Height="30" FontFamily="Code Bold" FontSize="10" Background="#FF173445" Foreground="#FFD4D4D4"/>
             </Grid>
+            <Button x:Name="addChildButton" HorizontalAlignment="Left" Margin="730,0,0,0" VerticalAlignment="Top" Width="60" Height="60" TabIndex="9" BorderThickness="0" Click="addChildButton_Click" RenderTransformOrigin="1.038,-5.634" Visibility="Hidden">
+                <Button.Template>
+                    <ControlTemplate>
+                        <Image Source="images/add child icon 90px.png" Height="50" Width="40" RenderTransformOrigin="0.328,0.431"/>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Button x:Name="feesButton" Content="PAY FEES" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="77" Margin="336,0,0,263" Height="66" Click="button_Click" Visibility="Hidden">
+                <Button.Background>
+                    <ImageBrush/>
+                </Button.Background>
+            </Button>
         </Grid>
 
     </Grid>

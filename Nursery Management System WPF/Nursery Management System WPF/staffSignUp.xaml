@@ -36,7 +36,7 @@
         <RichTextBox x:Name="qualifications" HorizontalAlignment="Left" Height="123" Margin="41,381,0,0" VerticalAlignment="Top" Width="716" FontFamily="Comfortaa" FontSize="10" Padding="3">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text="Qualifications"/>
+                    <Run x:Name="staffQualifications"  Text="Qualifications"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

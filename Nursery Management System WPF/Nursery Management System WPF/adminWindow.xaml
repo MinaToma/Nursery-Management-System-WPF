@@ -286,7 +286,7 @@
             </Grid>
             <Grid x:Name="AdminFeedback" Visibility="Hidden" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800">
                 <Image x:Name="feedbackBubble" HorizontalAlignment="Left" Height="436" Margin="79,112,0,0" VerticalAlignment="Top" Width="636" Source="images/feedbackbubble.png"/>
-                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" IsReadOnly="True" Height="220" VerticalAlignment="Top" Width="436" Margin="262,132,0,0" Background="{x:Null}" FontFamily="Comfortaa" FontSize="16" BorderBrush="{x:Null}" Padding="2">
+                <RichTextBox x:Name="feedbackBox" HorizontalAlignment="Left" IsReadOnly="True" Height="220" VerticalAlignment="Top" Width="436" Margin="262,132,0,0" Background="{x:Null}" FontFamily="Comfortaa" FontSize="16" BorderBrush="{x:Null}" Padding="2" IsEnabled="False">
                     <FlowDocument>
                         <Paragraph>
                             <Run x:Name="feedbackText" Text="Describe your issue or share your ideas :"/>

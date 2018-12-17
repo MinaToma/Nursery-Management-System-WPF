@@ -24,8 +24,6 @@ namespace Nursery_Management_System_WPF
         public staffSignUp()
         {
             InitializeComponent();
-
-            
         }
         
         private void Username_GotFocus(object sender, RoutedEventArgs e)
@@ -99,7 +97,7 @@ namespace Nursery_Management_System_WPF
             if (checkEnteredData())
             {
                 SQLQuery mSQLQuery = new SQLQuery();
-                Staff staff = new Staff(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text, -1, 1, "Staff");
+                Staff staff = new Staff(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text, -1, 1, "Staff" , staffQualifications.Text);
                 mSQLQuery.insertStaffData(staff, "Staff");
 
                 mSQLQuery.insertUser(username.Text, password.Password, "Staff" , staff.id);
@@ -207,10 +205,11 @@ namespace Nursery_Management_System_WPF
             email.Text = GlobalVariables.globalStaff.email;
             phoneNumber.Text = GlobalVariables.globalStaff.phoneNumber;
             ID.Text = (GlobalVariables.globalStaff.id).ToString();
-            
+            staffQualifications.Text = GlobalVariables.globalStaff.qualification;
+
+
             signUpButton.Visibility = Visibility.Hidden;
             signup_elipse.Visibility = Visibility.Hidden;
-
         }
         public void disabledStaff()
         {
@@ -239,7 +238,7 @@ namespace Nursery_Management_System_WPF
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)

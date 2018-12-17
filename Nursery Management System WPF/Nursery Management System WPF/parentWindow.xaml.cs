@@ -42,13 +42,27 @@ namespace Nursery_Management_System_WPF
 
         private void parentFeedbackButton_Click(object sender, RoutedEventArgs e)
         {
+            feesButton.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Hidden;
             this.childrenPanel.Visibility = Visibility.Hidden;
             //show feedback grid
             this.feedbackPanel.Visibility = Visibility.Visible;
+            addChildButton.Visibility = Visibility.Hidden;
         }
 
         private void childrenButton_Click(object sender, RoutedEventArgs e)
+        {
+            loadChildren();
+
+            this.profilePanel.Visibility = Visibility.Hidden;
+            feesButton.Visibility = Visibility.Hidden;
+            this.feedbackPanel.Visibility = Visibility.Hidden;
+            addChildButton.Visibility = Visibility.Visible;
+            //show children grid
+            this.childrenPanel.Visibility = Visibility.Visible;
+        }
+
+        public void loadChildren()
         {
             childRow.Clear();
             children.Children.Clear();
@@ -72,10 +86,6 @@ namespace Nursery_Management_System_WPF
 
             showPendingChildren();
 
-            this.profilePanel.Visibility = Visibility.Hidden;
-            this.feedbackPanel.Visibility = Visibility.Hidden;
-            //show children grid
-            this.childrenPanel.Visibility = Visibility.Visible;
         }
 
         private void showPendingChildren()
@@ -115,6 +125,8 @@ namespace Nursery_Management_System_WPF
 
             this.childrenPanel.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
+            feesButton.Visibility = Visibility.Hidden;
+            addChildButton.Visibility = Visibility.Hidden;
             //show feedback grid
             this.profilePanel.Visibility = Visibility.Visible;
         }
@@ -262,6 +274,28 @@ namespace Nursery_Management_System_WPF
 
             mSQLQuery.insertParentFeedback(GlobalVariables.globalParent.id, feedbackText.Text);
 
+        }
+
+        private void addChildButton_Click(object sender, RoutedEventArgs e)
+        {
+            childSignUp signChild = new childSignUp();
+            signChild.ShowDialog();
+            loadChildren();
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Requset Sent", "Payment Message", MessageBoxButton.OK);
+        }
+
+        private void payFeesButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.profilePanel.Visibility = Visibility.Hidden;
+            feesButton.Visibility = Visibility.Visible;
+            this.feedbackPanel.Visibility = Visibility.Hidden;
+            addChildButton.Visibility = Visibility.Hidden;
+            //show children grid
+            this.childrenPanel.Visibility = Visibility.Hidden;
         }
     }
 }

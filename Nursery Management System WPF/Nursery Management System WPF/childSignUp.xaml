@@ -23,7 +23,7 @@
         <Image x:Name="profileHeader" HorizontalAlignment="Left" Height="192" Margin="79,57,0,0" VerticalAlignment="Top" Width="243" Source="/images/Asset 1.png" OpacityMask="{x:Null}"/>
         <Ellipse HorizontalAlignment="Left" Name="childImage" Height="105" Margin="144,96,0,0" VerticalAlignment="Top" Width="104" Stroke="Black" StrokeThickness="2">
             <Ellipse.Fill>
-                <ImageBrush ImageSource="/images/128.png"/>
+                <ImageBrush x:Name="profileImage" ImageSource="/images/128.png"/>
             </Ellipse.Fill>
         </Ellipse>
         <TextBox x:Name="childName" Tag="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
@@ -60,13 +60,13 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Header="Feature" Width="281" DisplayMemberBinding="{Binding featureName}"  >
-                     
+
                     </GridViewColumn>
 
-                   
+
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Import Pic" Background="#FFEAC599" HorizontalAlignment="Left" Margin="322,154,0,0" VerticalAlignment="Top" Width="75" Click="import_Pic_Click"/>
+        <Button Content="Import" Background="#FFEAC599" HorizontalAlignment="Left" Margin="266,66,0,0" VerticalAlignment="Top" Width="36" Click="import_Pic_Click" Height="24" FontFamily="Comfortaa" FontSize="10"/>
     </Grid>
 </Window>

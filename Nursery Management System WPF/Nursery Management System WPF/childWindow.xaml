@@ -64,6 +64,26 @@
                     </Grid>
 
                 </GroupBox>
+                <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   x:Name="childFeaturesList"  Background="White" Height="100" Margin="364,450,0,0" VerticalAlignment="Top" Width="281">
+                    <ListView.View>
+                        <GridView>
+
+                            <GridViewColumn Header="" Width="40">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <CheckBox IsChecked="{Binding IsSelected, RelativeSource={RelativeSource AncestorType={x:Type ListViewItem}}}" />
+
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Feature" Width="281" DisplayMemberBinding="{Binding featureName}"  />
+
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
             </Grid>
             <Grid x:Name="dailyDetailsPanel" HorizontalAlignment="Left" Height="560" VerticalAlignment="Top" Width="800" Visibility="Hidden">
                 <DatePicker x:Name="selectedDay" HorizontalAlignment="Left" Margin="553,19,0,0" VerticalAlignment="Top" Height="34" Width="219" FontSize="17.333"/>

@@ -98,6 +98,10 @@ namespace Nursery_Management_System_WPF
             {
                 name.Content = child.ElementAt(cIdx).firstName + " " + child.ElementAt(cIdx).lastName;
                 mChild = child.ElementAt(cIdx);
+
+                ImageOperation op = new ImageOperation();
+                if(op.BinaryToImage(mChild.image) != null)
+                    profilePicture.ImageSource = op.BinaryToImage(mChild.image);
             }
             else if(idx == 1)
             {

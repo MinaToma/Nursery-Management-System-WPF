@@ -197,7 +197,7 @@ namespace Nursery_Management_System_WPF
 
                 GlobalVariables.globalAdmin.email = email.Text;
                 GlobalVariables.globalAdmin.phoneNumber = phoneNumber.Text;
-                mSql.updateStaffData(GlobalVariables.globalAdmin);
+                mSql.updateAdminData(GlobalVariables.globalAdmin);
 
                 MessageBox.Show("Data Updated sucessfuly !", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
             }

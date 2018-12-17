@@ -11,7 +11,7 @@
 
             <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
                 <Ellipse.Fill>
-                    <ImageBrush ImageSource="images/256.png"/>
+                    <ImageBrush x:Name="profilePicture" ImageSource="images/256.png"/>
                 </Ellipse.Fill>
             </Ellipse>
             <Label x:Name="name" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" MouseDown="name_MouseDown"/>
