@@ -834,6 +834,8 @@ namespace Nursery_Management_System_WPF
             SqlCommand mCommand = new SqlCommand("updateRoomData");
             mCommand.CommandType = CommandType.StoredProcedure;
 
+            mCommand.Parameters.AddWithValue("@roomID", room.id);
+
             mCommand.Parameters.AddWithValue("@roomNumber", room.number);
             if (room.staffID == -1)
                 mCommand.Parameters.AddWithValue("@roomStaffID", DBNull.Value);

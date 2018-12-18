@@ -301,10 +301,11 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlQuery = new SQLQuery();
             
-            if (checkSalary()&&roomID.SelectedValue.ToString()!=null)
+            if (checkSalary() && roomID.Text != null)
             {
-                int numOFRoom = int.Parse(roomID.SelectedValue.ToString());
-                mSqlQuery.updateRoomData(new Room(getRoomID[numOFRoom], numOFRoom, Int64.Parse(ID.Text)));
+                MessageBox.Show("hova");
+                int numOFRoom = int.Parse(roomID.Text.ToString());
+                mSqlQuery.updateRoomData(new Room(getRoomID[numOFRoom] , numOFRoom , Int64.Parse(ID.Text)));
                 mSqlQuery.updateStaffData(GlobalVariables.globalStaff);
             }
         }

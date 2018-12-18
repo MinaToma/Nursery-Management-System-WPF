@@ -211,7 +211,7 @@ namespace Nursery_Management_System_WPF
                     //fill staff data here
                     window.fillSdata();
                     window.disabledStaff();
-                    
+                    window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
 
                     window.ShowDialog();

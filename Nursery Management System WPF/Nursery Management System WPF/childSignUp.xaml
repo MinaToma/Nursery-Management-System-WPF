@@ -29,7 +29,6 @@
         <TextBox x:Name="childName" Tag="Child's Name" HorizontalAlignment="Left" Height="30" Margin="60,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center" Style="{DynamicResource newPlaceHolder}"/>
         <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="206,384,0,0" VerticalAlignment="Top" Width="136" TabIndex="3" FontFamily="Comfortaa" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" Height="24"/>
         <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="60,384,0,0" VerticalAlignment="Top" FontFamily="Comfortaa" Height="25" Width="88"/>
-        <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="61,413,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
         <Button x:Name="signUpButton" Content="SIGN UP" HorizontalAlignment="Left" Margin="231,553,0,0" VerticalAlignment="Top" Width="150" Height="30" FontFamily="Code Bold" FontSize="14" TabIndex="6" Click="signUpButton_Click"/>
         <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="61,293,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
             <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
@@ -66,7 +65,10 @@
 
                 </GridView>
             </ListView.View>
+       
         </ListView>
-        <Button Content="Import" Background="#FFEAC599" HorizontalAlignment="Left" Margin="266,66,0,0" VerticalAlignment="Top" Width="36" Click="import_Pic_Click" Height="24" FontFamily="Comfortaa" FontSize="10"/>
+        
+            <Button Content="Import" Background="#FFEAC599" HorizontalAlignment="Left" Margin="266,66,0,0" VerticalAlignment="Top" Width="36" Click="import_Pic_Click" Height="24" FontFamily="Comfortaa" FontSize="10"/>
+        <ComboBox Name="roomID" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="60,414,0,0" VerticalAlignment="Top" Width="137" Background="White"/>
     </Grid>
 </Window>
