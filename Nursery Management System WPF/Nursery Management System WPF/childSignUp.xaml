@@ -69,6 +69,6 @@
         </ListView>
         
             <Button Content="Import" Background="#FFEAC599" HorizontalAlignment="Left" Margin="266,66,0,0" VerticalAlignment="Top" Width="36" Click="import_Pic_Click" Height="24" FontFamily="Comfortaa" FontSize="10"/>
-        <ComboBox Name="roomID" SelectedValuePath="Content" HorizontalAlignment="Left" Margin="60,414,0,0" VerticalAlignment="Top" Width="137" Background="White"/>
+        <ComboBox Name="roomID" Visibility="Hidden"  SelectedValuePath="Content" HorizontalAlignment="Left" Margin="60,414,0,0" VerticalAlignment="Top" Width="137" Background="White"/>
     </Grid>
 </Window>

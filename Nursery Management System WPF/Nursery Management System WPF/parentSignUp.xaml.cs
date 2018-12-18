@@ -178,6 +178,8 @@ namespace Nursery_Management_System_WPF
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            signIn sign = new signIn();
+            sign.Show();
             this.Close();
         }
 

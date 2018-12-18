@@ -183,8 +183,12 @@ namespace Nursery_Management_System_WPF
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.childFeaturesList.IsEnabled = false;
-                    
+                    window.roomID.Visibility = Visibility.Visible;
                     //fill child data here
+                    ImageOperation op = new ImageOperation();
+                    if (op.BinaryToImage(GlobalVariables.globalChild.image) != null)
+                        window.profileImage.ImageSource = op.BinaryToImage(GlobalVariables.globalChild.image);
+
                     window.fillCdata();
                     window.disabledChild_info();
                     
@@ -211,6 +215,8 @@ namespace Nursery_Management_System_WPF
                     //fill staff data here
                     window.fillSdata();
                     window.disabledStaff();
+                    window.salary.Visibility = Visibility.Visible;
+                    window.roomID.Visibility = Visibility.Visible;
                     window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
 
@@ -227,7 +233,10 @@ namespace Nursery_Management_System_WPF
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.OKButton.Visibility = Visibility.Visible;
-
+                    window.roomID.Visibility = Visibility.Visible;
+                    ImageOperation op = new ImageOperation();
+                    if (op.BinaryToImage(GlobalVariables.globalChild.image) != null)
+                       window.profileImage.ImageSource = op.BinaryToImage(GlobalVariables.globalChild.image);
                     //fill child data here
                     window.fillCdata();
 

@@ -56,6 +56,10 @@ namespace Nursery_Management_System_WPF
 
         public void fillProfile()
         {
+            ImageOperation op = new ImageOperation();
+            if (op.BinaryToImage(GlobalVariables.globalChild.image) != null)
+                profilePicture.ImageSource = op.BinaryToImage(GlobalVariables.globalChild.image);
+
             childName.Text = GlobalVariables.globalChild.firstName;
             DOBpicker.SelectedDate = GlobalVariables.globalChild.DOB;
             addFeaturesToList();

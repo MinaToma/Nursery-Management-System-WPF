@@ -26,6 +26,10 @@ namespace Nursery_Management_System_WPF
         public staffSignUp()
         {
             InitializeComponent();
+            salary.Visibility = Visibility.Hidden;
+            roomID.Visibility = Visibility.Hidden;
+
+
             fillRoomID();
 
         }
@@ -244,6 +248,8 @@ namespace Nursery_Management_System_WPF
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
+            signIn sign = new signIn();
+            sign.Show();
             this.Close();
         }
 
@@ -301,12 +307,16 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlQuery = new SQLQuery();
             
-            if (checkSalary() && roomID.Text != null)
+            if (checkSalary() && roomID.SelectedIndex>-1)
             {
                 MessageBox.Show("hova");
                 int numOFRoom = int.Parse(roomID.Text.ToString());
                 mSqlQuery.updateRoomData(new Room(getRoomID[numOFRoom] , numOFRoom , Int64.Parse(ID.Text)));
                 mSqlQuery.updateStaffData(GlobalVariables.globalStaff);
+            }
+            else
+            {
+                MessageBox.Show("Please Enter the Room number", "Invaild Data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
     }
