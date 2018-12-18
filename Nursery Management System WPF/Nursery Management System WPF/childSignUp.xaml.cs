@@ -169,13 +169,25 @@ namespace Nursery_Management_System_WPF
 
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
+            List<Features> featurs = new List<Features>();
+            featurs = checkedFeatures();
             SQLQuery mSqlQuery = new SQLQuery();
-            if (roomID.SelectedIndex>-1)
+            if (roomID.SelectedIndex>-1 && featurs.Count>0)
             {
+
+                mSqlQuery.deleteChildFeature((int)GlobalVariables.globalChild.id);
+                foreach (var item in featurs)
+                {
+                    mSqlQuery.insertChildFeature(((int)GlobalVariables.globalChild.id), FeatureToID[item.featureName]);
+                }
                 GlobalVariables.globalChild.roomID = Convert.ToInt32(getRoomID[int.Parse(roomID.Text.ToString())]);
                 mSqlQuery.updateChildData(GlobalVariables.globalChild);
                 MessageBox.Show("Data Updated Successflly", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
 
+            }
+            else if(featurs.Count==0)
+            {
+                MessageBox.Show("Please Enter atleast one feature", "Invaild Data", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
