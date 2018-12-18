@@ -21,9 +21,13 @@ namespace Nursery_Management_System_WPF
     /// </summary>
     public partial class staffSignUp : Window
     {
+
+        Dictionary<int, int> getRoomID = new Dictionary<int, int>();
         public staffSignUp()
         {
             InitializeComponent();
+            fillRoomID();
+
         }
         
         private void Username_GotFocus(object sender, RoutedEventArgs e)
@@ -104,7 +108,19 @@ namespace Nursery_Management_System_WPF
                 MessageBox.Show("Requset has been sent", "Request sent", MessageBoxButton.OK, MessageBoxImage.None);
             }
         }
+        private void fillRoomID()
+        {
+            SQLQuery mSql = new SQLQuery();
+            DataTable dt = mSql.getAllRooms();
+            
+            foreach(DataRow dr in dt.Rows)
+            {
+                roomID.Items.Add(dr[1].ToString());
+                getRoomID.Add(int.Parse(dr[1].ToString()), int.Parse(dr[0].ToString()));
+            }
+            
 
+        }
         public bool checkEnteredData()
         {
             bool ans = true;
@@ -238,6 +254,8 @@ namespace Nursery_Management_System_WPF
 
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
+            signIn sign = new signIn();
+            sign.Show();
             this.Close();
         }
 
@@ -282,8 +300,11 @@ namespace Nursery_Management_System_WPF
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSqlQuery = new SQLQuery();
-            if (checkSalary())
+            
+            if (checkSalary()&&roomID.SelectedValue.ToString()!=null)
             {
+                int numOFRoom = int.Parse(roomID.SelectedValue.ToString());
+                mSqlQuery.updateRoomData(new Room(getRoomID[numOFRoom], numOFRoom, Int64.Parse(ID.Text)));
                 mSqlQuery.updateStaffData(GlobalVariables.globalStaff);
             }
         }

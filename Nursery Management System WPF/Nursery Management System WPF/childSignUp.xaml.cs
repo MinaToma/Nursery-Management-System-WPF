@@ -26,6 +26,7 @@ namespace Nursery_Management_System_WPF
 
 
         Dictionary<string, int> FeatureToID = new Dictionary<string, int>();
+        Dictionary<int, int> getRoomID = new Dictionary<int, int>();
         bool mainPic=false;
         public childSignUp()
         {
@@ -167,9 +168,9 @@ namespace Nursery_Management_System_WPF
         private void OKButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSqlQuery = new SQLQuery();
-            if (roomID.Text != null || roomID.Text != " room ID ")
+            if (roomID.SelectedValue.ToString()!=null)
             {
-                GlobalVariables.globalChild.roomID = Convert.ToInt32(roomID.Text);
+                GlobalVariables.globalChild.roomID = Convert.ToInt32(getRoomID[int.Parse(roomID.SelectedValue.ToString())]);
                 mSqlQuery.updateChildData(GlobalVariables.globalChild);
                 MessageBox.Show("Data Updated Successflly", "Process Finshed", MessageBoxButton.OK, MessageBoxImage.Information);
 
@@ -190,6 +191,19 @@ namespace Nursery_Management_System_WPF
              //   childImage.Visibility = Visibility.Hidden;
             }
             
+        }
+        private void fillRoomID()
+        {
+            SQLQuery mSql = new SQLQuery();
+            DataTable dt = mSql.getAllRooms();
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                roomID.Items.Add(dr[1].ToString());
+                getRoomID.Add(int.Parse(dr[1].ToString()), int.Parse(dr[0].ToString()));
+            }
+
+
         }
     }
 }

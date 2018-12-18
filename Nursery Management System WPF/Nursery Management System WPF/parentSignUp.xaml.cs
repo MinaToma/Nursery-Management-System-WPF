@@ -171,6 +171,8 @@ namespace Nursery_Management_System_WPF
 
         private void exitButton_Click(object sender, RoutedEventArgs e)
         {
+            signIn sign = new signIn();
+            sign.Show();
             this.Close();
         }
 
@@ -245,7 +247,7 @@ namespace Nursery_Management_System_WPF
 
         }
 
-
+        
     }
 
 }
