@@ -132,8 +132,16 @@ namespace Nursery_Management_System_WPF
                 aWindow.children2.Children.Clear();
                 SQLQuery mSQLQuery = new SQLQuery();
                 child = mSQLQuery.childToLinkedList(mSQLQuery.getChildByRoomID(mRoom.id));
-                
-                aWindow.childCount.Content = mSQLQuery.staffToLinkedList(mSQLQuery.getStaffByID(mRoom.staffID)).ElementAt(0).firstName;
+
+                LinkedList<Staff> currStaff = mSQLQuery.staffToLinkedList(mSQLQuery.getStaffByID(mRoom.staffID));
+                if(currStaff.Count == 0)
+                {
+                    aWindow.childCount.Content = "No Staff";
+                }
+                else
+                {
+                    aWindow.childCount.Content = currStaff.ElementAt(0).firstName;
+                }
 
                 aWindow.childList = child;
                 aWindow.roomName.Content = "Room  " + Convert.ToString(mRoom.number);

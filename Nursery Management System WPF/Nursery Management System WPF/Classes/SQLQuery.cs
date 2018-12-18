@@ -606,8 +606,15 @@ namespace Nursery_Management_System_WPF
 
                 currentRoom.id = Convert.ToInt32(dr["roomID"].ToString());
                 currentRoom.number = Convert.ToInt32(dr["roomNumber"].ToString());
-                currentRoom.staffID = Convert.ToInt64(dr["roomStaffID"].ToString());
-
+                if(dr["roomStaffID"] == DBNull.Value)
+                {
+                    currentRoom.staffID = -1;
+                }
+                else
+                {
+                    currentRoom.staffID = Convert.ToInt64(dr["roomStaffID"].ToString());
+                }
+                
                 room.AddLast(currentRoom);
             }
             return room;
