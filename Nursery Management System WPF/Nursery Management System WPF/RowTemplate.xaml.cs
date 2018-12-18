@@ -261,6 +261,10 @@ namespace Nursery_Management_System_WPF
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.ID.IsEnabled = false;
                     window.OKButton.Visibility = Visibility.Visible;
+
+                    window.salary.Visibility = Visibility.Visible;
+                    window.roomID.Visibility = Visibility.Visible;
+                    window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
                     window.fillSdata();
                     //fill staff data here

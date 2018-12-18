@@ -119,11 +119,12 @@ namespace Nursery_Management_System_WPF
             
             foreach(DataRow dr in dt.Rows)
             {
-                roomID.Items.Add(dr[1].ToString());
-                getRoomID.Add(int.Parse(dr[1].ToString()), int.Parse(dr[0].ToString()));
+                if(dr["roomStaffID"] == DBNull.Value)
+                {
+                    roomID.Items.Add(dr[1].ToString());
+                    getRoomID.Add(int.Parse(dr[1].ToString()), int.Parse(dr[0].ToString()));
+                }
             }
-            
-
         }
         public bool checkEnteredData()
         {
