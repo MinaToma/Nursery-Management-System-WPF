@@ -42,16 +42,16 @@
                 <Button x:Name="editProfileButton" HorizontalAlignment="Left" Margin="701,25,0,0" VerticalAlignment="Top" Width="70" Height="70" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand" Click="editProfileButton_Click">
                     <Image x:Name="editIcon" Source="images/edit icon.png" Height="35" Width="35" RenderTransformOrigin="0.596,-0.124"/>
                 </Button>
-                <Ellipse x:Name="profileImage" HorizontalAlignment="Left" Height="238" Margin="88,182,0,0" VerticalAlignment="Top" Width="238" Stroke="Black" StrokeThickness="2">
+                <Ellipse x:Name="profileImage" HorizontalAlignment="Left" Height="238" Margin="98,138,0,0" VerticalAlignment="Top" Width="238" Stroke="Black" StrokeThickness="2">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="images/256.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
-                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="364,220,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
-                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="501,354,0,0" VerticalAlignment="Top" Width="135" TabIndex="3" VerticalContentAlignment="Center"/>
-                <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="365,354,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
-                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="365,390,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" VerticalContentAlignment="Center"/>
-                <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="364,261,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
+                <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="374,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>
+                <DatePicker x:Name="DOBpicker" HorizontalAlignment="Left" Margin="511,306,0,0" VerticalAlignment="Top" Width="135" TabIndex="3" VerticalContentAlignment="Center"/>
+                <Label x:Name="DOBLabel" Content="Date of Birth: " HorizontalAlignment="Left" Margin="375,306,0,0" VerticalAlignment="Top" FontFamily="Consolas"/>
+                <TextBox x:Name="roomID" Text="Room ID" HorizontalAlignment="Left" Height="30" Margin="375,342,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" TabIndex="4" VerticalContentAlignment="Center"/>
+                <GroupBox x:Name="genderBox" Header="Gender" HorizontalAlignment="Left" Margin="374,213,0,0" VerticalAlignment="Top" Width="281" Height="80" FontFamily="Comfortaa">
                     <Grid x:Name="genderGrid" HorizontalAlignment="Left" Height="61" VerticalAlignment="Top" Width="281" Margin="0,0,-12,-3">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="31*"/>
@@ -64,7 +64,7 @@
                     </Grid>
 
                 </GroupBox>
-                <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   Name="childFeaturesList"  Background="White" Height="100" Margin="364,450,0,0" VerticalAlignment="Top" Width="281">
+                <ListView HorizontalAlignment="Left" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto"   Name="childFeaturesList"  Background="White" Height="100" Margin="374,402,0,0" VerticalAlignment="Top" Width="281">
                     <ListView.View>
                         <GridView>
 
@@ -84,7 +84,7 @@
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <ListView HorizontalAlignment="Left" Height="100" Margin="45,450,0,0" VerticalAlignment="Top" Width="184" Name="selcetedFeatures" >
+                <ListView  HorizontalAlignment="Left" Height="100" Margin="55,402,0,0" VerticalAlignment="Top" Width="184" Name="selcetedFeatures" >
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="Current Feature" Width="184" DisplayMemberBinding="{Binding featureName}"/>
