@@ -18,8 +18,11 @@ namespace Nursery_Management_System_WPF
     /// <summary>
     /// Interaction logic for parentWindow.xaml
     /// </summary>
+
+    
     public partial class parentWindow : Window
     {
+        string currentUserName;
         LinkedList<Child> childList;
         public LinkedList<RowTemplate> childRow;
         public parentWindow()
@@ -122,7 +125,7 @@ namespace Nursery_Management_System_WPF
             ID.Text = GlobalVariables.globalParent.id.ToString();
             phoneNumber.Text = GlobalVariables.globalParent.phoneNumber;
             address.Text = GlobalVariables.globalParent.address;
-
+            currentUserName = username.Text;
             this.childrenPanel.Visibility = Visibility.Hidden;
             this.feedbackPanel.Visibility = Visibility.Hidden;
             feesButton.Visibility = Visibility.Hidden;
@@ -224,7 +227,7 @@ namespace Nursery_Management_System_WPF
                   phoneError.Visibility = Visibility.Hidden;
             }
 
-            if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
+            if((mSql.checkForUsername(username.Text) && currentUserName != username.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your UserName !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);

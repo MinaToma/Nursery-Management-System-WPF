@@ -595,6 +595,7 @@ namespace Nursery_Management_System_WPF
 
             return dt;
         }
+       
 
         public LinkedList<Room> roomToLinkedList(DataTable dt)
         {
@@ -832,6 +833,8 @@ namespace Nursery_Management_System_WPF
             SQL mSQL = new SQL();
             SqlCommand mCommand = new SqlCommand("updateRoomData");
             mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@roomID", room.id);
 
             mCommand.Parameters.AddWithValue("@roomNumber", room.number);
             if (room.staffID == -1)

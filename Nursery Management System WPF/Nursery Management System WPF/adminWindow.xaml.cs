@@ -31,7 +31,7 @@ namespace Nursery_Management_System_WPF
         public LinkedList<RowTemplate> staffRow;
         public LinkedList<RowTemplate> parentRow;
         public LinkedList<RowTemplate> roomRow;
-
+        string currentUserName;
         public adminWindow()
         {
             InitializeComponent();
@@ -65,7 +65,7 @@ namespace Nursery_Management_System_WPF
             email.Text = GlobalVariables.globalAdmin.email;
             phoneNumber.Text = GlobalVariables.globalAdmin.phoneNumber;
             ID.Text = (GlobalVariables.globalAdmin.id).ToString();
-
+            currentUserName = username.Text;
             roomPanel.Visibility = Visibility.Hidden;
             this.profilePanel.Visibility = Visibility.Visible;
             AdminFeedback.Visibility = Visibility.Hidden;
@@ -430,7 +430,7 @@ namespace Nursery_Management_System_WPF
                 phoneError.Visibility = Visibility.Hidden;
             }
 
-            if (mSql.checkForUsername(username.Text) || username.Text.Equals("Enter Username Here"))
+            if ((mSql.checkForUsername(username.Text) && currentUserName != username.Text))
             {
                 ans = false;
                 MessageBox.Show("Please Correct Your UserName !", "Error Occur", MessageBoxButton.OK, MessageBoxImage.Hand);
@@ -519,9 +519,10 @@ namespace Nursery_Management_System_WPF
                     MessageBox.Show("Room number already exists!", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
                     canEnter = false;
                 }
-                
+                dtRoomNo = mSQLQuery.getRoomByStaffID(Convert.ToInt64(roomStaffIDTextBox.Text));
                 //check for staff id entry
-                if (dtStaffID.Rows.Count == 0 || dtStaffID.Rows[0]["staffType"].ToString() == "Admin")
+                if (dtStaffID.Rows.Count == 0 || Convert.ToInt32(dtStaffID.Rows[0]["staffIsPending"]) == 1 || 
+                    dtRoomNo.Rows.Count != 0)
                 {
                     MessageBox.Show("Staff ID doesn't exist!", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
                     canEnter = false;

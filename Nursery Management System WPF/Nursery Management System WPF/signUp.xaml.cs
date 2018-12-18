@@ -28,13 +28,15 @@ namespace Nursery_Management_System_WPF
         private void parentSignUp_Click(object sender, RoutedEventArgs e)
         {
             parentSignUp parentSignUpForm = new parentSignUp();
-            parentSignUpForm.ShowDialog();
+            parentSignUpForm.Show();
+            this.Close();
         }
 
         private void staffSignUp_Click(object sender, RoutedEventArgs e)
         {
             staffSignUp staffSignUpWindow = new staffSignUp();
-            staffSignUpWindow.ShowDialog();
+            staffSignUpWindow.Show();
+            this.Close();
         }
 
         private void exitButton_Click(object sender, RoutedEventArgs e)

@@ -44,7 +44,7 @@
                 </Button>
                 <Ellipse x:Name="profileImage" HorizontalAlignment="Left" Height="238" Margin="98,138,0,0" VerticalAlignment="Top" Width="238" Stroke="Black" StrokeThickness="2">
                     <Ellipse.Fill>
-                        <ImageBrush ImageSource="images/256.png"/>
+                        <ImageBrush x:Name="profilePicture" ImageSource="images/256.png"/>
                     </Ellipse.Fill>
                 </Ellipse>
                 <TextBox x:Name="childName" Text="First Name" HorizontalAlignment="Left" Height="30" Margin="374,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="281" TabIndex="0" FontFamily="Comfortaa" VerticalContentAlignment="Center"/>

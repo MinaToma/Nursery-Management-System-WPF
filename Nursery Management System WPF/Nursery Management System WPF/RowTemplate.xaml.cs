@@ -183,8 +183,12 @@ namespace Nursery_Management_System_WPF
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.childFeaturesList.IsEnabled = false;
-                    
+                    window.roomID.Visibility = Visibility.Visible;
                     //fill child data here
+                    ImageOperation op = new ImageOperation();
+                    if (op.BinaryToImage(GlobalVariables.globalChild.image) != null)
+                        window.profileImage.ImageSource = op.BinaryToImage(GlobalVariables.globalChild.image);
+
                     window.fillCdata();
                     window.disabledChild_info();
                     
@@ -211,7 +215,9 @@ namespace Nursery_Management_System_WPF
                     //fill staff data here
                     window.fillSdata();
                     window.disabledStaff();
-                    
+                    window.salary.Visibility = Visibility.Visible;
+                    window.roomID.Visibility = Visibility.Visible;
+                    window.OKButton.Visibility = Visibility.Visible;
                     //fill staff data here
 
                     window.ShowDialog();
@@ -227,7 +233,10 @@ namespace Nursery_Management_System_WPF
                     childSignUp window = new childSignUp();
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.OKButton.Visibility = Visibility.Visible;
-
+                    window.roomID.Visibility = Visibility.Visible;
+                    ImageOperation op = new ImageOperation();
+                    if (op.BinaryToImage(GlobalVariables.globalChild.image) != null)
+                       window.profileImage.ImageSource = op.BinaryToImage(GlobalVariables.globalChild.image);
                     //fill child data here
                     window.fillCdata();
 
@@ -264,104 +273,7 @@ namespace Nursery_Management_System_WPF
 
         public void removeFromParent()
         {
-            /*if(previousForm == 0)
-            {
-                if (idx == 0)
-                {
-                    if (aWindow.childRow.Count != 0)
-                    {
-                        if (child.Count != 1)
-                        {
-                            cIdx = child.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
-                        aWindow.childRow.RemoveLast();
-                        child.Remove(child.ElementAt(child.Count - 1));
-
-                    }
-                }
-                else if (idx == 1)
-                {
-                    if (aWindow.parentRow.Count != 0)
-                    {
-                        if (parent.Count != 1)
-                        {
-                            pIdx = parent.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
-                        aWindow.parentRow.RemoveLast();
-                        parent.Remove(parent.ElementAt(parent.Count - 1));
-
-                    }
-                }
-                else if (idx == 2)
-                {
-                    if (aWindow.staffRow.Count != 0)
-                    {
-                        if (staff.Count != 1)
-                        {
-                            sIdx = staff.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                        aWindow.staffRow.RemoveLast();
-                        staff.Remove(staff.ElementAt(staff.Count - 1));
-
-                    }
-                }
-            }
-            else if(previousForm == 1)
-            { 
-                if(idx == 0)
-                {
-                    if(aWindow.childRow.Count != 0)
-                    {
-                        if(child.Count != 1)
-                        {
-                            cIdx = child.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.childRow.ElementAt(aWindow.childRow.Count - 1));
-                        aWindow.childRow.RemoveLast();
-                        child.Remove(child.ElementAt(child.Count - 1));
-
-                    }
-                }
-                else if(idx == 1)
-                {
-                    if(aWindow.parentRow.Count != 0)
-                    {
-                        if (parent.Count != 1)
-                        {
-                            pIdx = parent.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.parentRow.ElementAt(aWindow.parentRow.Count - 1));
-                        aWindow.parentRow.RemoveLast();
-                        parent.Remove(parent.ElementAt(parent.Count - 1));
-
-                    }
-                }
-                else if(idx == 2)
-                {
-                    if(aWindow.staffRow.Count != 0)
-                    {
-                        if (staff.Count != 1)
-                        {
-                            sIdx = staff.Count - 1;
-                            initialize();
-                        }
-                        super.Children.Remove(aWindow.staffRow.ElementAt(aWindow.staffRow.Count - 1));
-                        aWindow.staffRow.RemoveLast();
-                        staff.Remove(staff.ElementAt(staff.Count - 1));
-
-                    }
-                } 
-            }
-            else if (previousForm == 2)
-            {*/
+            
             if (idx == 0)
             {
                 if (aWindow.childRow.Count != 0)
