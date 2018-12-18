@@ -521,7 +521,7 @@ namespace Nursery_Management_System_WPF
                 }
                 
                 //check for staff id entry
-                if (dtStaffID.Rows.Count == 0 || dtStaffID.Rows[0]["staffType"].ToString() == "Admin")
+                if (dtStaffID.Rows.Count == 0 || Convert.ToInt32(dtStaffID.Rows[0]["staffIsPending"]) == 1)
                 {
                     MessageBox.Show("Staff ID doesn't exist!", "Faild to submit", MessageBoxButton.OK, MessageBoxImage.None);
                     canEnter = false;
