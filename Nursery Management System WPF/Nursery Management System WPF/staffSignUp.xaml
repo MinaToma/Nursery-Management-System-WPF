@@ -58,7 +58,6 @@
             <Button x:Name="exitButton" Content="x" Margin="770,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
             <Button x:Name="minimizeButton" Content="-" Margin="745,10,35,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
             <Button x:Name="backButton" Content="&lt;" Margin="10,10,770,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="backButton_Click"/>
-            <TextBlock x:Name="nurseryLabel" HorizontalAlignment="Left" Margin="150,10,0,0" TextWrapping="Wrap" Text="Nursery Management System - Staff Sign Up" VerticalAlignment="Top" Width="493" TextAlignment="Center" IsEnabled="False" FontFamily="Code Bold" FontSize="20" Height="21" LineHeight="9.333" RenderTransformOrigin="0.491,-0.136" Foreground="#FFD1D1D1"/>
 
         </Grid>
     </Grid>

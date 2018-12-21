@@ -310,7 +310,6 @@ namespace Nursery_Management_System_WPF
             
             if (checkSalary() && roomID.SelectedIndex>-1)
             {
-                MessageBox.Show("hova");
                 int numOFRoom = int.Parse(roomID.Text.ToString());
                 mSqlQuery.updateRoomData(new Room(getRoomID[numOFRoom] , numOFRoom , Int64.Parse(ID.Text)));
                 mSqlQuery.updateStaffData(GlobalVariables.globalStaff);

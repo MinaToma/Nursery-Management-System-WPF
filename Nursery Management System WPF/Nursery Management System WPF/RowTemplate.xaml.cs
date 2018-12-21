@@ -257,6 +257,8 @@ namespace Nursery_Management_System_WPF
 
                     //fill parent data here
                     window.fillPdata1();
+                    window.ID.IsEnabled = false;
+                    window.username.IsEnabled = false;
 
                     //fill parent data here
 
@@ -269,6 +271,10 @@ namespace Nursery_Management_System_WPF
                     window.signUpButton.Visibility = Visibility.Hidden;
                     window.ID.IsEnabled = false;
                     window.OKButton.Visibility = Visibility.Visible;
+
+                    window.username.IsEnabled = false;
+
+                    window.ID.IsEnabled = false;
 
                     window.salary.Visibility = Visibility.Visible;
                     window.roomID.Visibility = Visibility.Visible;

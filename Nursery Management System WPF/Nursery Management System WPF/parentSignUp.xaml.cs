@@ -42,7 +42,7 @@ namespace Nursery_Management_System_WPF
 
         private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
-            if (checkEnteredData())
+            if (checkEnteredData(false))
             {
                 GlobalVariables.globalParent = new Parent(Convert.ToInt64(ID.Text), firstName.Text, lastName.Text, phoneNumber.Text, email.Text
                    , address.Text, creditCard.Text, 1);
@@ -59,7 +59,7 @@ namespace Nursery_Management_System_WPF
             }
         }
 
-        public Boolean checkEnteredData()
+        public Boolean checkEnteredData(bool x)
         {
             bool ans = true;
             ValidateData validator = new ValidateData();
@@ -85,7 +85,7 @@ namespace Nursery_Management_System_WPF
                 lastNameError.Visibility = Visibility.Hidden;
             }
 
-            if (!validator.checkNationalID(ID.Text) || mSQLQuery.getParentByID(Convert.ToInt64(ID.Text)).Rows.Count != 0)
+            if (!x &&( !validator.checkNationalID(ID.Text) || mSQLQuery.getParentByID(Convert.ToInt64(ID.Text)).Rows.Count != 0 ))
             {
                 ans = false;
                 IDError.Visibility = Visibility.Visible;
@@ -135,7 +135,7 @@ namespace Nursery_Management_System_WPF
                 creditError.Visibility = Visibility.Hidden;
             }
 
-            if (mSQLQuery.checkForUsername(username.Text))
+            if (mSQLQuery.checkForUsername(username.Text) && !x)
             {
                 ans = false;
                 usernameError.Visibility = Visibility.Visible;
@@ -229,7 +229,7 @@ namespace Nursery_Management_System_WPF
         {
             SQLQuery mSqlQuery = new SQLQuery();
 
-            if(checkEnteredData())
+            if(checkEnteredData(true))
             {
 
                 GlobalVariables.globalParent.firstName = firstName.Text;
