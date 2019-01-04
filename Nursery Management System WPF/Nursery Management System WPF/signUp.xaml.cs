@@ -38,5 +38,28 @@ namespace Nursery_Management_System_WPF
             staffSignUpWindow.Show();
             this.Close();
         }
+
+        private void exitButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        private void backButton_Click(object sender, RoutedEventArgs e)
+        {
+            signIn logIn = new signIn();
+            this.Close();
+            logIn.Show();
+        }
     }
 }

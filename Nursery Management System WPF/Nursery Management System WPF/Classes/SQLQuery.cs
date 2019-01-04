@@ -14,7 +14,7 @@ namespace Nursery_Management_System_WPF
 
         /****************  USER AUTHENTICATION  ****************/
 
-        public bool serachForUser(string name , string password)
+        public bool serachForUser(string name, string password)
         {
             SQL mSql = new SQL();
             string query = "select * from User_Password where userName like '" + name + "' and userPassword like '" + password + "'";
@@ -42,18 +42,51 @@ namespace Nursery_Management_System_WPF
                 if (GlobalVariables.globalStaff.pending == 1)
                     return false;
             }
-            else if(type.Equals("Admin"))
+            else if (type.Equals("Admin"))
             {
+                Int64 id = Convert.ToInt64(dt.Rows[0]["adminID"].ToString());
+                GlobalVariables.globalAdmin = adminToLinkedList(getAdminByID(id)).ElementAt(0);
                 GlobalVariables.globalType = "Admin";
-                Int64 id = Convert.ToInt64(dt.Rows[0]["staffID"].ToString());
-                GlobalVariables.globalAdmin = GlobalVariables.globalAdmin.ToAdmin(staffToLinkedList(getStaffByID(id)).ElementAt(0));
-                if (GlobalVariables.globalAdmin.pending == 1)
-                    return false;
             }
 
             return true;
         }
-        
+
+
+        public LinkedList<Admin> adminToLinkedList(DataTable dt)
+        {
+            LinkedList<Admin> admin = new LinkedList<Admin>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                Admin currentAdmin = new Admin();
+
+                currentAdmin.id = Convert.ToInt64(dr["adminID"].ToString());
+                currentAdmin.firstName = dr["adminFirstName"].ToString();
+                currentAdmin.lastName = dr["adminLastName"].ToString();
+                currentAdmin.phoneNumber = dr["adminPhoneNumber"].ToString();
+                currentAdmin.email = dr["adminEmail"].ToString();
+                admin.AddLast(currentAdmin);
+            }
+
+            return admin;
+        }
+
+        private DataTable getAdmin(string query)
+        {
+            SQL sql = new SQL();
+
+            DataTable dt = new DataTable();
+            dt = sql.retrieveQuery(query);
+
+            return dt;
+        }
+
+        public DataTable getAdminByID(Int64 id)
+        {
+            string query = "select * from Admin where adminID = " + Convert.ToString(id);
+            return getAdmin(query);
+        }
+
         public bool checkForUsername(string username)
         {
             SQL mSql = new SQL();
@@ -66,6 +99,27 @@ namespace Nursery_Management_System_WPF
 
             return true;
         }
+
+        public DataTable selectUsernameByIDAndType(Int64 id, String type)
+        {
+            SQL mSQL = new SQL();
+            string query;
+            if (type == "Staff")
+            {
+                query = "select * from User_Password where staffID  =  " + Convert.ToString(id);
+            }
+            else if(type == "Admin")
+            {
+                query = "select * from User_Password where adminID  =  " + Convert.ToString(id);
+            }
+            else
+            {
+                query = "select * from User_Password where parentID  =  " + Convert.ToString(id);
+            }
+
+            return mSQL.retrieveQuery(query);
+        }
+
 
         /****************  INSERTING DATA INTO DATABASE  ****************/
 
@@ -80,8 +134,17 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@parentID", child.parentID);
             mCommand.Parameters.AddWithValue("@DOB", child.DOB);
             mCommand.Parameters.AddWithValue("@gender", child.gender);
-            mCommand.Parameters.AddWithValue("@picture", child.image);
-            mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            if (child.image == null)
+            {
+                mCommand.Parameters.Add("@picture", SqlDbType.VarBinary).Value = DBNull.Value;
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@picture", child.image);
+            }
+
+            mCommand.Parameters.AddWithValue("@roomID", DBNull.Value);
+
             mCommand.Parameters.AddWithValue("@childPending", child.pending);
 
             mSQL.insertQuery(mCommand);
@@ -109,6 +172,20 @@ namespace Nursery_Management_System_WPF
 
             return;
         }
+        // child feature data
+        public void insertChildFeature(int childID, int featureID)
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("insertChildFeature");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@childID", childID);
+            mCommand.Parameters.AddWithValue("@featureID", featureID);
+
+            mSQL.insertQuery(mCommand);
+
+            return;
+        }
 
         //staff data insertion
         public void insertStaffData(Staff staff, string department)
@@ -122,7 +199,7 @@ namespace Nursery_Management_System_WPF
             mCommand.Parameters.AddWithValue("@staffLastName", staff.lastName);
             mCommand.Parameters.AddWithValue("@staffPhoneNumber", staff.phoneNumber);
             mCommand.Parameters.AddWithValue("@staffEmail", staff.email);
-            if(staff.salary == -1)
+            if (staff.salary == -1)
             {
                 mCommand.Parameters.AddWithValue("@staffSalary", DBNull.Value);
             }
@@ -130,7 +207,7 @@ namespace Nursery_Management_System_WPF
             {
                 mCommand.Parameters.AddWithValue("@staffSalary", staff.salary);
             }
-            mCommand.Parameters.AddWithValue("@staffType", department);
+            mCommand.Parameters.AddWithValue("@qualification", staff.qualification);
             mCommand.Parameters.AddWithValue("@staffPending", staff.pending);
 
             mSQL.insertQuery(mCommand);
@@ -155,19 +232,8 @@ namespace Nursery_Management_System_WPF
             return;
         }
 
-        //insert child feature
-        public void insertChildFeature(int childID, int featureID)
-        {
-            SQL mSQL = new SQL();
-            SqlCommand mCommand = new SqlCommand("insertChildFeature");
-            mCommand.CommandType = CommandType.StoredProcedure;
 
-            mCommand.Parameters.AddWithValue("@childID", childID);
-            mCommand.Parameters.AddWithValue("@featureID", featureID);
 
-            mSQL.insertQuery(mCommand);
-            return;
-        }
 
         //insert feature
         public void insertFeature(string featureName)
@@ -183,9 +249,15 @@ namespace Nursery_Management_System_WPF
         }
 
         //insert daily child details
-        public void insertDailyChildDetails(DateTime detailsDate , string childDetails , int childID)
+        public void insertDailyChildDetails(DateTime detailsDate, string childDetails, int childID)
         {
             SQL mSQL = new SQL();
+
+            if (getChildDailyDetails(detailsDate, childID).Equals("Nothing to show") == false)
+            {
+                deleteChildDailyDetails(detailsDate, childID);
+            }
+
             SqlCommand mCommand = new SqlCommand("insertChildDailyDetails");
             mCommand.CommandType = CommandType.StoredProcedure;
 
@@ -198,7 +270,7 @@ namespace Nursery_Management_System_WPF
         }
 
         //insert User
-        public void insertUser(string name , string password , string type , Int64 id)
+        public void insertUser(string name, string password, string type, Int64 id)
         {
             SQL mSQL = new SQL();
             SqlCommand mCommand = new SqlCommand("insertUser");
@@ -206,17 +278,25 @@ namespace Nursery_Management_System_WPF
 
             mCommand.Parameters.AddWithValue("@userName", name);
 
-            if(type == "Parent")
+            if (type == "Parent")
             {
-                mCommand.Parameters.AddWithValue("@staffID",DBNull.Value);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@parentID", id);
+
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
+            }
+            else if(type == "Admin")
+            {
+                mCommand.Parameters.AddWithValue("@adminID", id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@parentID", id);
             }
             else
             {
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
                 mCommand.Parameters.AddWithValue("@staffID", id);
                 mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
             }
-
             mCommand.Parameters.AddWithValue("@userPassword", password);
             mCommand.Parameters.AddWithValue("@userType", type);
 
@@ -246,8 +326,24 @@ namespace Nursery_Management_System_WPF
                 currentChild.parentID = Convert.ToInt64(dr["parentID"].ToString());
                 currentChild.DOB = Convert.ToDateTime(dr["DOB"].ToString());
                 currentChild.gender = dr["gender"].ToString();
-                currentChild.roomID = Convert.ToInt32(dr["roomID"].ToString());
-                currentChild.image =(byte[])(dr["picture"]);
+                if (dr["roomID"] == DBNull.Value)
+                {
+                    currentChild.roomID = -1;
+                }
+                else
+                {
+                    currentChild.roomID = Convert.ToInt32(dr["roomID"].ToString());
+                }
+
+                if (dr["picture"] == DBNull.Value)
+                {
+                    currentChild.image = null;
+                }
+                else
+                {
+                    currentChild.image = (byte[])(dr["picture"]);
+                }
+
                 currentChild.pending = Convert.ToInt32(dr["childIsPending"].ToString());
 
                 child.AddLast(currentChild);
@@ -255,8 +351,13 @@ namespace Nursery_Management_System_WPF
 
             return child;
         }
-    
 
+        //uses specific query to select room by room number from database
+        public DataTable getRoomByNumber(int id)
+        {
+            string query = "select* from Room where roomNumber = " + Convert.ToString(id);
+            return getRoom(query);
+        }
 
 
         //uses specific query to select all children from database
@@ -264,6 +365,18 @@ namespace Nursery_Management_System_WPF
         {
             string query = "select * from Child";
             return getChild(query);
+        }
+        //uses specific query to get id for children from database
+        public int getIDForChild(string firstName, string ID)
+        {
+            string query = "select childID from Child where childName = '" + firstName + "' and parentID = '" + ID +"'";
+            DataTable dt = getChild(query);
+            int x = 0;
+            foreach (DataRow dr in dt.Rows)
+            {
+                x = Int32.Parse(dr[0].ToString());
+            }
+            return x;
         }
 
         //uses specific query to select child by ID from database
@@ -276,53 +389,22 @@ namespace Nursery_Management_System_WPF
         //uses specific query to select child by parent's ID from database
         public DataTable getChildByParentID(Int64 id)
         {
-            string query = "select * from Child where parentID = " + Convert.ToString(id);   
+            string query = "select * from Child where parentID = " + Convert.ToString(id);
             return getChild(query);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// retreiv child profile 
-public DataTable Child_Data(Int64 id)
+        // retreiv child profile
+        public DataTable Child_Data(Int64 id)
         {
             SQL mSQL = new SQL();
             SqlCommand mCommand = new SqlCommand("Child_Data");
             mCommand.CommandType = CommandType.StoredProcedure;
             mCommand.Parameters.AddWithValue("@parentId", id);
             DataTable dt = new DataTable();
-             dt = getChildByParentID(id);
+            dt = getChildByParentID(id);
             return dt;
-        }       
+        }
 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         //uses specific query to select child by room's ID from database
         public DataTable getChildByRoomID(int id)
         {
@@ -342,6 +424,17 @@ public DataTable Child_Data(Int64 id)
             return getChild(query);
         }
 
+        public DataTable getNotPendingChild()
+        {
+            string query = "select * from Child where childIsPending = 0";
+            return getChild(query);
+        }
+        public DataTable getChildFeaturesByID(string ID)
+        {
+            string query = "select featureID from Child_Feature where childID = '" + ID + "'";
+            return getChild(query);
+        }
+
         /****************  RETRIEVING PARENT DATA FROM DATABASE  ****************/
 
         private DataTable getParent(string query)
@@ -350,10 +443,9 @@ public DataTable Child_Data(Int64 id)
 
             DataTable dt = new DataTable();
             dt = sql.retrieveQuery(query);
-            
+
             return dt;
         }
-
 
         public LinkedList<Parent> parentToLinkedList(DataTable dt)
         {
@@ -362,7 +454,7 @@ public DataTable Child_Data(Int64 id)
             {
                 Parent currentParent = new Parent();
 
-                currentParent.id = Convert.ToInt32(dr["parentID"].ToString());
+                currentParent.id = Convert.ToInt64(dr["parentID"].ToString());
                 currentParent.firstName = dr["parentFirstName"].ToString();
                 currentParent.lastName = dr["parentLastName"].ToString();
                 currentParent.address = dr["parentAddress"].ToString();
@@ -397,6 +489,12 @@ public DataTable Child_Data(Int64 id)
             string query = "select * from Parent where parentIsPending = 1";
             return getParent(query);
         }
+        public DataTable getNotPendingParent()
+        {
+            string query = "select * from Parent where parentIsPending = 0";
+            return getParent(query);
+        }
+
 
         /****************  RETRIEVING STAFF DATA FROM DATABASE  ****************/
 
@@ -422,8 +520,8 @@ public DataTable Child_Data(Int64 id)
                 currentStaff.lastName = dr["staffLastName"].ToString();
                 currentStaff.phoneNumber = dr["staffPhoneNumber"].ToString();
                 currentStaff.email = dr["staffEmail"].ToString();
-                currentStaff.type = dr["staffType"].ToString();
                 currentStaff.pending = Convert.ToInt32(dr["staffIsPending"].ToString());
+                currentStaff.qualification = dr["qualification"].ToString();
                 if (currentStaff.pending == 1)
                 {
                     currentStaff.salary = -1;
@@ -467,7 +565,7 @@ public DataTable Child_Data(Int64 id)
             room = roomToLinkedList(getRoomByID(id));
 
             if (room.Count() == 0)
-                return new DataTable(); 
+                return new DataTable();
 
             string query = "select * from Staff where staffID = " + Convert.ToString(room.ElementAt(0).staffID);
             return getStaff(query);
@@ -477,6 +575,12 @@ public DataTable Child_Data(Int64 id)
         public DataTable getPendingStaff()
         {
             string query = "select * from Staff where staffIsPending = 1";
+            return getStaff(query);
+        }
+
+        public DataTable getNotPendingStaff()
+        {
+            string query = @"select * from Staff where staffIsPending = 0";
             return getStaff(query);
         }
 
@@ -491,6 +595,7 @@ public DataTable Child_Data(Int64 id)
 
             return dt;
         }
+       
 
         public LinkedList<Room> roomToLinkedList(DataTable dt)
         {
@@ -501,11 +606,64 @@ public DataTable Child_Data(Int64 id)
 
                 currentRoom.id = Convert.ToInt32(dr["roomID"].ToString());
                 currentRoom.number = Convert.ToInt32(dr["roomNumber"].ToString());
-                currentRoom.staffID = Convert.ToInt32(dr["roomStaffID"].ToString());
-
+                if(dr["roomStaffID"] == DBNull.Value)
+                {
+                    currentRoom.staffID = -1;
+                }
+                else
+                {
+                    currentRoom.staffID = Convert.ToInt64(dr["roomStaffID"].ToString());
+                }
+                
                 room.AddLast(currentRoom);
             }
             return room;
+        }
+
+        public void insertParentFeedback(Int64 parentID, string feedback)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("insertParentFeedback");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@parentID", parentID);
+            mCommand.Parameters.AddWithValue("@description", feedback);
+
+            mSQL.insertQuery(mCommand);
+
+            return;
+        }
+
+        public LinkedList<Tuple<Tuple<int, string>, string>> getAllParentFeedback()
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("getAllParentFeedback");
+            LinkedList<Tuple<Tuple<int, string>, string>> feedback = new LinkedList<Tuple<Tuple<int, string>, string>>();
+
+            DataTable dt = mSQL.retrieveQuery(mCommand);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                feedback.AddLast(new Tuple<Tuple<int, string>, string>(new Tuple<int, string>(Convert.ToInt32(dr["feedbackID"]), dr["feedbackDescription"].ToString()), dr["parentFirstName"].ToString()
+                    + dr["parentLastName"].ToString()));
+            }
+
+            return feedback;
+        }
+
+        public void deleteParentFeedback(int feedbackID)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("deleteParentFeedback");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@feedbackID", feedbackID);
+
+            mSQL.deleteQuery(mCommand);
+
+            return;
         }
 
         //uses specific query to select all rooms from database
@@ -529,6 +687,59 @@ public DataTable Child_Data(Int64 id)
             return getRoom(query);
         }
 
+        /**************** Get Child Daily Details  ****************/
+        public string getChildDailyDetails(DateTime detailsDate, Int64 childID)
+        {
+            DataTable dt = new DataTable();
+            SQL mSQL = new SQL();
+            string childDetails = "Nothing to show";
+
+            string query = "select childDetails from childDailyDetails where detailsDate between '" + (DateTime)detailsDate + "' and '" + (DateTime)detailsDate + "' and childID = " + Convert.ToString(childID);
+            dt = mSQL.retrieveQuery(query);
+
+            if (dt.Rows.Count != 0)
+            {
+                childDetails = dt.Rows[0]["childDetails"].ToString();
+            }
+
+
+            return childDetails;
+        }
+
+        public void deleteChildDailyDetails(DateTime dt, int id)
+        {
+            SQL mSQL = new SQL();
+
+            SqlCommand mCommand = new SqlCommand("deleteChildDailyDetails");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@childID", id);
+            mCommand.Parameters.AddWithValue("@date", dt);
+
+            mSQL.deleteQuery(mCommand);
+            return;
+        }
+
+        /****************  RETRIEVING Features DATA FROM DATABASE  ****************/
+        public DataTable getFeatures(string query)
+        {
+            SQL sql = new SQL();
+
+            DataTable dt = new DataTable();
+            dt = sql.retrieveQuery(query);
+
+            return dt;
+
+        }
+
+        public DataTable allFeatures()
+        {
+            string query = "select * from Feature";
+            return getFeatures(query);
+        }
+
+
+
         /****************  UPDATING DATA FROM DATABASE  ****************/
 
         public void updateChildData(Child child)
@@ -537,15 +748,33 @@ public DataTable Child_Data(Int64 id)
             SqlCommand mCommand = new SqlCommand("updateChildData");
             mCommand.CommandType = CommandType.StoredProcedure;
 
+            mCommand.Parameters.AddWithValue("@childID", child.id);
             mCommand.Parameters.AddWithValue("@childName", child.firstName);
+
+            if (child.image == null)
+            {
+                SqlParameter imageParameter = new SqlParameter("@picture", SqlDbType.Image);
+                imageParameter.Value = DBNull.Value;
+                mCommand.Parameters.Add(imageParameter);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@picture", child.image);
+            }
             mCommand.Parameters.AddWithValue("@parentID", child.parentID);
             mCommand.Parameters.AddWithValue("@DOB", child.DOB);
             mCommand.Parameters.AddWithValue("@gender", child.gender);
-            mCommand.Parameters.AddWithValue("@picture", child.image);
-            mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            if (child.roomID == -1)
+            {
+                mCommand.Parameters.AddWithValue("@roomID", DBNull.Value);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@roomID", child.roomID);
+            }
             mCommand.Parameters.AddWithValue("@childPending", child.pending);
 
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -564,8 +793,25 @@ public DataTable Child_Data(Int64 id)
             mCommand.Parameters.AddWithValue("@parentCreditCard", parent.creditCard);
             mCommand.Parameters.AddWithValue("@parentEmail", parent.email);
             mCommand.Parameters.AddWithValue("@parentPending", parent.pending);
-            
-            mSQL.insertQuery(mCommand);
+
+            mSQL.updateQuery(mCommand);
+
+            return;
+        }
+
+        public void updateAdminData(Admin admin)
+        {
+            SQL mSQL = new SQL();
+            SqlCommand mCommand = new SqlCommand("updateAdminData");
+            mCommand.CommandType = CommandType.StoredProcedure;
+
+            mCommand.Parameters.AddWithValue("@adminID", admin.id);
+            mCommand.Parameters.AddWithValue("@adminFirstName", admin.firstName);
+            mCommand.Parameters.AddWithValue("@adminLastName", admin.lastName);
+            mCommand.Parameters.AddWithValue("@adminPhoneNumber", admin.phoneNumber);
+            mCommand.Parameters.AddWithValue("@adminEmail", admin.email);
+
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -582,10 +828,9 @@ public DataTable Child_Data(Int64 id)
             mCommand.Parameters.AddWithValue("@staffPhoneNumber", staff.phoneNumber);
             mCommand.Parameters.AddWithValue("@staffEmail", staff.email);
             mCommand.Parameters.AddWithValue("@staffSalary", staff.salary);
-            mCommand.Parameters.AddWithValue("@staffType", staff.type);
             mCommand.Parameters.AddWithValue("@staffPending", staff.pending);
 
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
@@ -596,26 +841,51 @@ public DataTable Child_Data(Int64 id)
             SqlCommand mCommand = new SqlCommand("updateRoomData");
             mCommand.CommandType = CommandType.StoredProcedure;
 
+            mCommand.Parameters.AddWithValue("@roomID", room.id);
+
             mCommand.Parameters.AddWithValue("@roomNumber", room.number);
             if (room.staffID == -1)
                 mCommand.Parameters.AddWithValue("@roomStaffID", DBNull.Value);
             else
                 mCommand.Parameters.AddWithValue("@roomStaffID", room.staffID);
-            mSQL.insertQuery(mCommand);
+            mSQL.updateQuery(mCommand);
 
             return;
         }
 
-        public void updateUsername(Int64 id , string type)
+        public void updateUsername(Int64 id, string type, string newUsername, string newPassword)
         {
-            /*SQL mSQL= new SQL();
-            string query = "select * from User_Password where " + Convert.ToString(id) + " and userType like '" + type + "'";
+            SQL mSQL = new SQL();
 
-            SqlCommand mCommand = new SqlCommand();
+            DataTable table = new DataTable();
+            table = selectUsernameByIDAndType(id, type);
 
+            SqlCommand mCommand = new SqlCommand("updateUsername");
+            mCommand.CommandType = CommandType.StoredProcedure;
 
+            if (type == "Staff")
+            {
+                mCommand.Parameters.AddWithValue("@staffID", id);
+                mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
+            }
+            else if(type == "Admin")
+            {
+                mCommand.Parameters.AddWithValue("@adminID", id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@parentID", DBNull.Value);
+            }
+            else
+            {
+                mCommand.Parameters.AddWithValue("@adminID", DBNull.Value);
+                mCommand.Parameters.AddWithValue("@parentID", id);
+                mCommand.Parameters.AddWithValue("@staffID", DBNull.Value);
+            }
+            mCommand.Parameters.AddWithValue("@type", table.Rows[0]["userType"]);
+            mCommand.Parameters.AddWithValue("@newUsername", newUsername);
+            mCommand.Parameters.AddWithValue("@newPassword", newPassword);
 
-            mSQL.updateQuery(mCommand);*/
+            mSQL.updateQuery(mCommand);
         }
 
         /****************  DELETING DATA FROM DATABASE  ****************/
@@ -640,10 +910,10 @@ public DataTable Child_Data(Int64 id)
             mSql.deleteQuery(query);
         }
 
-        public void deleteChildFeature(int featureID)
+        public void deleteChildFeature(int childID)
         {
             SQL mSql = new SQL();
-            string query = "delete from Child_Feature where featureID = " +Convert. ToString(featureID);
+            string query = "delete from Child_Feature where childID = " + Convert.ToString(childID);
             mSql.deleteQuery(query);
         }
 
@@ -669,6 +939,6 @@ public DataTable Child_Data(Int64 id)
         {
             string query = "delete from Room where roomID in(" + string.Join(",", roomIDs) + ")";
             deleteUser(query);
-        }      
-     }
+        }
+    }
 }

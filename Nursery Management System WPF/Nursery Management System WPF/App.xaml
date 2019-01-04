@@ -3,8 +3,71 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Nursery_Management_System_WPF"
             
-             StartupUri="adminWindow.xaml">
+             StartupUri="signIn.xaml">
     <Application.Resources>
-        
+        <Style x:Key="placeHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="{x:Null}" 
+                                 Panel.ZIndex="2" BorderBrush="{x:Null}" SelectionBrush="#FF0078D7" BorderThickness="0" VerticalContentAlignment="Center" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" BorderBrush="{x:Null}" SelectionBrush="#FF0078D7" BorderThickness="0">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="Gray"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="newPlaceHolder" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="newTextSource" 
+                                 Background="{x:Null}" 
+                                 Panel.ZIndex="2" BorderBrush="#FF949494" SelectionBrush="#FF0078D7" BorderThickness="1" VerticalContentAlignment="Center" Padding="3" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1" BorderBrush="{x:Null}" SelectionBrush="#FF0078D7" BorderThickness="1" Padding="3">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference newTextSource}}" Value="">
+                                                <Setter Property="Foreground" Value="Gray"/>
+                                                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

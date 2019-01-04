@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace Nursery_Management_System_WPF
 {
@@ -23,21 +25,18 @@ namespace Nursery_Management_System_WPF
         public signIn()
         {
             InitializeComponent();
-
-            username.LostFocus += addUserNameText;
-            username.GotFocus += removeUserNameText;
         }
 
         private void loginButton_Click(object sender, RoutedEventArgs e)
         {
             SQLQuery mSqlQuery = new SQLQuery();
 
-            if (mSqlQuery.checkForUsername(username.Text) == false)
+            if (!mSqlQuery.checkForUsername(username.Text))
             {
                 usernameError.Visibility = Visibility.Visible;
                 passwordError.Visibility = Visibility.Visible;
             }
-            else if(mSqlQuery.serachForUser(username.Text , password.Password ) == false)
+            else if(!mSqlQuery.serachForUser(username.Text , password.Password))
             {
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Visible;
@@ -47,46 +46,54 @@ namespace Nursery_Management_System_WPF
                 usernameError.Visibility = Visibility.Hidden;
                 passwordError.Visibility = Visibility.Hidden;
 
-                MessageBox.Show("Hello, " + username.Text + "!", "Logged In Successfully", MessageBoxButton.OK, MessageBoxImage.None);
-
                 if (GlobalVariables.globalType.Equals("Staff"))
                 {
                     //open staff form
+                    
+                    staffWindow mStaffWindow = new staffWindow();
+
+                    mStaffWindow.Show();
                 }
                 else if (GlobalVariables.globalType.Equals("Admin"))
                 {
                     //open admin form
+                    
                     adminWindow adminForm = new adminWindow();
                     adminForm.Show();
-                    this.Close();
+                   
                 }
                 else if (GlobalVariables.globalType.Equals("Parent"))
                 {
                     //open parent form
+                    parentWindow mParentWindow = new parentWindow();
+                    mParentWindow.Show();
                 }
+                this.Close();
             }
         }
-        
-        public void removeUserNameText(object sender, EventArgs e)
+        private void exitButton_Click(object sender, RoutedEventArgs e)
         {
-            username.Text = "";
+            this.Close();
         }
 
-        public void addUserNameText(object sender, EventArgs e)
+        private void minimizeButton_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(username.Text))
-                username.Text = "Enter Username Here";
-        }
-        private void username_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            WindowState = WindowState.Minimized;
         }
 
-        private void button1_Click(object sender, RoutedEventArgs e)
+        private void signUpButton_Click(object sender, RoutedEventArgs e)
         {
             signUp signUpForm = new signUp();
             signUpForm.Show();
             this.Close();
         }
+
+        private void titleBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
+        
     }
 }

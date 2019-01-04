@@ -18,30 +18,35 @@ namespace Nursery_Management_System_WPF
     class ImageOperation
     {
 
-        /*
-        public  byte[] ImageToBinary(Image image)
+        
+        public  byte[] ImageToBinary(Image pictureImage)
         {
-            using (MemoryStream ms = new MemoryStream())
+            byte[] buffer;
+            var bitmap = pictureImage.Source as BitmapSource;
+            var encoder = new PngBitmapEncoder(); // or one of the other encoders
+            encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+            using (var stream = new MemoryStream())
             {
-                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                return ms.ToArray();
+                encoder.Save(stream);
+                buffer = stream.ToArray();
             }
+            return buffer;
         }
 
-        public  Image BinaryToImage(byte[] byteArray)
+        public  ImageSource BinaryToImage(byte[] byteArray)
         {
-            
-                MemoryStream ms = new MemoryStream(byteArray, 0, byteArray.Length);
-                ms.Write(byteArray, 0, byteArray.Length);
-                Image image = Image.FromStream(ms, true);
+            if (byteArray == null)
+                return null;
+            BitmapImage biImg = new BitmapImage();
+            MemoryStream ms = new MemoryStream(byteArray);
+            biImg.BeginInit();
+            biImg.StreamSource = ms;
+            biImg.EndInit();
 
-            int x = 1;
-                return image;
-           
-            
+            ImageSource imgSrc = biImg as ImageSource;
+
+            return imgSrc;
         }
-
-        */
-
     }
 }

@@ -34,6 +34,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignColors, Version=1.0.0.14576, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.1.1\lib\net45\MaterialDesignColors.dll</HintPath>
@@ -61,13 +81,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="adminPage.xaml.cs" />
     <Compile Include="adminWindow.xaml.cs">
       <DependentUpon>adminWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="childSignUp.xaml.cs">
+      <DependentUpon>childSignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="childWindow.xaml.cs">
+      <DependentUpon>childWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Classes\Admin.cs" />
     <Compile Include="Classes\Child.cs" />
     <Compile Include="Classes\connectionString.cs" />
+    <Compile Include="Classes\Features.cs" />
     <Compile Include="Classes\GlobalVariables.cs" />
     <Compile Include="Classes\Human.cs" />
     <Compile Include="Classes\ImageOperation.cs" />
@@ -80,8 +106,11 @@
     <Compile Include="parentSignUp.xaml.cs">
       <DependentUpon>parentSignUp.xaml</DependentUpon>
     </Compile>
-    <Compile Include="parentSignUp2.xaml.cs">
-      <DependentUpon>parentSignUp2.xaml</DependentUpon>
+    <Compile Include="parentWindow.xaml.cs">
+      <DependentUpon>parentWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RowTemplate.xaml.cs">
+      <DependentUpon>RowTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="signIn.xaml.cs">
       <DependentUpon>signIn.xaml</DependentUpon>
@@ -96,11 +125,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="adminPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="staffWindow.xaml.cs">
+      <DependentUpon>staffWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="adminWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="childSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="childWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -108,7 +144,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="parentSignUp2.xaml">
+    <Page Include="parentWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RowTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,6 +161,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="staffSignUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="staffWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +187,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="images\images-20181214T112951Z-001.zip" />
+    <None Include="images\photothumb.db" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -203,6 +249,7 @@
     <Resource Include="images\parent icon 200px.png" />
     <Resource Include="images\parent icon 500px.jpg" />
     <Resource Include="images\parent icon.jpg" />
+    <Resource Include="images\pay icon.png" />
     <Resource Include="images\personal_center__965789.png" />
     <Resource Include="images\plus 40px.png" />
     <Resource Include="images\plus-sign-icon-31.png" />
@@ -238,7 +285,23 @@
     <Resource Include="images\Asset 1.png" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="images\delete.png" />
+    <Resource Include="images\features.png" />
+    <Resource Include="images\next icon 1600px.png" />
+    <Content Include="images\pay icon.svg" />
+    <Resource Include="images\room.png" />
+    <Resource Include="images\Error.png" />
+    <Resource Include="images\delete 70px.png" />
+    <Resource Include="images\next icon 50px.png" />
+    <Resource Include="images\daily details_2%404x.png" />
+    <Resource Include="images\daily details_1%404x.png" />
+    <Resource Include="images\edit icon.png" />
     <Resource Include="images\correct.png" />
+    <Resource Include="images\feedbackbubble.png" />
+    <Resource Include="images\back %281%29.png" />
+    <Resource Include="images\Asset 1%404x.png" />
+    <Resource Include="images\Asset 2%404x.png" />
+    <Resource Include="images\back icon 50px.png" />
     <Content Include="images\correct.svg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

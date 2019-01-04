@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="Nursery_Management_System_WPF.RowTemplate"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Nursery_Management_System_WPF"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="0,0,-480,0">
+        <Grid x:Name="rowGrid" HorizontalAlignment="Left" Height="113" Margin="10,10,0,0" VerticalAlignment="Top" Width="750" MouseDown="parentGrid_MouseDown">
+
+            <Ellipse x:Name="parentProfileImage" HorizontalAlignment="Left" Height="60" Margin="40,30,0,0" VerticalAlignment="Top" Width="60" Stroke="Black" StrokeThickness="2">
+                <Ellipse.Fill>
+                    <ImageBrush x:Name="profilePicture" ImageSource="images/256.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Label x:Name="name" Content="Parent Name" HorizontalAlignment="Left" Margin="120,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.553,-0.422" MouseDown="name_MouseDown"/>
+            <Button x:Name="acceptButton" Content="Accept" Margin="500,40,150,40" FontFamily="Consolas" FontSize="13.333" Background="#FF7FCD67" Foreground="#FF0B3508" BorderBrush="{x:Null}" Click="acceptButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+            <Button x:Name="declineButton" Content="Decline" Margin="610,40,40,40" FontFamily="Consolas" FontSize="13.333" Background="#FFCD8167" Foreground="#FF4E0404" BorderBrush="{x:Null}" Click="declineButton_Click" RenderTransformOrigin="0.78,-0.93" Width="100" Height="30"/>
+        </Grid>
+    </Grid>
+</UserControl>

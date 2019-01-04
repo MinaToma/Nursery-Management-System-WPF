@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace Nursery_Management_System_WPF
 {
-    public class Admin : Staff
+    public class Admin : Human
     {
+        public string phoneNumber { get; set; }
+        public String email { get; set; }
+        public double salary { get; set; }
+        public string type { get; set; }
+
         public Admin() { }
-        public Admin(Int64 _id, String _firstName , string _lastName , string _phoneNumber , string email , double _salary , int _pending , string _type) :
-            base(_id , _firstName , _lastName , _phoneNumber , email , _salary , _pending , _type)
+        public Admin(Int64 _id, String _firstName , string _lastName , string _phoneNumber , string email ) :
+            base(_id , _firstName , _lastName , 0)
         {
-
+            this.email = email;
+            this.phoneNumber = _phoneNumber;
         }
-
-        public Admin ToAdmin(Staff staff)
-        {
-            return new Admin(staff.id, staff.firstName, staff.lastName, staff.phoneNumber, staff.email , staff.salary, staff.pending, staff.type);
-        }
+        
     }
 }

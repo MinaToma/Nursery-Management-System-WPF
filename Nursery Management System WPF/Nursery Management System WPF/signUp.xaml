@@ -5,20 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Nursery_Management_System_WPF"
         mc:Ignorable="d"
-        Title="Nursery Management System - Sign Up" Height="600" Width="400
-        " MaxWidth="400" MaxHeight="600" ResizeMode="NoResize">
-    <Grid>
-        <Grid.Background>
-            <RadialGradientBrush>
-                <GradientStop Color="#FFC797B7" Offset="1"/>
-                <GradientStop Color="#FFE1D4E2"/>
-                <GradientStop Color="#FFCBA0BD" Offset="0.75"/>
-                <GradientStop Color="#FFCEA8C3" Offset="0.5"/>
-                <GradientStop Color="#FFD4B7CE" Offset="0.25"/>
-            </RadialGradientBrush>
-        </Grid.Background>
-        <Button x:Name="staffSignUp" Content="Staff" HorizontalAlignment="Left" Margin="214,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="staffSignUp_Click"/>
-        <Button x:Name="parentSignUp" Content="Parent" HorizontalAlignment="Left" Margin="36,224,0,0" VerticalAlignment="Top" Width="143" Height="189" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="parentSignUp_Click" />
+        Title="Nursery Management System - Sign Up" Height="600" Width="400 " 
+        MaxWidth="400" MaxHeight="600" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None" Background="{x:Null}" >
+    <Grid Background="Black">
+        <Grid x:Name="titleBar" HorizontalAlignment="Center" Height="40" VerticalAlignment="Top" Width="400" Background="#FF082635" MouseDown="titleBar_MouseDown">
+            <Button x:Name="exitButton" Content="x" Margin="370,10,10,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Click="exitButton_Click" Height="20" RenderTransformOrigin="0.78,-0.93"/>
+            <Button x:Name="minimizeButton" Content="-" Margin="346,10,34,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="minimizeButton_Click"/>
+            <Button x:Name="backButton" Content="&lt;" Margin="10,10,370,10" Width="20" FontFamily="Consolas" FontSize="13.333" Background="{x:Null}" Foreground="#FFD1D1D1" BorderBrush="{x:Null}" Height="20" RenderTransformOrigin="0.78,-0.93" Click="backButton_Click"/>
+
+        </Grid>
+
+        <Button x:Name="staffSignUp" Content="               Staff" HorizontalAlignment="Left" Margin="0,320,0,0" VerticalAlignment="Top" Width="400" Height="278" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="staffSignUp_Click">
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFBFBCBC" Offset="1"/>
+                    <GradientStop Color="#FFE2E2E2"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="parentSignUp" Content="               Parent" HorizontalAlignment="Left" Margin="0,40,0,0" VerticalAlignment="Top" Width="400" Height="280" FontFamily="Bolton Sans" FontSize="16" Cursor="Hand" Click="parentSignUp_Click" VerticalContentAlignment="Center" >
+            <Button.Background>
+                <RadialGradientBrush>
+                    <GradientStop Color="#FFBFBCBC" Offset="1"/>
+                    <GradientStop Color="#FFE2E2E2"/>
+                </RadialGradientBrush>
+            </Button.Background>
+        </Button>
+        <Image x:Name="parentIcon" Source="images/parent icon 200px.png" Margin="80,97,195,350" RenderTransformOrigin="1.142,1.991"/>
+        <Image x:Name="staffIcon" Source="images/staff icon 200px.png" Margin="80,381,195,66"/>
 
     </Grid>
 </Window>
